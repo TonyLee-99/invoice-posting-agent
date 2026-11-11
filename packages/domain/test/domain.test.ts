@@ -46,7 +46,7 @@ describe("content hash", () => {
     lines: [{ description: "x", quantity: 1, unitPrice: 1, amountMinor: 100 }],
   };
   it("is independent of key order and changes on any edit", () => {
-    const reordered = JSON.parse(JSON.stringify({ lines: base.lines, ...base })) as InvoiceFields;
+    const reordered = Object.fromEntries(Object.entries(base).reverse()) as InvoiceFields;
     expect(contentHash(reordered)).toBe(contentHash(base));
     expect(contentHash({ ...base, totalMinor: 101 })).not.toBe(contentHash(base));
   });
