@@ -56,6 +56,7 @@ interface Job {
   realm_id: string;
   claim_gen: number;
   attempts: number;
+  lease_until: Date;
 }
 
 export interface JobOutcome {
@@ -104,7 +105,7 @@ export class OutboxWorker {
          order by available_at, id
          limit $3
          for update skip locked)
-       returning id, invoice_id, approval_id, request_id, doc_number, vendor_ref, payload, payload_hash, realm_id, claim_gen, attempts`,
+       returning id, invoice_id, approval_id, request_id, doc_number, vendor_ref, payload, payload_hash, realm_id, claim_gen, attempts, lease_until`,
       [this.id, String(this.o.leaseMs), this.o.batchSize],
     );
     return r.rows;
@@ -185,8 +186,16 @@ export class OutboxWorker {
       }
     }
 
-    // Step 4: write with the stable requestid.
+    // Step 4: write with the stable requestid. Re-check ownership right before the request leaves: a pause
+    // (GC, frozen VM, slow query) between the intent and here must not turn into a write by a stale worker.
     await this.o.hooks.at?.("before_remote_write", { jobId: job.id, workerId: this.id });
+    if (this.o.defenses.leaseGuard && job.lease_until.getTime() - Date.now() < this.o.requestTimeoutMs * 2) {
+      return this.release(job, attemptId, "lease too short to send safely");
+    }
+    if (this.o.defenses.fencing) {
+      const cur = (await this.db.query("select claim_gen, status from outbox where id = $1", [job.id])).rows[0];
+      if (cur.claim_gen !== job.claim_gen || cur.status !== "in_flight") return { jobId: job.id, result: "fenced" };
+    }
     const result: CreateResult = await this.qbo.createBill(job.payload, requestId);
     await this.o.hooks.at?.("after_remote_write", { jobId: job.id, workerId: this.id });
     switch (result.kind) {
@@ -248,6 +257,17 @@ export class OutboxWorker {
       if (n === 0) return "fenced" as const;
       await tx.query("update post_attempts set outcome = $2, http_status = $3, error = $4, finished_at = now() where id = $1", [attemptId, outcome, httpStatus, error.slice(0, 500)]);
       return "retry" as const;
+    });
+    return { jobId: job.id, result: res };
+  }
+
+  /** Give the job back without counting an attempt against it (used when the lease is too short). */
+  private async release(job: Job, attemptId: number, why: string): Promise<JobOutcome> {
+    const res = await withTx(this.db, async (tx) => {
+      const n = await this.fenced(tx, `update outbox set status = 'pending', lease_owner = null, lease_until = null, available_at = now(), updated_at = now() where id = $1 and status = 'in_flight'${this.fence()}`, [job.id], job.claim_gen);
+      if (n === 0) return "fenced" as const;
+      await tx.query("update post_attempts set outcome = 'released', error = $2, finished_at = now() where id = $1", [attemptId, why]);
+      return "released" as const;
     });
     return { jobId: job.id, result: res };
   }

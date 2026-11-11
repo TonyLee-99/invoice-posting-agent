@@ -78,7 +78,7 @@ create unique index invoices_vendor_number_uniq on invoices (vendor_id, invoice_
 
 create function check_invoice_transition() returns trigger language plpgsql as $$
 begin
-  if new.status is distinct from old.status or new.status = old.status and new.version <> old.version then
+  if new.status is distinct from old.status then
     if not exists (select 1 from invoice_transitions where from_status = old.status and to_status = new.status) then
       raise exception 'illegal invoice transition % -> %', old.status, new.status using errcode = 'P0001';
     end if;
