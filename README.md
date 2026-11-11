@@ -44,7 +44,7 @@ response for a repeat), **query-before-every-write** by DocNumber with an integr
 
 ```bash
 make init                         # npm ci + Playwright browser; needs Node 24 and Postgres 16 on localhost
-make check                        # lint, types, 75 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
+make check                        # lint, types, 86 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
 make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000, review UI on :3000
 ```
 

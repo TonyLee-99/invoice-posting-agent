@@ -54,7 +54,7 @@ Targets that are missed are reported with the real number; they are not moved.
 
 ## Results (2026-11-11)
 
-Evidence commands: `make check` (offline: lint, types, 79 tests, 50-seed chaos, replay eval diff — PASS), `make chaos-full`,
+Evidence commands: `make check` (offline: lint, types, 86 tests, 50-seed chaos, replay eval diff — PASS), `make chaos-full`,
 `npx tsx eval/run.ts --n 40 --backend claude-cli`, `npm run -w @ipa/review e2e`. Sample sizes follow the owner's rescope
 (40 invoices, 40 labelled matching cases, 300 chaos seeds).
 
