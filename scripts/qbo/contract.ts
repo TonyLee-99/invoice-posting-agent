@@ -57,7 +57,7 @@ const keep = (r: Awaited<ReturnType<typeof qbo.createBill>>) => {
   await sleep(2000);
   const found = await qbo.queryBillsByDocNumber(doc);
   for (const f of found) if (!created.some((c) => c.Id === f.Id)) created.push(f);
-  checks.concurrent_same_requestid = { results: [a.kind, b.kind], billsWithDocNumber: found.length, dedupedWhileInFlight: found.length === 1, observedOnly: true };
+  checks.concurrent_same_requestid = { results: [a.kind, b.kind], httpStatuses: [a.httpStatus, b.httpStatus], billsWithDocNumber: found.length, dedupedWhileInFlight: found.length === 1, observedOnly: true };
 }
 // 4. DocNumber query freshness after create (row 9): poll until visible.
 {

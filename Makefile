@@ -3,7 +3,7 @@ SHELL := /bin/bash
 N ?= 40
 SEEDS ?= 50
 
-.PHONY: qbo-auth qbo-contract qbo-live-demo init data check lint types test eval-check chaos chaos-full reproduce demo demo-export verify ui-e2e
+.PHONY: qbo-auth qbo-contract qbo-live-demo qbo-cleanup init data check lint types test eval-check chaos chaos-full reproduce demo demo-export verify ui-e2e
 
 init:
 	npm ci
@@ -52,3 +52,5 @@ qbo-contract:    ## sandbox contract checks for docs/QBO_SEMANTICS.md -> results
 	npx tsx scripts/qbo/contract.ts
 qbo-live-demo:   ## ~10 Bills through the real pipeline + worker SIGKILL + reconciliation -> results/qbo_live_demo.json
 	npx tsx scripts/qbo/live_demo.ts --n 10
+qbo-cleanup:     ## delete this project's Bills from the sandbox (before a fresh live demo)
+	npx tsx scripts/qbo/cleanup.ts
