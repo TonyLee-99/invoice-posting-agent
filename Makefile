@@ -46,7 +46,7 @@ verify:
 	npx tsx scripts/verify_features.ts
 
 ## Live QuickBooks Online sandbox (needs the owner's Intuit app; see docs/RUNBOOK.md). All three skip cleanly without credentials.
-qbo-auth:        ## one-time OAuth connect: local server on :8765/callback, tokens -> private/qbo_tokens.json (0600)
+qbo-auth:        ## one-time OAuth connect: local server on :8777/callback, tokens -> private/qbo_tokens.json (0600)
 	npx tsx scripts/qbo/auth.ts
 qbo-contract:    ## sandbox contract checks for docs/QBO_SEMANTICS.md -> results/qbo_live_contract.json
 	npx tsx scripts/qbo/contract.ts

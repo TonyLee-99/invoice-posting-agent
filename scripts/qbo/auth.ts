@@ -1,5 +1,5 @@
 // `make qbo-auth`: one-time OAuth 2.0 authorization-code flow against Intuit (sandbox company).
-// Starts http://localhost:8765, opens Intuit's consent page, receives ?code=&realmId=&state= on /callback,
+// Starts http://localhost:8777, opens Intuit's consent page, receives ?code=&realmId=&state= on /callback,
 // exchanges the code and stores tokens in private/qbo_tokens.json (mode 0600, gitignored). Prints no secrets.
 import http from "node:http";
 import net from "node:net";
@@ -7,17 +7,17 @@ import { execFileSync } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { FileTokenStore, INTUIT, QboClient } from "@ipa/qbo";
-import { PRIVATE, REALM_FILE, REDIRECT_URI, TOKEN_FILE, credentials, redactRealm, skip } from "./live.ts";
+import { CALLBACK_PORT, PRIVATE, REALM_FILE, REDIRECT_URI, TOKEN_FILE, credentials, redactRealm, skip } from "./live.ts";
 
 const creds = credentials();
 if (!creds) skip("no Intuit app credentials in the keychain (items 'qbo-client-id' and 'qbo-client-secret').");
 
 const free = await new Promise<boolean>((resolve) => {
   const s = net.createServer().once("error", () => resolve(false)).once("listening", () => s.close(() => resolve(true)));
-  s.listen(8765, "127.0.0.1");
+  s.listen(CALLBACK_PORT, "127.0.0.1");
 });
 if (!free) {
-  console.log("ERROR: port 8765 is in use (the job-tracker server in 07_投递记录 also uses it). Stop that server for a minute, then rerun `make qbo-auth`.");
+  console.log(`ERROR: port ${CALLBACK_PORT} is in use by another program; free it, then rerun \`make qbo-auth\`. (The redirect URI registered in the Intuit app must stay ${REDIRECT_URI}.)`);
   process.exit(1);
 }
 
@@ -54,7 +54,7 @@ const done = new Promise<void>((resolve, reject) => {
         reject(e);
       });
   });
-  server.listen(8765, "127.0.0.1");
+  server.listen(CALLBACK_PORT, "127.0.0.1");
 });
 
 const authUrl = client().authorizationUrl(state);

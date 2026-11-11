@@ -44,7 +44,7 @@ response for a repeat), **query-before-every-write** by DocNumber with an integr
 
 ```bash
 make init                         # npm ci + Playwright browser; needs Node 24 and Postgres 16 on localhost
-make check                        # lint, types, 98 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
+make check                        # lint, types, 100 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
 make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000, review UI on :3000
 ```
 
@@ -54,7 +54,7 @@ re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations.
 
 ### Run against the real QuickBooks sandbox
 Not run live yet (needs the owner's Intuit app). After the one-time setup in `docs/RUNBOOK.md` (Intuit app with
-redirect URI `http://localhost:8765/callback`, keys in the keychain as `qbo-client-id` / `qbo-client-secret`):
+redirect URI `http://localhost:8777/callback`, keys in the keychain as `qbo-client-id` / `qbo-client-secret`):
 
 ```bash
 make qbo-auth        # OAuth connect -> private/qbo_tokens.json (0600, gitignored)

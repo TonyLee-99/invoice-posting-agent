@@ -9,7 +9,8 @@ export const PRIVATE = process.env.QBO_PRIVATE_DIR ?? path.join(ROOT, "private")
 export const TOKEN_FILE = path.join(PRIVATE, "qbo_tokens.json");
 export const REALM_FILE = path.join(PRIVATE, "qbo_realm.json");
 /** Must match the redirect URI registered in the Intuit app exactly. */
-export const REDIRECT_URI = "http://localhost:8765/callback";
+export const CALLBACK_PORT = 8777;
+export const REDIRECT_URI = `http://localhost:${CALLBACK_PORT}/callback`;
 
 export function credentials(): { clientId: string; clientSecret: string } | null {
   // Env vars exist only for the offline rehearsal against the emulator; live use reads the keychain.

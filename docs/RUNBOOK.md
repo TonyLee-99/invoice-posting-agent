@@ -46,13 +46,13 @@ Nothing here has been run live yet; the same scripts are rehearsed against the e
 One-time setup (owner):
 1. developer.intuit.com → create an app (QuickBooks Online and Payments) → **Development / sandbox keys**; scope
    **Accounting** (`com.intuit.quickbooks.accounting`). A sandbox company is created with the developer account.
-2. Redirect URI in the app's Development settings, exactly: `http://localhost:8765/callback`.
+2. Redirect URI in the app's Development settings, exactly: `http://localhost:8777/callback`.
 3. Store the keys in the login keychain (prompts for the value; nothing on the command line or in history):
    `security add-generic-password -s qbo-client-id -a "$USER" -w` and
    `security add-generic-password -s qbo-client-secret -a "$USER" -w`.
-4. `make qbo-auth` — starts a server on 127.0.0.1:8765, opens Intuit's consent page, receives `code` + `realmId`,
+4. `make qbo-auth` — starts a server on 127.0.0.1:8777, opens Intuit's consent page, receives `code` + `realmId`,
    checks `state`, exchanges the code, and writes `private/qbo_tokens.json` + `private/qbo_realm.json` (mode 0600,
-   gitignored, never printed). **Port 8765 is also used by the job-tracker server**; stop it for a minute if busy.
+   gitignored, never printed). If port 8777 is busy the script says so and exits.
 
 Runs:
 - `make qbo-contract` → `results/qbo_live_contract.json`: repeat requestid, same requestid with a different body,
