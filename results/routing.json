@@ -14,11 +14,10 @@
   "partial_receipts": 1
  },
  "matcherOnLabels": {
-  "accuracy": 0.975,
+  "accuracy": 1,
   "confusion": {
    "clean": {
-    "clean": 23,
-    "review": 1
+    "clean": 24
    },
    "reject": {
     "reject": 4
@@ -27,14 +26,7 @@
     "review": 12
    }
   },
-  "misses": [
-   {
-    "docId": "ipp/currency-dual-usd-nad-4",
-    "scenario": "clean",
-    "expected": "clean",
-    "got": "review"
-   }
-  ]
+  "misses": []
  },
  "endToEndOnExtracted": {
   "threshold": 0.9,
@@ -160,44 +152,44 @@
  "thresholdSweep": [
   {
    "threshold": 0.5,
-   "autoApproved": 19,
-   "autoRate": 0.475,
+   "autoApproved": 20,
+   "autoRate": 0.5,
    "precision": 1,
    "precisionCI95": [
-    0.8318,
+    0.8389,
     1
    ],
    "falseApprovals": []
   },
   {
    "threshold": 0.7,
-   "autoApproved": 14,
-   "autoRate": 0.35,
+   "autoApproved": 15,
+   "autoRate": 0.375,
    "precision": 1,
    "precisionCI95": [
-    0.7847,
+    0.7961,
     1
    ],
    "falseApprovals": []
   },
   {
    "threshold": 0.8,
-   "autoApproved": 12,
-   "autoRate": 0.3,
+   "autoApproved": 13,
+   "autoRate": 0.325,
    "precision": 1,
    "precisionCI95": [
-    0.7575,
+    0.7719,
     1
    ],
    "falseApprovals": []
   },
   {
    "threshold": 0.85,
-   "autoApproved": 10,
-   "autoRate": 0.25,
+   "autoApproved": 11,
+   "autoRate": 0.275,
    "precision": 1,
    "precisionCI95": [
-    0.7225,
+    0.7412,
     1
    ],
    "falseApprovals": []

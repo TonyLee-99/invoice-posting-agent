@@ -1,0 +1,247 @@
+{
+ "note": "Matcher + routing on label fields (isolates the deterministic matcher). Procurement data Simulated from labels.",
+ "originalEvalSample": {
+  "n": 40,
+  "correct": 40,
+  "accuracy": 1,
+  "generatorV1": {
+   "n": 40,
+   "correct": 40,
+   "accuracy": 1
+  },
+  "before": {
+   "n": 40,
+   "correct": 39,
+   "accuracy": 0.975,
+   "source": "results/routing.json before the dual-currency rule (commit c89f34a)"
+  },
+  "misses": []
+ },
+ "allLabelledDocs": {
+  "n": 297,
+  "correct": 296,
+  "accuracy": 0.9966,
+  "misses": [
+   {
+    "docId": "ipp/hard-multiple-invoices-2",
+    "scenario": "clean",
+    "dualCurrency": false,
+    "expected": "review",
+    "expectedV1": "review",
+    "got": "clean",
+    "codes": []
+   }
+  ]
+ },
+ "allLabelledDocsGeneratorV1": {
+  "n": 297,
+  "correct": 288,
+  "accuracy": 0.9697,
+  "note": "same matcher, v1 expected-outcome rule (did not account for labels that are themselves incomplete or inconsistent)"
+ },
+ "dualCurrencyDocs": {
+  "n": 4,
+  "correct": 4,
+  "accuracy": 1,
+  "docs": [
+   {
+    "docId": "ipp/currency-dual-usd-zar-1",
+    "scenario": "clean",
+    "dualCurrency": true,
+    "expected": "clean",
+    "expectedV1": "clean",
+    "got": "clean",
+    "codes": []
+   },
+   {
+    "docId": "ipp/currency-dual-eur-nad-2",
+    "scenario": "unknown_vendor",
+    "dualCurrency": true,
+    "expected": "review",
+    "expectedV1": "review",
+    "got": "review",
+    "codes": [
+     "vendor_unknown",
+     "po_not_found"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-3",
+    "scenario": "price_over_tolerance",
+    "dualCurrency": true,
+    "expected": "review",
+    "expectedV1": "review",
+    "got": "review",
+    "codes": [
+     "price_over_tolerance"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "scenario": "clean",
+    "dualCurrency": true,
+    "expected": "clean",
+    "expectedV1": "clean",
+    "got": "clean",
+    "codes": []
+   }
+  ]
+ },
+ "addedFxVariants": {
+  "n": 16,
+  "correct": 16,
+  "accuracy": 1,
+  "cases": [
+   {
+    "docId": "ipp/currency-dual-usd-zar-1",
+    "variant": "reference_agrees",
+    "expected": "clean",
+    "got": "clean",
+    "codes": []
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-1",
+    "variant": "reference_off_3pct",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_mismatch"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-1",
+    "variant": "no_reference_rate",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_unverified"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-1",
+    "variant": "rate_not_printed",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_missing"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-eur-nad-2",
+    "variant": "reference_agrees",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "vendor_unknown",
+     "po_not_found"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-eur-nad-2",
+    "variant": "reference_off_3pct",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_mismatch",
+     "vendor_unknown",
+     "po_not_found"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-eur-nad-2",
+    "variant": "no_reference_rate",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_unverified",
+     "vendor_unknown",
+     "po_not_found"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-eur-nad-2",
+    "variant": "rate_not_printed",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_missing",
+     "vendor_unknown",
+     "po_not_found"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-3",
+    "variant": "reference_agrees",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "price_over_tolerance"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-3",
+    "variant": "reference_off_3pct",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_mismatch",
+     "price_over_tolerance"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-3",
+    "variant": "no_reference_rate",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_unverified",
+     "price_over_tolerance"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-zar-3",
+    "variant": "rate_not_printed",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_missing",
+     "price_over_tolerance"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "variant": "reference_agrees",
+    "expected": "clean",
+    "got": "clean",
+    "codes": []
+   },
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "variant": "reference_off_3pct",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_mismatch"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "variant": "no_reference_rate",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_unverified"
+    ]
+   },
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "variant": "rate_not_printed",
+    "expected": "review",
+    "got": "review",
+    "codes": [
+     "fx_rate_missing"
+    ]
+   }
+  ]
+ }
+}

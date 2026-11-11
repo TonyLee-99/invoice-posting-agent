@@ -56,42 +56,22 @@
    "latencyMs": 6584
   },
   {
-   "docId": "ipp/currency-dual-usd-nad-4",
-   "scenario": "clean",
-   "codes": [
-    "price_over_tolerance",
-    "price_over_tolerance",
-    "price_over_tolerance"
-   ],
-   "ok": true,
-   "ungroundedNumbers": [],
-   "grounded": true,
-   "draft": {
-    "explanation": "This invoice was held because three lines are billed well above their PO unit prices, beyond the allowed tolerance: Documentation fee at 478.56 against a PO price of 26.02 (tolerance 1), Customs clearance fee at 2508.48 against 136.39 (tolerance 2.73), and Cargo inspection attendance at 594.06 against 32.3 (tolerance 1). Check the PO pricing for PO-UALUSDNAD4 and confirm whether these charges are correct, were approved as extra charges, or were billed in error.",
-    "email_subject": "Invoice F-26-9064 - Line Price Discrepancies (PO-UALUSDNAD4)",
-    "email_body": "Dear Kunene Clearing & Forwarding team,\n\nThank you for invoice F-26-9064 dated 2026-03-16 for a total of 3581.1 NAD, referencing PO-UALUSDNAD4.\n\nWhen matching the invoice to our purchase order, we found the following line items billed above the agreed PO unit prices:\n\n- Documentation fee: billed 478.56; PO unit price 26.02 (quantity 1)\n- Customs clearance fee: billed 2508.48; PO unit price 136.39 (quantity 1)\n- Cargo inspection attendance: billed 594.06; PO unit price 32.3 (quantity 1)\n\nCould you please review these lines and either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for the amounts billed, such as an approved change order or additional authorization? \n\nOnce we receive your response, we will review the invoice again. Thank you for your help.\n\nKind regards,\nAccounts Payable"
-   },
-   "costUsd": 0.0007957000000000001,
-   "latencyMs": 8214
-  },
-  {
    "docId": "ipp/currency-dual-usd-zar-3",
    "scenario": "price_over_tolerance",
    "codes": [
-    "price_over_tolerance",
-    "price_over_tolerance",
+    "fx_rate_mismatch",
     "price_over_tolerance"
    ],
    "ok": true,
    "ungroundedNumbers": [],
    "grounded": true,
    "draft": {
-    "explanation": "Invoice 098052 from Kransberg Clearing & Forwarding is held because three lines are billed well above their PO unit prices, beyond the tolerance of 1: Documentation fee (billed 508.52 vs. PO 24.8), Delivery order handling (billed 725.32 vs. PO 39.31), and Cargo inspection attendance (billed 475.86 vs. PO 25.79). Check whether the PO pricing is correct or needs amendment, and confirm the billed amounts against the vendor's documentation before deciding how to proceed.",
-    "email_subject": "Invoice 098052 (PO-UALUSDZAR3): Pricing Discrepancy – Corrected Invoice or Confirmation Requested",
-    "email_body": "Dear Kransberg Clearing & Forwarding team,\n\nThank you for invoice 098052 dated 2026-02-06, for a total of ZAR 1,966.16, referencing PO-UALUSDZAR3.\n\nDuring our review, three line items did not match the unit prices on the purchase order:\n\n- Documentation fee: invoiced ZAR 508.52; PO unit price ZAR 24.80\n- Delivery order handling: invoiced ZAR 725.32; PO unit price ZAR 39.31\n- Cargo inspection attendance: invoiced ZAR 475.86; PO unit price ZAR 25.79\n\nPlease either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for the amounts billed so we can review them against the purchase order.\n\nWe will process the invoice once the pricing has been resolved. Thank you for your prompt attention.\n\nKind regards,\nAccounts Payable"
+    "explanation": "This invoice was held for two reasons: the stated exchange rate (1 USD = 18.4512 ZAR) differs from the reference rate of 21.2615 by more than the 1% tolerance, and the \"Documentation fee\" line is billed at 27.56 against a PO unit price of 24.8, an over-billing of 2.76 on quantity 1. Please verify the exchange rate applied against the rate required by the PO or your treasury source, and confirm the documentation fee against the PO line before deciding how to proceed.",
+    "email_subject": "Request for Clarification on Invoice 098052 (PO-UALUSDZAR3)",
+    "email_body": "Dear Kransberg Clearing & Forwarding team,\n\nThank you for invoice 098052 dated 2026-02-06 for a total of ZAR 1,966.16, referencing PO-UALUSDZAR3.\n\nDuring our review, we identified two items that need clarification:\n\n1. Exchange rate: The invoice states an exchange rate of 1 USD = 18.4512 ZAR. Our reference rate differs from this by more than 1%. Please confirm the rate applied and the source used.\n\n2. Documentation fee: This line is billed at 27.56 with a quantity of 1, while the PO unit price is 24.8. Please confirm the billed amount or provide a corrected invoice reflecting the PO price.\n\nPlease send a corrected invoice or written confirmation of the figures above so we can complete our review. The invoice will remain on hold until this is resolved.\n\nKind regards,\nAccounts Payable"
    },
-   "costUsd": 0.0007466,
-   "latencyMs": 8130
+   "costUsd": 0.0005421,
+   "latencyMs": 6998
   },
   {
    "docId": "ipp/freight-trip-reference-3",
@@ -103,12 +83,12 @@
    "ungroundedNumbers": [],
    "grounded": true,
    "draft": {
-    "explanation": "This invoice was held because its currency is ZMW (Zambian kwacha), but the linked PO PO-REFERENCE3 is in USD. Before proceeding, confirm with the vendor or the PO owner which currency the invoice should be billed in and whether the 18292.27 total matches the agreed PO amount and currency.",
-    "email_subject": "Currency mismatch on invoice INV-2026-94104 (PO-REFERENCE3)",
-    "email_body": "Dear Zambezi Reach Transport Limited team,\n\nThank you for submitting invoice INV-2026-94104 dated 2025-07-03 for a total of 18292.27 ZMW.\n\nOur review found that the invoice is in ZMW, while the referenced purchase order PO-REFERENCE3 is in USD. To continue processing, could you please either:\n\n1. Issue a corrected invoice in USD matching the purchase order currency, or\n2. Confirm in writing the currency and amount agreed under PO-REFERENCE3.\n\nPlease note this message does not confirm approval or a payment date. We will review your response once received.\n\nKind regards,\nAccounts Payable"
+    "explanation": "This invoice was held because its currency (ZMW) does not match the currency on PO-REFERENCE3, which is USD. Before processing, confirm with the vendor and the PO owner which currency was agreed, and whether the $18,292.27 total (shown in ZMW) needs to be restated in USD or the PO amended.",
+    "email_subject": "Currency Clarification Needed – Invoice INV-2026-94104 (PO-REFERENCE3)",
+    "email_body": "Dear Zambezi Reach Transport Limited,\n\nThank you for invoice INV-2026-94104, dated 2025-07-03, for a total of 18,292.27 ZMW, referencing PO-REFERENCE3.\n\nOur records show the purchase order is issued in USD, while the invoice is in ZMW. Could you please confirm the currency agreed for this order? If the invoice should be in USD, please send a corrected invoice reflecting the USD amount. If the ZMW currency is correct, please confirm that in reply so we can review it further.\n\nWe appreciate your help. Please note this message does not confirm approval or a payment date.\n\nKind regards,\nAccounts Payable"
    },
-   "costUsd": 0.0004351,
-   "latencyMs": 6582
+   "costUsd": 0.0004376,
+   "latencyMs": 6615
   },
   {
    "docId": "ipp/handwritten-invoice-book-average-3",
@@ -186,6 +166,23 @@
    },
    "costUsd": 0.0004285,
    "latencyMs": 7191
+  },
+  {
+   "docId": "ipp/multipage-4p-za-5",
+   "scenario": "tax_rate_mismatch",
+   "codes": [
+    "tax_mismatch"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice from Klipspruit Engineering Supplies (Pty) Ltd (F-26-0992, PO-IPAGE4PZA5) was held because the tax charged is 13,749.01 ZAR, but the PO tax rate of 10.00% implies 9,166.01 ZAR, a difference of 4,583.00 ZAR. Please check whether the vendor applied a different tax rate or included items not covered by the PO, and confirm the correct tax amount against the PO before deciding how to proceed.",
+    "email_subject": "Tax amount query on invoice F-26-0992 (PO-IPAGE4PZA5)",
+    "email_body": "Dear Klipspruit Engineering Supplies team,\n\nThank you for invoice F-26-0992 dated 2026-03-13 for a total of ZAR 105,409.07, referencing PO-IPAGE4PZA5.\n\nWhen we checked the invoice against the purchase order, the tax amount of ZAR 13,749.01 does not match the 10.00% tax rate on the PO, which gives ZAR 9,166.01. The difference is ZAR 4,583.00.\n\nCould you please review this and either send a corrected invoice or confirm the tax calculation and applicable rate? We will process the invoice once this is resolved.\n\nThank you for your help.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.00048000000000000007,
+   "latencyMs": 7664
   }
  ]
 }

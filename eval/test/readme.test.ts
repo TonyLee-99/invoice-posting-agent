@@ -40,7 +40,12 @@ describe("README matches results/", () => {
     has(`precision **${rt.chosen.autoApproved}/${rt.chosen.autoApproved}**`);
     has(`**${Math.round(rt.chosen.autoRate * 100)}%** auto`);
     has(`**${official.key_fields.correct} / ${official.key_fields.scored}**`);
-    has(`**${rt.matcherOnLabels.accuracy}** (39/40)`);
+    const mt = JSON.parse(readFileSync(path.join(ROOT, "results/matching.json"), "utf8"));
+    const f3m = (x: number) => (Math.round(x * 1000) / 1000).toFixed(3);
+    has(`**${f3m(mt.originalEvalSample.accuracy)}** (${mt.originalEvalSample.correct}/${mt.originalEvalSample.n}) on the eval set`);
+    has(`**${f3m(mt.allLabelledDocs.accuracy)}** (${mt.allLabelledDocs.correct}/${mt.allLabelledDocs.n}) on all labelled docs`);
+    has(`${mt.addedFxVariants.correct}/${mt.addedFxVariants.n} added FX cases`);
+    expect(rt.matcherOnLabels.accuracy).toBe(mt.originalEvalSample.accuracy);
   });
   it("cost", () => {
     has(`$${j("cost.json").perInvoiceUsdMean.toFixed(4)}`);

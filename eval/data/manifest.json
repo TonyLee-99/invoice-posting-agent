@@ -35,6 +35,7 @@
     "total": 372.49,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Industrial grade bolts, 1/2-inch x 2-inch (pack of 100)",
@@ -93,6 +94,7 @@
     "total": 1599.43,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet jack, 5500 lb capacity",
@@ -151,6 +153,7 @@
     "total": 5050.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ergonomic mesh office chair, black",
@@ -202,6 +205,7 @@
     "total": 3492.5,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Fabricated steel brackets, custom (lot of 50)",
@@ -254,6 +258,7 @@
     "total": 13035,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Senior engineering consulting (40 hrs @ $245)",
@@ -305,6 +310,7 @@
     "total": 945.05,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Reinforced shipping pallets, 48x40",
@@ -349,6 +355,7 @@
     "total": 841.76,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Whiteboard, 6ft x 4ft magnetic",
@@ -400,6 +407,7 @@
     "total": 438.83,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Precision measuring calipers, digital",
@@ -451,6 +459,7 @@
     "total": 1398.8,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Custom signage, powder-coated aluminum",
@@ -495,6 +504,7 @@
     "total": 1294.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Heavy-duty storage bins, 27-gal (case of 4)",
@@ -546,6 +556,7 @@
     "total": 554.04,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Printer paper, 8.5x11 (case of 10 reams)",
@@ -598,6 +609,7 @@
     "total": 9249.5,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Cloud infrastructure subscription, March",
@@ -642,6 +654,7 @@
     "total": 3552.25,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Freight transport, Seattle to Denver (48 ft dry van)",
@@ -686,6 +699,7 @@
     "total": 1759.59,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ballpoint pens, blue (box of 60)",
@@ -828,6 +842,7 @@
     "total": 4888.13,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Monthly security monitoring and incident response (April 2024)",
@@ -873,6 +888,7 @@
     "total": 1629.7,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety equipment bundle — hard hats, vests, gloves",
@@ -924,6 +940,7 @@
     "total": 2403,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Digital download — office productivity suite (per seat, annual)",
@@ -968,6 +985,7 @@
     "total": 2594.88,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Fabricated railing sections, 8 ft",
@@ -1019,6 +1037,7 @@
     "total": 1191.1,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pneumatic impact wrench, 1/2-inch drive",
@@ -1070,6 +1089,7 @@
     "total": 3100,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Custom steel gate, 10ft",
@@ -1122,6 +1142,7 @@
     "total": 21613.9,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -1188,6 +1209,7 @@
     "total": 6702.9,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -1254,6 +1276,7 @@
     "total": 43126.25,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ratchet straps 50mm x 9m (4)",
@@ -1319,6 +1342,7 @@
     "total": 12740.17,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -1385,6 +1409,7 @@
     "total": 10406.52,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -1451,6 +1476,7 @@
     "total": 49632.26,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Truck tyre 315/80R22.5 drive",
@@ -1517,6 +1543,7 @@
     "total": 45915.58,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -1583,6 +1610,7 @@
     "total": 33592.01,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "LED work lamp 24V",
@@ -1663,6 +1691,7 @@
     "total": 14990.34,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -1728,6 +1757,7 @@
     "total": 11739.28,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Angle grinder discs 115mm (10)",
@@ -1808,6 +1838,7 @@
     "total": 572.7,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Cable ties 200mm, black",
@@ -1866,6 +1897,7 @@
     "total": 32779.17,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -1932,6 +1964,7 @@
     "total": 4423.29,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Angle grinder discs 115mm (10)",
@@ -1998,6 +2031,7 @@
     "total": 26407.31,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -2064,6 +2098,7 @@
     "total": 35554.8,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -2130,6 +2165,7 @@
     "total": 57776.37,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hydraulic hose 1/2in, per metre",
@@ -2196,6 +2232,7 @@
     "total": 11657.42,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ratchet straps 50mm x 9m (4)",
@@ -2262,6 +2299,7 @@
     "total": 16597.31,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Nitrile work gloves, size L (pack 12)",
@@ -2328,6 +2366,7 @@
     "total": 10124.25,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -2394,6 +2433,7 @@
     "total": 24319.5,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hex bolts M12 x 50 galvanised (box 50)",
@@ -2459,6 +2499,7 @@
     "total": 21460.85,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Truck tyre 315/80R22.5 drive",
@@ -2525,6 +2566,7 @@
     "total": 50619.94,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -2591,6 +2633,7 @@
     "total": 72379.73,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -2657,6 +2700,7 @@
     "total": 12731.44,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -2723,6 +2767,10 @@
     "total": 3314.2,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": [
+     "USD",
+     179.62
+    ],
     "lines": [
      {
       "description": "Cargo inspection attendance",
@@ -2788,6 +2836,10 @@
     "total": 3247.51,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": [
+     "EUR",
+     162.48
+    ],
     "lines": [
      {
       "description": "Delivery order handling",
@@ -2847,6 +2899,10 @@
     "total": 1966.16,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": [
+     "USD",
+     92.66
+    ],
     "lines": [
      {
       "description": "Documentation fee",
@@ -2912,6 +2968,10 @@
     "total": 3581.1,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": [
+     "USD",
+     194.71
+    ],
     "lines": [
      {
       "description": "Documentation fee",
@@ -2977,6 +3037,7 @@
     "total": 49513.02,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ocean freight Shanghai - Walvis Bay",
@@ -3043,6 +3104,7 @@
     "total": 59259.99,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Ocean freight Shanghai - Walvis Bay",
@@ -3109,6 +3171,7 @@
     "total": 15914,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -3182,6 +3245,7 @@
     "total": 20017.57,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -3255,6 +3319,7 @@
     "total": 18041.94,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -3321,6 +3386,7 @@
     "total": 7319.67,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Copy paper A4 80gsm, box of 5 reams",
@@ -3387,6 +3453,7 @@
     "total": 26755.13,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -3452,6 +3519,7 @@
     "total": 9088.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -3518,6 +3586,7 @@
     "total": 14770.24,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -3584,6 +3653,7 @@
     "total": 34996.27,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -3650,6 +3720,7 @@
     "total": 25649.63,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Export transport Dallas - Lusaka",
@@ -3695,6 +3766,7 @@
     "total": 40491.83,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Export transport Walvis Bay - Lusaka",
@@ -3739,6 +3811,7 @@
     "total": 5006.4,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Customs clearance fee",
@@ -3798,6 +3871,7 @@
     "total": 4119.6,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Customs clearance fee",
@@ -3857,6 +3931,7 @@
     "total": 17665.81,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Office cleaning, monthly contract",
@@ -3909,6 +3984,7 @@
     "total": 10420.46,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Network switch configuration",
@@ -3960,6 +4036,7 @@
     "total": 8061.82,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -4011,6 +4088,7 @@
     "total": 3785.33,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -4055,6 +4133,7 @@
     "total": 7328.59,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Angle grinder discs 115mm (10)",
@@ -4106,6 +4185,7 @@
     "total": 3907.52,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -4150,6 +4230,7 @@
     "total": 17511.94,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -4208,6 +4289,7 @@
     "total": 12911.43,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -4266,6 +4348,7 @@
     "total": 2048.05,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -4310,6 +4393,7 @@
     "total": 2718.54,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -4361,6 +4445,7 @@
     "total": 2081.04,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -4405,6 +4490,7 @@
     "total": 5843.5,
     "document_type": "credit_note",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "LED work lamp 24V",
@@ -4464,6 +4550,7 @@
     "total": 28846.32,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -4642,6 +4729,7 @@
     "total": 70774.39,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -4848,6 +4936,7 @@
     "total": 70390.5,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Copy paper A4 80gsm, box of 5 reams",
@@ -5131,6 +5220,7 @@
     "total": 80039.92,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hex bolts M12 x 50 galvanised (box 50)",
@@ -5421,6 +5511,7 @@
     "total": 105409.07,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hex bolts M12 x 50 galvanised (box 50)",
@@ -5865,6 +5956,7 @@
     "total": 171602.27,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Nitrile work gloves, size L (pack 12)",
@@ -6407,6 +6499,7 @@
     "total": 121157.85,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Truck tyre 315/80R22.5 drive",
@@ -6872,6 +6965,7 @@
     "total": 201398.5,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -7596,6 +7690,7 @@
     "total": 224191.38,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -8453,6 +8548,7 @@
     "total": 216968.11,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Copy paper A4 80gsm, box of 5 reams",
@@ -9262,6 +9358,7 @@
     "total": 1499.2,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Felixstowe - Leeds",
@@ -9336,6 +9433,7 @@
     "total": 3463.98,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Durban - Ndola",
@@ -9410,6 +9508,7 @@
     "total": 49845.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Kitwe - Walvis Bay",
@@ -9470,6 +9569,7 @@
     "total": 24471.14,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Durban - Ndola",
@@ -9537,6 +9637,7 @@
     "total": 33284.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Windhoek - Lusaka",
@@ -9604,6 +9705,7 @@
     "total": 21667.28,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Rotterdam - Duisburg",
@@ -9678,6 +9780,7 @@
     "total": 17274.67,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Import VAT paid on behalf (disbursement)",
@@ -9759,6 +9862,7 @@
     "total": 20043.35,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Customs duty (disbursement)",
@@ -9840,6 +9944,7 @@
     "total": 54083.4,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Shipping line release fee (disbursement)",
@@ -9921,6 +10026,7 @@
     "total": 45620.96,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Shipping line release fee (disbursement)",
@@ -10002,6 +10108,7 @@
     "total": 9786.47,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Shipping line release fee (disbursement)",
@@ -10083,6 +10190,7 @@
     "total": 12303.86,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Container storage, 4 days (disbursement)",
@@ -10164,6 +10272,7 @@
     "total": 60665.18,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Container haulage 40ft {a} depot",
@@ -10216,6 +10325,7 @@
     "total": 56558.79,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Cross-border transit {a} - {b}",
@@ -10269,6 +10379,7 @@
     "total": 18292.27,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Abnormal load escort",
@@ -10322,6 +10433,7 @@
     "total": 25762.38,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Abnormal load escort",
@@ -10374,6 +10486,7 @@
     "total": 28147.49,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -10433,6 +10546,7 @@
     "total": 7230.74,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "LED work lamp 24V",
@@ -10499,6 +10613,7 @@
     "total": 4244.01,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -10551,6 +10666,7 @@
     "total": 18689.86,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Angle grinder discs 115mm (10)",
@@ -10617,6 +10733,7 @@
     "total": 7697.57,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -10668,6 +10785,7 @@
     "total": 7227.3,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -10727,6 +10845,7 @@
     "total": 6259.51,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -10785,6 +10904,7 @@
     "total": 15365.85,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Brake pads, trailer axle set",
@@ -10837,6 +10957,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -10903,6 +11024,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -10969,6 +11091,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11035,6 +11158,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11101,6 +11225,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11167,6 +11292,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11233,6 +11359,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -11299,6 +11426,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -11365,6 +11493,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -11431,6 +11560,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11497,6 +11627,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11563,6 +11694,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -11630,6 +11762,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -11697,6 +11830,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -11764,6 +11898,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -11830,6 +11965,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -11896,6 +12032,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -11962,6 +12099,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -12028,6 +12166,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12094,6 +12233,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12160,6 +12300,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12226,6 +12367,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12292,6 +12434,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12358,6 +12501,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12424,6 +12568,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -12490,6 +12635,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -12556,6 +12702,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -12622,6 +12769,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12688,6 +12836,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12754,6 +12903,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -12821,6 +12971,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -12888,6 +13039,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -12955,6 +13107,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -13021,6 +13174,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -13087,6 +13241,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -13153,6 +13308,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -13219,6 +13375,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13285,6 +13442,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13351,6 +13509,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13417,6 +13576,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13483,6 +13643,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13549,6 +13710,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13615,6 +13777,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -13681,6 +13844,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -13747,6 +13911,7 @@
     "total": 15104.64,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -13813,6 +13978,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13879,6 +14045,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -13945,6 +14112,7 @@
     "total": 17943.95,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14012,6 +14180,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -14079,6 +14248,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -14146,6 +14316,7 @@
     "total": 38322.78,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Linehaul Walvis Bay - Lubumbashi",
@@ -14212,6 +14383,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -14278,6 +14450,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -14344,6 +14517,7 @@
     "total": 55705.08,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -14410,6 +14584,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14476,6 +14651,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14542,6 +14718,7 @@
     "total": 13032.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14608,6 +14785,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14674,6 +14852,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14740,6 +14919,7 @@
     "total": 44500.53,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Toner cartridge, black, high yield",
@@ -14805,6 +14985,7 @@
     "total": 31798.39,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Truck tyre 315/80R22.5 drive",
@@ -14871,6 +15052,7 @@
     "total": 18586.62,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -14929,6 +15111,7 @@
     "total": null,
     "document_type": "other",
     "should_flag": false,
+    "secondary": null,
     "lines": []
    }
   },
@@ -14958,6 +15141,7 @@
     "total": null,
     "document_type": "other",
     "should_flag": false,
+    "secondary": null,
     "lines": []
    }
   },
@@ -14995,6 +15179,7 @@
     "total": 39905.15,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -15060,6 +15245,7 @@
     "total": 13405.4,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Air filter element, heavy duty",
@@ -15126,6 +15312,7 @@
     "total": 17357.62,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Hex bolts M12 x 50 galvanised (box 50)",
@@ -15191,6 +15378,7 @@
     "total": 13486.03,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Pallet strapping kit",
@@ -15257,6 +15445,7 @@
     "total": 58767.59,
     "document_type": "invoice",
     "should_flag": false,
+    "secondary": null,
     "lines": [
      {
       "description": "Safety boots, steel toe, size 9",
@@ -15323,6 +15512,7 @@
     "total": 21430.46,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "LED work lamp 24V",
@@ -15389,6 +15579,7 @@
     "total": 12156.08,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Hex bolts M12 x 50 galvanised (box 50)",
@@ -15455,6 +15646,7 @@
     "total": 10443.82,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Stretch wrap film 500mm x 300m",
@@ -15521,6 +15713,7 @@
     "total": 6563.01,
     "document_type": "invoice",
     "should_flag": true,
+    "secondary": null,
     "lines": [
      {
       "description": "Nitrile work gloves, size L (pack 12)",

@@ -5,7 +5,7 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import type { LlmExtraction, ScalarField } from "@ipa/domain";
 import { CRITICAL_FIELDS } from "@ipa/domain";
-import { Parser, baselineExtract, fieldConfidence, llmExtract, toFields } from "@ipa/extract";
+import { Parser, applyStatedFx, baselineExtract, fieldConfidence, llmExtract, toFields } from "@ipa/extract";
 import type { LLMResponse } from "@ipa/llm";
 import { createClient, extractJson } from "@ipa/llm";
 import type { Discrepancy } from "@ipa/matching";
@@ -107,7 +107,7 @@ const extraction = {
 // ---- matching + routing ---------------------------------------------------------------------------------
 const cases = runs.map((r) => ({ r, proc: procurementFor(r.doc) }));
 function decide(fields: ReturnType<typeof gtFields>, proc: ReturnType<typeof procurementFor>, conf: DocRun["conf"], human: boolean, threshold: number) {
-  const m = threeWayMatch({ fields, vendors: proc.vendor ? [proc.vendor] : [], purchaseOrders: proc.pos, receipts: proc.receipts, isDuplicate: proc.isDuplicate });
+  const m = threeWayMatch({ fields, vendors: proc.vendor ? [proc.vendor] : [], purchaseOrders: proc.pos, receipts: proc.receipts, isDuplicate: proc.isDuplicate, fxRates: proc.fxRates });
   const rt = route({ match: m, totalMinor: fields.totalMinor, confidence: conf, humanVerified: human }, { version: "eval", minFieldConfidence: threshold, autoApproveCapMinor: 1e12, autoApproveEnabled: true });
   return { m, rt, outcome: rt.decision === "AUTO_APPROVE" ? "clean" : rt.decision === "REJECT" ? "reject" : "review" };
 }
@@ -119,12 +119,12 @@ const confusion = (xs: { expected: string; got: string }[]) => {
 };
 const criticalRight = (i: number) => scoredLlm[i]!.fields.filter((f) => (CRITICAL_FIELDS as readonly string[]).includes(f.field)).every((f) => f.correct);
 const sweep = [0.5, 0.7, 0.8, 0.85, 0.9, 0.95, 0.99].map((t) => {
-  const outs = cases.map(({ r, proc }, i) => ({ i, proc, d: r.llm ? decide(toFields(r.llm), proc, r.conf, false, t) : null }));
+  const outs = cases.map(({ r, proc }, i) => ({ i, proc, d: r.llm ? decide(applyStatedFx(toFields(r.llm), r.text), proc, r.conf, false, t) : null }));
   const auto = outs.filter((o) => o.d?.outcome === "clean");
   const good = auto.filter((o) => o.proc.expected === "clean" && criticalRight(o.i));
   return { threshold: t, autoApproved: auto.length, autoRate: round(auto.length / cases.length), precision: auto.length ? round(good.length / auto.length) : null, precisionCI95: wilson(good.length, auto.length), falseApprovals: auto.filter((o) => !(o.proc.expected === "clean" && criticalRight(o.i))).map((o) => ({ docId: runs[o.i]!.doc.docId, scenario: o.proc.scenario, criticalFieldsRight: criticalRight(o.i) })) };
 });
-const e2e = cases.map(({ r, proc }) => ({ docId: r.doc.docId, scenario: proc.scenario, expected: proc.expected, got: r.llm ? decide(toFields(r.llm), proc, r.conf, false, THRESHOLD).outcome : "review" }));
+const e2e = cases.map(({ r, proc }) => ({ docId: r.doc.docId, scenario: proc.scenario, expected: proc.expected, got: r.llm ? decide(applyStatedFx(toFields(r.llm), r.text), proc, r.conf, false, THRESHOLD).outcome : "review" }));
 const routing = {
   note: "POs, receipts and vendor master are Simulated from labels; expected outcome is part of the generated label.",
   cases: cases.length,
@@ -140,10 +140,10 @@ const DRAFT_SYSTEM = `You help an accounts-payable clerk. You get the invoice he
 Write (1) "explanation": 2-3 plain-English sentences for the clerk on why the invoice was held and what to check, and
 (2) a short, polite vendor email asking for a corrected invoice or confirmation. Use ONLY numbers that appear in the input. Do not decide anything; do not promise payment.
 Return ONLY JSON: {"explanation": string, "email_subject": string, "email_body": string}.`;
-const reviewCases = cases.filter(({ r, proc }) => r.llm && decide(toFields(r.llm), proc, r.conf, true, THRESHOLD).m.discrepancies.length > 0).slice(0, DRAFTS_N);
+const reviewCases = cases.filter(({ r, proc }) => r.llm && decide(applyStatedFx(toFields(r.llm), r.text), proc, r.conf, true, THRESHOLD).m.discrepancies.length > 0).slice(0, DRAFTS_N);
 const drafts = [];
 for (const { r, proc } of reviewCases) {
-  const f = toFields(r.llm!);
+  const f = applyStatedFx(toFields(r.llm!), r.text);
   const d = decide(f, proc, r.conf, true, THRESHOLD);
   const input = { invoice: { vendor: f.vendorName, invoiceNumber: f.invoiceNumber, invoiceDate: f.invoiceDate, currency: f.currency, total: f.totalMinor === null ? null : f.totalMinor / 100, poNumber: d.m.poNumber }, findings: d.m.discrepancies.map((x: Discrepancy) => ({ code: x.code, message: x.message, facts: x.facts })) };
   const resp = await llm.complete({ model: MODEL, system: DRAFT_SYSTEM, prompt: JSON.stringify(input), purpose: "draft", effort: "low" });

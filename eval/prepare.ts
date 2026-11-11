@@ -35,6 +35,8 @@ export interface Gt {
   document_type: "invoice" | "credit_note" | "other";
   /** IPP: the publisher marks inconsistent documents (totals that do not add up, several invoices in one file). */
   should_flag?: boolean;
+  /** IPP dual-currency documents: [line currency, total in that currency] (publisher's secondary answer). */
+  secondary?: [string, number] | null;
   lines: GtLine[];
 }
 
@@ -86,6 +88,7 @@ async function ipp(): Promise<ManifestDoc[]> {
         total: e.total ?? null,
         document_type: e.document_type,
         should_flag: Boolean(e.should_flag),
+        secondary: Array.isArray(e.secondary) && e.secondary.length === 2 && typeof e.secondary[0] === "string" ? [e.secondary[0], Number(e.secondary[1])] : null,
         lines: (e.lines ?? []).map((l: { description: string; amount: number; alt_amounts?: number[] }) => ({ description: l.description, quantity: null, unit_price: null, amount: l.amount, alt_amounts: l.alt_amounts ?? [] })),
       },
     } satisfies ManifestDoc;
