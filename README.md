@@ -52,8 +52,19 @@ make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000,
 re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations. Sizes are knobs:
 `npx tsx eval/run.ts --n 232` (the whole test split), `make chaos SEEDS=500`.
 
+### What ran live (QuickBooks Online sandbox, 2026-11-11)
+| run | result | source |
+|---|---|---|
+| Contract checks | repeat requestid → same Bill; same requestid + different body → original response; concurrent twin → **HTTP 425**, 1 Bill; DocNumber query sees a new Bill after 350–608 ms; duplicate DocNumber with a new requestid is **accepted**; token refresh works (refresh token did not rotate) | `results/qbo_live_contract.json` |
+| Live demo, 10 invoices through the real pipeline, one worker process SIGKILLed after its remote write | **10/10** posted, **1** adopted after the kill, **0** duplicates, **0** missing, reconciliation 10/10, recovery queue empty (final run; the earlier runs failed and are in INC-14..16) | `results/qbo_live_demo.json` |
+
+The first live runs found three gaps the emulator had hidden — QBO filling `DueDate`, HTTP 425 for in-flight
+requestids, and cached requestid responses replayed to a fresh database — fixed and now reproduced offline
+(`docs/INCIDENTS.md`, postmortem). The 300-seed chaos results are still emulator results. Demo Bills were deleted
+from the sandbox afterwards (`make qbo-cleanup`).
+
 ### Run against the real QuickBooks sandbox
-Not run live yet (needs the owner's Intuit app). After the one-time setup in `docs/RUNBOOK.md` (Intuit app with
+After the one-time setup in `docs/RUNBOOK.md` (Intuit app with
 redirect URI `http://localhost:8777/callback`, keys in the keychain as `qbo-client-id` / `qbo-client-secret`):
 
 ```bash
@@ -85,7 +96,7 @@ Error analysis, calibration table and provenance: `docs/EVAL.md`. Real bugs foun
 | real | **Simulated** / not live |
 |---|---|
 | Invoice documents and labels: two public benchmarks (IPP CC BY 4.0, 181 docs; Katana MIT, 116 docs) — generated documents, labels by their publishers | POs, goods receipts, vendor master, discrepancies (generated from labels, `eval/procure.ts`) |
-| Every LLM call (cached in `cache/replay/`), every fault-injection result, the reconciliation runs | QuickBooks: all posting is against the local **emulator**; the real adapter (OAuth, refresh rotation, requestid, minorversion 75) is written per Intuit docs but **not run live** |
+| Every LLM call (cached in `cache/replay/`), every fault-injection result, the reconciliation runs | QuickBooks: chaos and fault suites run against the local **emulator**; the real adapter ran against a QBO **sandbox** company (contract checks + a 10-invoice demo), not a production company |
 | The review UI and API running the full pipeline | Stakeholder discovery and ROI inputs (`docs/DISCOVERY.md`, `results/roi.json`) |
 
 Emulator differences and every QBO assumption with its source: `docs/QBO_SEMANTICS.md`.
@@ -94,12 +105,12 @@ Emulator differences and every QBO assumption with its source: `docs/QBO_SEMANTI
 - 40-document extraction sample; CIs are wide. OCR on phone photos and handwriting causes 17 of 26 field errors.
 - One residual duplicate path is not prevented, only detected: requestid memory lost **and** the first write invisible
   to the query. It happened once in 43 residual-eligible chaos seeds (seed 233) and reconciliation caught it.
-- Requestid retention and concurrency semantics are unpublished by Intuit; sandbox contract tests are pending.
+- Requestid retention is unpublished by Intuit and not measured; concurrency semantics were observed live (425).
 - Confidence is a heuristic score (monotone with accuracy in the table), not a fitted calibrator.
 - Credit notes, payments, multi-currency FX and tax codes are out of scope.
 
 ## From demo to production
-1. Intuit app + sandbox contract tests for the unknown rows in `docs/QBO_SEMANTICS.md`; then shadow mode (ROLLOUT §0).
+1. Production Intuit keys (sandbox contract checks are done: `results/qbo_live_contract.json`); then shadow mode (ROLLOUT §0).
 2. Secrets in a manager; per-realm token rows; alert on refresh failure (auth circuit breaker already pauses workers).
 3. Partition the outbox by realm at ~100x volume; reconciliation by CDC instead of full inventory scans.
 4. A vision-model pass for low-OCR-confidence pages; a fitted calibrator once there are a few hundred labelled reviews.
