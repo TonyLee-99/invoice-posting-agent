@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import type { Parser } from "@ipa/extract";
-import { fieldConfidence, llmExtract, toFields } from "@ipa/extract";
+import { applyStatedFx, fieldConfidence, llmExtract, toFields } from "@ipa/extract";
 import type { LLMClient } from "@ipa/llm";
 import { extractJson } from "@ipa/llm";
 import type { InvoiceFields } from "@ipa/domain";
@@ -28,7 +28,7 @@ export async function processDocument(d: PipelineDeps, file: string, mime: strin
   const parsed = await d.parser.parse(file, mime);
   const ex = await llmExtract(d.llm, parsed.text, d.model);
   const empty: InvoiceFields = { vendorName: null, vendorTaxId: null, invoiceNumber: null, poNumber: null, invoiceDate: null, dueDate: null, currency: null, documentType: "invoice", subtotalMinor: null, taxMinor: null, freightMinor: null, totalMinor: null, lines: [] };
-  const fields = ex.extraction ? toFields(ex.extraction) : empty;
+  const fields = ex.extraction ? applyStatedFx(toFields(ex.extraction), parsed.text) : empty;
   const confidence = ex.extraction ? fieldConfidence(ex.extraction, parsed.text, { ocr: parsed.method !== "text_layer" }) : null;
   const res = await d.svc.ingest({
     sourceSha256: sha256(readFileSync(file)), sourceName: name, sourceMime: mime, parsedText: parsed.text, extracted: ex.extraction,

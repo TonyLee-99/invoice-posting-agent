@@ -5,6 +5,7 @@ import type { MatchPolicy, MatchResult, RouteResult, RoutingPolicy } from "@ipa/
 import { DEFAULT_MATCH_POLICY, DEFAULT_ROUTING_POLICY, resolveVendor, route, threeWayMatch } from "@ipa/matching";
 import type { Db, Tx } from "./db.ts";
 import { withTx } from "./db.ts";
+import type { AccountMap } from "./payload.ts";
 import { buildBill } from "./payload.ts";
 import type { InvoiceStatus } from "./transitions.ts";
 import { ConflictError, NotFoundError, audit, setStatus } from "./transitions.ts";
@@ -42,7 +43,7 @@ const EDITABLE: InvoiceStatus[] = ["EXTRACTED", "MATCHED", "NEEDS_REVIEW", "AUTO
 export class PostingService {
   constructor(
     readonly db: Db,
-    readonly opts: { realmId: string; matchPolicy?: MatchPolicy; routingPolicy?: RoutingPolicy; fxRates?: Record<string, number> } = { realmId: "9341455000000001" },
+    readonly opts: { realmId: string; matchPolicy?: MatchPolicy; routingPolicy?: RoutingPolicy; fxRates?: Record<string, number>; accounts?: AccountMap } = { realmId: "9341455000000001" },
   ) {}
 
   private get routing(): RoutingPolicy {
@@ -174,7 +175,7 @@ export class PostingService {
     }
     const key = `approval:${approvalId}`;
     const requestId = uuidv5(key, REQUEST_ID_NS);
-    const built = buildBill(inv.fields as InvoiceFields, { qboVendorId: inv.qbo_vendor_id, requestId });
+    const built = buildBill(inv.fields as InvoiceFields, { qboVendorId: inv.qbo_vendor_id, requestId, ...(this.opts.accounts ? { accounts: this.opts.accounts } : {}) });
     await tx.query(
       `insert into outbox (invoice_id, approval_id, idempotency_key, request_id, realm_id, doc_number, vendor_ref, payload, payload_hash, status)
        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,'pending')`,
