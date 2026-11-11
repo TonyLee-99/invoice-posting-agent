@@ -299,8 +299,10 @@ export class OutboxWorker {
 }
 
 /**
- * Remote Bill matches the payload we would have sent: vendor, DocNumber, dates, currency, total, and each line's
- * amount and expense account (currency-aware minor units, so zero-decimal currencies compare correctly).
+ * Remote Bill matches the payload we sent: vendor, DocNumber, total, and each line's amount and expense account
+ * (currency-aware minor units). Optional fields (TxnDate, DueDate, CurrencyRef) are compared only when we sent them:
+ * QBO fills them in itself (live sandbox: DueDate defaulted from the vendor's terms), so a value we did not send
+ * is not a difference (INC-14).
  */
 export function sameContent(bill: Bill, payload: string): boolean {
   const p = JSON.parse(payload) as Bill;
@@ -310,9 +312,9 @@ export function sameContent(bill: Bill, payload: string): boolean {
   return (
     bill.VendorRef.value === p.VendorRef.value &&
     bill.DocNumber === p.DocNumber &&
-    (bill.TxnDate ?? null) === (p.TxnDate ?? null) &&
-    (bill.DueDate ?? null) === (p.DueDate ?? null) &&
-    (bill.CurrencyRef?.value ?? null) === (p.CurrencyRef?.value ?? null) &&
+    (p.TxnDate === undefined || bill.TxnDate === p.TxnDate) &&
+    (p.DueDate === undefined || bill.DueDate === p.DueDate) &&
+    (p.CurrencyRef === undefined || bill.CurrencyRef?.value === p.CurrencyRef.value) &&
     toMinor(bill.TotalAmt, cur) === total(p) &&
     lines(bill) === lines(p)
   );

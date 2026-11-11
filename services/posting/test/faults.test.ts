@@ -2,7 +2,7 @@
 // invariants against the emulator's append-only creation log and the test's own obligation list.
 import { afterEach, describe, expect, it } from "vitest";
 import type { CrashPoint, Harness, OutboxWorker, WorkerHooks } from "../src/index.ts";
-import { CONFIDENT, SimulatedCrash, checkInvariants, createHarness, drain, seedApproved, simInvoice } from "../src/index.ts";
+import { CONFIDENT, SimulatedCrash, checkInvariants, createHarness, drain, reconcile, seedApproved, simInvoice } from "../src/index.ts";
 
 let h: Harness;
 afterEach(async () => {
@@ -181,6 +181,21 @@ describe("delivery and remote faults", () => {
     const rec = (await h.db.query("select kind from recovery_queue where invoice_id = $1", [ids[0]])).rows;
     expect(rec.map((r) => r.kind)).toEqual(["unknown_outcome"]);
     expect((await h.svc.get(ids[0]!)).status).toBe("RECOVERY");
+  });
+});
+
+describe("server-defaulted fields (live sandbox finding, INC-14)", () => {
+  it("an invoice without a due date is adopted after a crash, and reconciliation does not flag QBO's default due date", async () => {
+    h = await createHarness();
+    const f = { ...simInvoice(950), dueDate: null };
+    const r = await h.svc.ingest({ fields: f, confidence: CONFIDENT });
+    await drain(h, [h.worker({ hooks: crashOnce("after_remote_write") })]);
+    const p = (await h.db.query("select adopted from postings where invoice_id = $1", [r.id])).rows[0];
+    expect(p?.adopted).toBe(true); // was: ambiguous_remote, because QBO filled DueDate
+    expect(h.emu.liveBills()[0]!.DueDate).toBeTruthy();
+    const rep = await reconcile(h.db, h.qbo);
+    expect(rep).toMatchObject({ changed: 0, orphans: 0, reconciled: 1 });
+    expect((await h.db.query("select count(*)::int as n from recovery_queue")).rows[0].n).toBe(0);
   });
 });
 
