@@ -1,6 +1,8 @@
 # invoice-posting-agent
 
-**Posts vendor invoices to QuickBooks Online without duplicate Bills or lost invoices under injected faults: across 300 randomized fault-injection seeds (4,180 invoices, 2,799 injected remote faults, 917 worker crashes) there were 0 lost invoices and 0 duplicates outside the documented residual case — the 1 duplicate (requestid memory lost + read-after-write lag) was caught by nightly reconciliation. LLM field extraction: 0.941 F1 vs 0.765 for a regex baseline.**
+**Posts vendor invoices to QuickBooks Online without duplicate Bills or lost invoices under injected faults: across 300 randomized fault-injection seeds (4,180 invoices, 2,799 injected remote faults, 917 worker crashes) there were 0 lost invoices and 0 duplicates outside the documented residual case — the 1 duplicate (requestid memory lost + read-after-write lag) was caught by nightly reconciliation. Run live against the QuickBooks Online sandbox, the first runs exposed three gaps
+the emulator had hidden (fixed, now reproduced offline); the final live run posted 10/10 with a worker SIGKILLed
+mid-post, 0 duplicates, 0 missing. LLM field extraction: 0.941 F1 vs 0.765 for a regex baseline.**
 
 [![ci](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-blue)
