@@ -174,7 +174,9 @@ export class PostingService {
       }
     }
     const key = `approval:${approvalId}`;
-    const requestId = uuidv5(key, REQUEST_ID_NS);
+    // Namespaced by installation: approval ids restart after a reset/restore, requestids must not (INC-16).
+    const installation = (await tx.query("select id from installation limit 1")).rows[0].id as string;
+    const requestId = uuidv5(`${installation}:${key}`, REQUEST_ID_NS);
     const built = buildBill(inv.fields as InvoiceFields, { qboVendorId: inv.qbo_vendor_id, requestId, ...(this.opts.accounts ? { accounts: this.opts.accounts } : {}) });
     await tx.query(
       `insert into outbox (invoice_id, approval_id, idempotency_key, request_id, realm_id, doc_number, vendor_ref, payload, payload_hash, status)

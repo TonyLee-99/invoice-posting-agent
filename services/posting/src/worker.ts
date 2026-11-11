@@ -206,6 +206,11 @@ export class OutboxWorker {
     await this.o.hooks.at?.("after_remote_write", { jobId: job.id, workerId: this.id });
     switch (result.kind) {
       case "created":
+        // A "created" answer must be *our* Bill. QBO replays the cached response for a repeated requestid, so a
+        // requestid reused by another database (reset, restore, second environment) returns someone else's Bill.
+        if (!(result.bill.PrivateNote ?? "").startsWith(markerFor(job.request_id)) || result.bill.DocNumber !== job.doc_number) {
+          return this.toRecovery(job, attemptId, "requestid_collision", "ambiguous", { returnedBillId: result.bill.Id, returnedDocNumber: result.bill.DocNumber ?? null, expectedDocNumber: job.doc_number }, 200);
+        }
         return this.finalize(job, attemptId, result.bill, false);
       case "unknown":
         return this.uncertain(job, attemptId, "unknown", result.httpStatus, result.reason);

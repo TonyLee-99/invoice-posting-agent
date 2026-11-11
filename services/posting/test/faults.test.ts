@@ -199,6 +199,38 @@ describe("server-defaulted fields (live sandbox finding, INC-14)", () => {
   });
 });
 
+describe("requestid namespace (live sandbox finding, INC-16)", () => {
+  it("a fresh database against the same realm gets new requestids, so QBO's cached responses are never replayed", async () => {
+    h = await createHarness();
+    await seedApproved(h, 1, 1);
+    const first = (await h.db.query("select request_id from outbox")).rows[0].request_id;
+    await drain(h, [h.worker()]);
+    // Same realm, new installation (reset/restore): approval ids restart at 1.
+    await h.db.query("truncate invoices, approvals, po_line_reservations, outbox, post_attempts, postings, recovery_queue, audit_log restart identity cascade");
+    await h.db.query("delete from installation; insert into installation default values");
+    await seedApproved(h, 1, 2);
+    const second = (await h.db.query("select request_id from outbox")).rows[0].request_id;
+    expect(second).not.toBe(first);
+    await drain(h, [h.worker()]);
+    expect(h.emu.creations()).toHaveLength(2);
+  });
+
+  it("a replayed response for someone else's Bill is never recorded as our posting (restore from backup keeps the namespace)", async () => {
+    h = await createHarness();
+    await seedApproved(h, 1, 1);
+    const old = (await h.db.query("select request_id from outbox")).rows[0].request_id;
+    await drain(h, [h.worker()]);
+    h.emu.drift("delete", h.emu.liveBills()[0]!.Id); // deleted in QBO; the cached requestid response survives (as on the sandbox)
+    // Restore an older backup: same installation id, approval ids restart -> the same requestid is generated again.
+    await h.db.query("truncate invoices, approvals, po_line_reservations, outbox, post_attempts, postings, recovery_queue, audit_log restart identity cascade");
+    const { ids } = await seedApproved(h, 1, 2);
+    expect((await h.db.query("select request_id from outbox")).rows[0].request_id).toBe(old);
+    await drain(h, [h.worker()]);
+    expect((await h.db.query("select count(*)::int as n from postings")).rows[0].n).toBe(0);
+    expect((await h.db.query("select kind from recovery_queue where invoice_id = $1", [ids[0]])).rows.map((r) => r.kind)).toEqual(["requestid_collision"]);
+  });
+});
+
 describe("auth outage", () => {
   it("a revoked/expired token pauses the worker; the invoice is not parked in recovery and nothing is written", async () => {
     h = await createHarness();
