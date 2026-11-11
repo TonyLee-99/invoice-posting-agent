@@ -56,7 +56,7 @@ export function baselineExtract(text: string): LlmExtraction {
   const freight = lastAmountOn(lines, /\b(shipping|freight|delivery|carriage)\b/i, /deliver to|delivery address|delivery note/i);
 
   // Vendor: text after a "Seller/From/Supplier" label, else the first line that is not a document title.
-  let vendor: string | null = null;
+  let vendor: string | null;
   const sellerIdx = lines.findIndex((l) => /^\s*(seller|from|supplier|vendor)\s*:?/i.test(l));
   if (sellerIdx >= 0) {
     const sameLine = lines[sellerIdx]!.replace(/^\s*(seller|from|supplier|vendor)\s*:?\s*/i, "").split(/\s{3,}|client:|bill to/i)[0]!.trim();

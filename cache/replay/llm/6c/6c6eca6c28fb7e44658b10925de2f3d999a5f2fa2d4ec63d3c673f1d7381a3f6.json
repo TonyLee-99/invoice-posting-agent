@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Kunene Office Supplies CC (IN0070697, dated 2025-07-04, PO-IPAGE5PNA7) was held because its total of 121157.85 NAD exceeds the auto-approval cap of 25000. Please confirm the invoice total against the purchase order and delivery records, and check whether the amount is correct or needs a corrected invoice before routing it for manual approval.\",\"email_subject\": \"Invoice IN0070697 – Clarification Requested (PO-IPAGE5PNA7)\",\"email_body\": \"Dear Kunene Office Supplies CC team,\\n\\nThank you for invoice IN0070697 dated 4 July 2025, referencing PO-IPAGE5PNA7. The invoice total of NAD 121157.85 is above our automatic approval limit, so it is being held for manual review.\\n\\nCould you please confirm that the total is correct and matches the goods or services delivered under this purchase order? If the amount is in error, kindly send a corrected invoice referencing the same PO number.\\n\\nPlease note that this message does not confirm approval or a payment date. We will update you once the review is complete.\\n\\nThank you for your cooperation.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 416,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1177
+ },
+ "costUsd": 0.00044360000000000005,
+ "latencyMs": 5403,
+ "cached": false,
+ "cacheKey": "6c6eca6c28fb7e44658b10925de2f3d999a5f2fa2d4ec63d3c673f1d7381a3f6",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "82af2bca94db83afdc8ba88bd30774390d8fc29340dbc8bc6ca22b15c75b2857"
+ }
+}

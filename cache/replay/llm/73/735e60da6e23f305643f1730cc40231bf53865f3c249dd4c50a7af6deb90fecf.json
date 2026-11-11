@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the invoiceNumber is missing and several key fields (vendor name, invoice date, currency, and total) were read with low confidence. The billed amount for the \\\"Hex bolts M12 X50 galvanised (box 50)\\\" line (6204.61) is well above the PO-expected 3243.04, and the invoice total of 2227.2 does not match the computed total of 7147.21, so please verify the total, line price, and tax (942.6 billed vs. 930.69 expected at 15%) against the PO and the original document before proceeding.\", \"email_subject\": \"Request for corrected invoice – PO-EBOOKPOOR6\", \"email_body\": \"Dear Erongo Workshop Supplies team,\\n\\nThank you for your invoice dated 2025-10-27 referencing PO-EBOOKPOOR6. Our accounts-payable review has found a few items we need you to confirm or correct before we can process it:\\n\\n1. The invoice number is not visible on the document. Please confirm the invoice number.\\n2. The invoice total of 2227.2 does not match the sum of the subtotal, tax, and freight, which comes to 7147.21. Please confirm the correct total.\\n3. The line \\\"Hex bolts M12 X50 galvanised (box 50)\\\" is billed at 6204.61, while the PO price gives 3243.04. Please confirm the unit price or send a corrected line.\\n4. The tax amount of 942.6 differs from the 15.00% PO tax rate, which gives 930.69. Please confirm the tax calculation.\\n5. Several header fields (vendor name, invoice date, currency, and total) were not clearly legible in our scan. Please confirm these details or send a clean corrected invoice.\\n\\nOnce we receive a corrected invoice or written confirmation, we will review it again. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 634,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1809
+ },
+ "costUsd": 0.000679,
+ "latencyMs": 7513,
+ "cached": false,
+ "cacheKey": "735e60da6e23f305643f1730cc40231bf53865f3c249dd4c50a7af6deb90fecf",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "ff19b1f42fc104c8cc1a6726914093378f9cf0afcda3a7ab587cc18eb7bfcf90"
+ }
+}

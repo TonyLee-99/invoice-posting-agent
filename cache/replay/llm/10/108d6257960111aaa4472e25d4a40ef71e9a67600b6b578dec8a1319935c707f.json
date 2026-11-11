@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the extraction confidence for the invoice date (0.57) and the currency (0.808) fell below the 0.9 threshold, so those two fields may have been read incorrectly. Please check the invoice date of 2011-06-03 and the USD currency against the original document before relying on them. The total of 272.65 and PO-IDATION035 were not flagged, but confirm them while you are reviewing.\",\"email_subject\": \"Request to confirm invoice 75299595 details\",\"email_body\": \"Dear Cox, Bell and Rodriguez team,\\n\\nThank you for your invoice 75299595 for a total of 272.65 USD, referencing PO-IDATION035.\\n\\nWhen reviewing the invoice, we could not clearly confirm the invoice date or the currency from the copy we received. Could you please send a corrected invoice, or reply to confirm the invoice date and the currency (USD) as shown on the original?\\n\\nThank you for your help. We look forward to hearing from you.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 670,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1242
+ },
+ "costUsd": 0.0005836000000000001,
+ "latencyMs": 7917,
+ "cached": false,
+ "cacheKey": "108d6257960111aaa4472e25d4a40ef71e9a67600b6b578dec8a1319935c707f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "c1766c2e0ef482c3662f81b52d8b52ec91028f76f6568fd02e866fdb3982a990"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held for two reasons: the invoice is in ZMW but the linked PO (PO-REFERENCE3) is in USD, and the invoice total of 18292.27 exceeds the auto-approval cap of 10000. Please confirm the correct currency with the vendor and the PO, and check whether the amount is expected or needs a manual approval path before any further processing.\",\n\"email_subject\": \"Invoice INV-2026-94104 – Currency and Amount Confirmation Needed\",\n\"email_body\": \"Dear Zambezi Reach Transport Limited team,\\n\\nThank we for your invoice INV-2026-94104 dated 2025-07-03, referencing PO-REFERENCE3. Before we can process it, we need the following clarified:\\n\\n1. Currency: The invoice is issued in ZMW, but the referenced purchase order is in USD. Please confirm the invoice currency or provide a corrected invoice in the PO currency.\\n2. Amount: The invoice total of 18292.27 is above our auto-approval threshold of 10000, so it will require additional review. Please confirm this amount is correct and matches the agreed PO value.\\n\\nIf a corrected invoice is needed, please send it with the PO number clearly referenced. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 445,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1250
+ },
+ "costUsd": 0.0004727,
+ "latencyMs": 6647,
+ "cached": false,
+ "cacheKey": "bc21ae735be244de21b1bf4adc12404872f19900925d8eeef462546e0ee3bf2b",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "18d2840a087655c89b1f58f4150e4a9ff21dfcaefb23f80629e1b26548afbd7a"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Freeman and Sons (invoice 77833987, dated 2013-05-20, total 129.53 USD, PO PO-IDATION037) was held because the system's confidence in the currency field is 0.808, below the required 0.90 threshold. Please confirm the invoice is billed in USD and that the currency matches the purchase order before continuing the review.\",\"email_subject\": \"Invoice 77833987 – Currency Confirmation Needed (PO-IDATION037)\",\"email_body\": \"Dear Freeman and Sons Accounts Team,\\n\\nThank you for your invoice 77833987 dated 2013-05-20 for a total of 129.53 USD, referencing PO-IDATION037.\\n\\nDuring our review, we could not confirm the currency stated on the invoice. Could you please verify the currency and send a corrected invoice or written confirmation that the amount is billed in USD?\\n\\nOnce we receive this, we will continue processing your invoice. Please note this email does not guarantee payment.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 372,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1169
+ },
+ "costUsd": 0.00042,
+ "latencyMs": 7466,
+ "cached": false,
+ "cacheKey": "583232ec7b7dd6f3383320ac097a6e4570693b5c95baa4702b39460f2397002a",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "412180b97fde09353b3604edacef822a5118abcab9ec36d9a73abfd89caefd2c"
+ }
+}

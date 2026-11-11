@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the total of 12261.98 USD exceeds the auto-approval cap of 10000, so it needs manual review. The system also had low confidence in the extracted invoice date (0.57, below the 0.9 threshold) and currency (0.665, below 0.9), so please verify the date 2016-07-04 and the USD currency against the original invoice before proceeding.\", \"email_subject\": \"Invoice 58478169 – Request for Confirmation of Details\", \"email_body\": \"Dear Conley Ltd,\\n\\nWe are reviewing invoice 58478169 referencing PO-ANATEST011 for a total of 12261.98 USD. To complete our processing, could you please confirm the following:\\n\\n1. The invoice date (we have it recorded as 2016-07-04).\\n2. The currency of the invoice (we have it recorded as USD).\\n3. Please also confirm the total amount of 12261.98.\\n\\nIf any of these details are incorrect, kindly send us a corrected invoice. Thank you for your help.\\n\\nBest regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 367,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1296
+ },
+ "costUsd": 0.0004429,
+ "latencyMs": 6091,
+ "cached": false,
+ "cacheKey": "e6955b2b697f2cff834e475aeafc7d2e7e1c47022e54f0b71f6cbedb59680976",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "6d8805a4159c1ee7443f93378d6c7da161bedaa29647dd7365d4cad0af55bb50"
+ }
+}

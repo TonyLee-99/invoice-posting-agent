@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because invoice INV-2026-70022 from Okavango Hardware (Pty) Ltd was already received, so it may be a duplicate submission. It also has no PO number and no open purchase order matched it. Before anything else, check whether the earlier copy was already processed and whether this invoice should be matched to a PO.\", \"email_subject\": \"Invoice INV-2026-70022: Request for Confirmation and PO Reference\", \"email_body\": \"Dear Okavango Hardware team,\\n\\nThank you for your invoice INV-2026-70022 dated 2025-11-22 for NAD 44,500.53.\\n\\nOur records show this invoice number was already received, and we could not match it to an open purchase order because no PO number appears on the invoice.\\n\\nCould you please confirm whether this is a new invoice or a duplicate of one already submitted? If it is a new invoice, please send a corrected copy that includes the applicable purchase order number.\\n\\nThank you for your help. Please note this email does not confirm payment or approval of the invoice.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 370,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1221
+ },
+ "costUsd": 0.00042940000000000003,
+ "latencyMs": 5610,
+ "cached": false,
+ "cacheKey": "587b7c72a6b7ee7e69c2f06748fd8d6c3b0f4f93df94b0ea5e4864ebfdfc1460",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "06ce3387cd6829790713a90671d7302c4099f76ba54d4b7fffaadc4d233a98cd"
+ }
+}

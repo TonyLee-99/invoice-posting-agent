@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Kransberg Clearing & Forwarding (Pty) Ltd (invoice 098052, total 1966.16 ZAR) was held because three line items are billed far above the PO unit prices, beyond the tolerance of 1: Documentation fee at 508.52 versus an expected 24.8, Delivery order handling at 725.32 versus 39.31, and Cargo inspection attendance at 475.86 versus 25.79. Check the PO PO-UALUSDZAR3 pricing and confirm whether these charges were agreed, then ask the vendor to correct the lines or confirm the rates before any payment decision is made.\",\"email_subject\": \"Invoice 098052 – Pricing Discrepancies on PO-UALUSDZAR3\",\"email_body\": \"Dear Kransberg Clearing & Forwarding team,\\n\\nThank you for invoice 098052 dated 2026-02-06 for a total of 1966.16 ZAR, referencing PO-UALUSDZAR3.\\n\\nDuring our review, we found that the following line items do not match the unit prices on the purchase order:\\n\\n- Documentation fee: billed 508.52; PO unit price 24.80 (quantity 1)\\n- Delivery order handling: billed 725.32; PO unit price 39.31 (quantity 1)\\n- Cargo inspection attendance: billed 475.86; PO unit price 25.79 (quantity 1)\\n\\nCould you please review these lines and either issue a corrected invoice reflecting the PO pricing or confirm in writing the rates that apply? Once we receive your response, we will continue processing.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 576,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1479
+ },
+ "costUsd": 0.0005840000000000001,
+ "latencyMs": 7040,
+ "cached": false,
+ "cacheKey": "989adfea72ceacf60c9aa490c5a7f93ee9cf328947be2ea2632563de11cf9afb",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "7f71a8d596b18c5a33d51afb40408ddda9131a742b7e4afa3f03102668f20dfe"
+ }
+}

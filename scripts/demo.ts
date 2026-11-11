@@ -2,6 +2,7 @@
 //   tsx scripts/demo.ts --serve            seed, then serve the API on :4000 with a worker loop (UI: npm run dev -w @ipa/review)
 //   tsx scripts/demo.ts --export           seed, then write the static demo data into apps/review/public/demo-data
 //   --backend replay|claude-cli (default replay: cached LLM calls only; claude-cli records new ones)
+import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import pg from "pg";
@@ -40,14 +41,25 @@ const store = new PgTokenStore(db);
 const t = emu.issueTokens();
 await store.swap({ accessToken: t.accessToken, refreshToken: t.refreshToken, accessExpiresAt: Date.now() + 3_600_000, refreshExpiresAt: Date.now() + 8e9, realmId: emu.realmId }, 0);
 const qbo = new QboClient({ apiBaseUrl: emuUrl, authorizeUrl: `${emuUrl}/connect/oauth2`, tokenUrl: `${emuUrl}/oauth2/v1/tokens/bearer`, clientId: emu.clientId, clientSecret: emu.clientSecret, redirectUri: "http://localhost:4000/oauth/callback", realmId: emu.realmId, timeoutMs: 1500 }, store);
-const svc = new PostingService(db, { realmId: emu.realmId });
+// Demo routing policy: cap 25,000 (production starts at 1,000 per ROLLOUT phase 1); everything else is the default.
+const svc = new PostingService(db, { realmId: emu.realmId, routingPolicy: { version: "route-2026-11-11-demo", minFieldConfidence: 0.9, autoApproveCapMinor: 2_500_000, autoApproveEnabled: true } });
+
+/** Page-1 PNG preview for PDFs (pdftoppm), so the review UI shows the document the same way in every browser. */
+function preview(file: string): string {
+  if (!file.endsWith(".pdf")) return file;
+  const dir = path.join(ROOT, "data/demo/previews");
+  mkdirSync(dir, { recursive: true });
+  const out = path.join(dir, path.basename(file, ".pdf"));
+  if (!existsSync(`${out}.png`)) execFileSync("pdftoppm", ["-r", "110", "-png", "-singlefile", "-f", "1", "-l", "1", file, out]);
+  return `${out}.png`;
+}
 
 for (const d of demo) {
   if (d.proc.vendor) await svc.upsertVendor(d.proc.vendor);
 }
 for (const d of demo) {
   for (const po of d.proc.pos) if (d.proc.vendor || po.vendorId) await svc.upsertPo(po).catch(() => undefined);
-  for (const gr of d.proc.receipts) await svc.addReceipt(gr);
+  for (const gr of d.proc.receipts) await svc.addReceipt(gr).catch(() => undefined); // PO absent for unknown-vendor cases
 }
 
 const llm = createClient(backend, { callLog: backend === "replay" ? undefined : path.join(ROOT, "results/llm_calls.jsonl") });
@@ -61,7 +73,7 @@ emu.setFaults([{ op: "create", effect: "hang_after_commit", nth: 2 }]);
 let dupSource: (typeof demo)[number] | null = null;
 for (const d of demo) {
   const name = path.basename(d.file);
-  byName.set(name, path.join(ROOT, d.file));
+  byName.set(name, preview(path.join(ROOT, d.file)));
   const r = await processDocument(deps, path.join(ROOT, d.file), d.mime, name);
   if (d.proc.scenario === "duplicate") dupSource = d;
   log(`${d.docId} -> ${r.status}`);
@@ -69,7 +81,7 @@ for (const d of demo) {
 // Re-upload one invoice: the duplicate guard rejects the second copy.
 if (dupSource) {
   const name = `resubmitted-${path.basename(dupSource.file)}`;
-  byName.set(name, path.join(ROOT, dupSource.file));
+  byName.set(name, preview(path.join(ROOT, dupSource.file)));
   log(`resubmit -> ${(await processDocument(deps, path.join(ROOT, dupSource.file), dupSource.mime, name)).status}`);
 }
 

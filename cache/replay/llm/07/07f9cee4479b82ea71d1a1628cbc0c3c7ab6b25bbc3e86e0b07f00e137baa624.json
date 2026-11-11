@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Benson LLC (invoice 76671573, total 10.76 USD, PO-NATRAIN027) was held because the system could not read two fields with enough confidence: the invoice date (2012-04-08, confidence 0.475 against a 0.9 threshold) and the currency (USD, confidence 0.665 against 0.9). Please check the invoice date and currency against the original document, and confirm the total and PO number before releasing it.\",\n\"email_subject\": \"Request to confirm invoice 76671573 (PO-NATRAIN027)\",\n\"email_body\": \"Hello Benson LLC team,\\n\\nThank you for your invoice 76671573 for a total of 10.76 USD, referencing PO-NATRAIN027. Our system could not clearly read the invoice date or the currency on the copy we received.\\n\\nCould you please send a corrected or clearly legible copy of the invoice, or confirm the invoice date and currency in reply to this email?\\n\\nThank you for your help. We will review the invoice once we have the confirmed details.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 369,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1236
+ },
+ "costUsd": 0.00043190000000000004,
+ "latencyMs": 7809,
+ "cached": false,
+ "cacheKey": "07f9cee4479b82ea71d1a1628cbc0c3c7ab6b25bbc3e86e0b07f00e137baa624",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "e5d46ca41b959f61451892e418fb45d2bcbc55e7a4a3dcba4d6e1a703cd840ae"
+ }
+}

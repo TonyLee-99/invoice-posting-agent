@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Jones Ltd (invoice 61942465, dated 2012-08-27, total 44 USD, PO PO-IDATION032) was held because the system could not confidently read two fields: the vendor name (confidence 0.855, below the 0.9 threshold) and the currency (confidence 0.57, well below the threshold). Please check the vendor name and currency against the original invoice document, and confirm the PO reference matches an open purchase order before proceeding.\",\n\"email_subject\": \"Request for Confirmation - Invoice 61942465\",\n\"email_body\": \"Dear Jones Ltd,\\n\\nThank you for your invoice 61942465 dated 2012-08-27 for a total of 44, referencing PO PO-IDATION032.\\n\\nDuring processing, we were unable to confirm the vendor name and currency from the document as submitted. Could you please send a corrected copy of the invoice, or reply to confirm the exact legal vendor name and the invoice currency?\\n\\nOnce we receive this, we will review the invoice further. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 377,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1230
+ },
+ "costUsd": 0.0004347,
+ "latencyMs": 6733,
+ "cached": false,
+ "cacheKey": "4c82ef70e1f10b1b9232c24d9efe876e868f9761d8cebe8b0fb90e022ff6f242",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "143f6b2e22c9a1815944868c2f71c8064bf2d9ad228e49c8d2012bceba89cc0d"
+ }
+}

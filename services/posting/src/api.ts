@@ -73,7 +73,7 @@ export function buildApi(d: ApiDeps) {
     const inv = (await d.db.query("select source_name, source_mime from invoices where id = $1", [Number(req.params.id)])).rows[0];
     const file = inv ? d.resolveDocument(inv.source_name) : null;
     if (!file) return reply.status(404).send({ error: "no document" });
-    return reply.type(inv.source_mime).send(createReadStream(file));
+    return reply.type(file.endsWith(".png") ? "image/png" : inv.source_mime).send(createReadStream(file));
   });
   /** Upload: raw body with the document's content type; ?name=<file name>. */
   app.post<{ Querystring: { name?: string } }>("/api/invoices", async (req, reply) => {

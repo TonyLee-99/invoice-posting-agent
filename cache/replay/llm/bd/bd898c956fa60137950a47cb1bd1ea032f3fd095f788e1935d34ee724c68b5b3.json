@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the total of 21,430.46 does not match the sum of subtotal, tax, and freight, which comes to 18,008.79, a difference of 3,421.67. The extraction confidence for the total is also low (0.35, below the 0.90 threshold), so the figure itself may have been misread. Please compare the total against the original invoice document and confirm the PO reference PO-ALINFLATED before deciding how to proceed.\", \"email_subject\": \"Request for Corrected Invoice RA-81392\", \"email_body\": \"Dear Blouberg Industrial Supply CC team,\\n\\nThank you for invoice RA-81392 dated 2025-01-16. During our review, we found that the total of ZAR 21,430.46 does not match the sum of the subtotal, tax, and freight shown on the invoice, which totals ZAR 18,008.79 (a difference of ZAR 3,421.67). We also noted that the purchase order reference on the invoice is PO-ALINFLATED.\\n\\nCould you please review and send us a corrected invoice, or confirm the correct total and purchase order number? Once received, we will continue processing it.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 414,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1258
+ },
+ "costUsd": 0.0004588,
+ "latencyMs": 6288,
+ "cached": false,
+ "cacheKey": "bd898c956fa60137950a47cb1bd1ea032f3fd095f788e1935d34ee724c68b5b3",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "2329a545da68d26f63454043f0d37bf9a0599b2641f0509ec067344f9f598e90"
+ }
+}

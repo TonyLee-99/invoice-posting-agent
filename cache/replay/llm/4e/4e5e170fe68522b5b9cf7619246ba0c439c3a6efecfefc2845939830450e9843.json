@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Highveld Packaging (Pty) Ltd for 14770.24 ZAR was held because its total is above the auto-approval cap of 10000. Please confirm the amount matches PO-LAFTERVAT2 and the goods or services received, then route it for the approval required above the cap.\", \"email_subject\": \"Invoice 049181 – Request for Confirmation (PO-LAFTERVAT2)\", \"email_body\": \"Dear Highveld Packaging team,\\n\\nThank you for invoice 049181 dated 2026-02-28, referencing PO-LAFTERVAT2, for a total of 14770.24 ZAR.\\n\\nThe invoice is above our automatic approval limit, so it is currently on hold for review. To help us proceed, could you please confirm the total amount and send a corrected invoice or written confirmation that 14770.24 ZAR is correct for this purchase order?\\n\\nThank you for your assistance. Please reply to this email with the requested documents.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 352,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1179
+ },
+ "costUsd": 0.000412,
+ "latencyMs": 5877,
+ "cached": false,
+ "cacheKey": "4e5e170fe68522b5b9cf7619246ba0c439c3a6efecfefc2845939830450e9843",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "b49eb3b2912c103b2ab188d486bb4356691def42825fad861770bfc7535bebe2"
+ }
+}

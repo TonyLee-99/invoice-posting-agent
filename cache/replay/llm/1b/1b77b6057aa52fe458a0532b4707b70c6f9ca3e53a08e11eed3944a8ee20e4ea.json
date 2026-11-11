@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"Invoice BN-19064 from Waalhaven Industrial Supply B.V. was held because its total of 10124.25 EUR is above the auto-approval cap of 10000. Please check that the total matches the purchase order PO-RRENCYEUR2 and the delivered goods, and confirm the amount is correct before routing it for manual approval.\",\"email_subject\": \"Invoice BN-19064 – Request for Confirmation\",\"email_body\": \"Dear Waalhaven Industrial Supply team,\\n\\nThank you for your invoice BN-19064 dated 2025-06-06, referencing PO-RRENCYEUR2.\\n\\nOur system has flagged the invoice total of EUR 10124.25, which exceeds our automatic approval limit of EUR 10000. To help us process it, could you please confirm the total amount and send a corrected invoice if any figures have changed?\\n\\nThank you for your assistance. We will review the invoice once we receive your confirmation.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 345,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1178
+ },
+ "costUsd": 0.0004083,
+ "latencyMs": 6433,
+ "cached": false,
+ "cacheKey": "1b77b6057aa52fe458a0532b4707b70c6f9ca3e53a08e11eed3944a8ee20e4ea",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "569c14603468bea93bfd668eb1c61ece25ed19a0fe379f7ff686a50100e900e7"
+ }
+}

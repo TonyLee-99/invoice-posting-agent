@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the billed price for \\\"Streten weap film 500mm x 300m\\\" is 2875.11, which is 287.51 above the PO price of 2587.6 and outside the 51.75 tolerance. The invoice number (confidence 0.57), invoice date (0.884), and total (0.855) also fell below the 0.9 confidence threshold, so please verify these header fields against the original document before anything else.\", \"email_subject\": \"Invoice 2729 – Clarification Needed for PO-OKAVERAGE3\", \"email_body\": \"Dear Kafue Office Supplies Limited team,\\n\\nThank you for your invoice dated 2025-10-24 under PO-OKAVERAGE3. We are reviewing it and need your help with a few items:\\n\\n1. Pricing: The line \\\"Streten weap film 500mm x 300m\\\" is billed at 2875.11, while the purchase order price is 2587.6 for a quantity of 1. Could you please confirm the correct unit price or issue a corrected invoice?\\n\\n2. Invoice details: Please confirm the invoice number, invoice date, and invoice total (currently shown as 4244.01), as the copy we received was difficult to read clearly.\\n\\nOnce we receive your confirmation or a corrected invoice, we will continue processing. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 465,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1452
+ },
+ "costUsd": 0.0005231000000000001,
+ "latencyMs": 9324,
+ "cached": false,
+ "cacheKey": "4504216228d1090432bf9b584693b9c7fff19f7efcae35148cd8dd2b488fbe19",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "d9af8d14ee0a32587085157d7cb5d6d49b284307338d735885fa466522c0e76e"
+ }
+}

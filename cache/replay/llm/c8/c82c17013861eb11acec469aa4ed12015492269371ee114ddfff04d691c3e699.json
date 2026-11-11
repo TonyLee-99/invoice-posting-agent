@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This document was held because it is marked as a credit note, which the system does not post as a Bill, so it needs manual handling. The line \\\"Pallet strapping kit\\\" is also billed at 3397.84 against a PO unit price of 3058.06 for quantity 1, which is 339.78 over and beyond the 61.16 tolerance. Check whether the document is really a credit note or an invoice, and confirm the agreed price on PO-ITNDCZAREF before deciding anything.\",\"email_subject\": \"Clarification needed for Invoice NdC90426 (PO-ITNDCZAREF)\",\"email_body\": \"Dear Kransberg Tyre & Parts (Pty) Ltd team,\\n\\nThank you for your document NdC90426, dated 2026-03-17, for a total of 3907.52 ZAR, referencing PO-ITNDCZAREF.\\n\\nWe have two points to clarify before we can process it:\\n\\n1. Document type: The document is labelled as a credit note. Could you confirm whether it is a credit note or an invoice?\\n2. Pricing: The line \\\"Pallet strapping kit\\\" (quantity 1) is billed at 3397.84, while the purchase order price is 3058.06. Could you confirm the correct unit price? If the billed price is correct, please let us know the reason for the difference. If it is an error, please send a corrected invoice.\\n\\nOnce we receive your confirmation or a corrected document, we will review it further. Please note that this message does not confirm approval or payment.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 784,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1323
+ },
+ "costUsd": 0.0006567999999999999,
+ "latencyMs": 9958,
+ "cached": false,
+ "cacheKey": "c82c17013861eb11acec469aa4ed12015492269371ee114ddfff04d691c3e699",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "77e7d683097ea57f10a154543b06770903344f6607056443d7770628a20a0518"
+ }
+}

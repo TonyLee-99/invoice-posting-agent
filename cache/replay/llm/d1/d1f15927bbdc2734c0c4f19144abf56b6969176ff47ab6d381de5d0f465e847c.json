@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because three header fields were read with low confidence: vendor name (0.884), invoice date (0.76), and currency (0.884), each below the 0.9 threshold. Please compare the vendor name, invoice date of 2015-11-02, and currency USD against the original invoice image before continuing, and confirm the PO number PO-IDATION023 and total of 802.73 as well.\", \"email_subject\": \"Invoice 34528548 - Request for Confirmation of Details\", \"email_body\": \"Dear Garcia, Stewart and Payne team,\\n\\nWe are reviewing invoice 34528548 (PO-IDATION023, total 802.73 USD, dated 2015-11-02) and need to confirm a few details before we can process it. Could you please confirm the exact vendor name, the invoice date, and the currency? If any details on the invoice were incorrect or unclear, please send a corrected copy.\\n\\nThank you for your help. We appreciate your prompt response.\\n\\nBest regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 346,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1310
+ },
+ "costUsd": 0.00043520000000000006,
+ "latencyMs": 5867,
+ "cached": false,
+ "cacheKey": "d1f15927bbdc2734c0c4f19144abf56b6969176ff47ab6d381de5d0f465e847c",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "4640a4f76b3f47377c6bb93a64861462c1ea472f16ab47cf9d2268aba45385c3"
+ }
+}

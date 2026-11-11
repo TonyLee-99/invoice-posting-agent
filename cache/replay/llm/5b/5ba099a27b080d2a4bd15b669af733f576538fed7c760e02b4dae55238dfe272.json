@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Drakensig Freight (Pty) Ltd for ZAR 24471.14 was held because the total exceeds the auto-approval cap of 10000. Please confirm the amount against PO-CARRIERZA4 and the freight charges, and review it through the normal manual approval process since it is above the threshold.\",\"email_subject\": \"Invoice 2026/2251 – Request for Confirmation\",\"email_body\": \"Dear Drakensig Freight team,\\n\\nThank you for invoice 2026/2251 dated 2026-01-18, referencing PO-CARRIERZA4, for a total of ZAR 24471.14.\\n\\nThis invoice requires additional review before it can be processed. Could you please confirm the total amount and provide a corrected invoice or written confirmation of the amount due against PO-CARRIERZA4?\\n\\nThank you for your assistance. We will follow up once the review is complete.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 327,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1179
+ },
+ "costUsd": 0.0003995,
+ "latencyMs": 5698,
+ "cached": false,
+ "cacheKey": "5ba099a27b080d2a4bd15b669af733f576538fed7c760e02b4dae55238dfe272",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "1ff0b1ef00608fa15a1fea5c14f517446b13cfa166e0adeea4e560c50326f5cd"
+ }
+}

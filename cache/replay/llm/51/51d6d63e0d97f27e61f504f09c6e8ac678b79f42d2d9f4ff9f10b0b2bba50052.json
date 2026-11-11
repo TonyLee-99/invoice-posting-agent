@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the system could not read the vendor name (confidence 0.855, below the 0.9 threshold) or the currency (confidence 0.808, below 0.9) with enough certainty. Please check the vendor name and the currency against the original invoice document, and confirm the invoice total of 111.07 and PO number PO-IDATION008 before deciding how to proceed.\",\n\"email_subject\": \"Request to confirm invoice 18001573 details\",\n\"email_body\": \"Dear Mcgrath-Ruiz team,\\n\\nWe are reviewing invoice 18001573, dated 2012-12-30, for a total of 111.07 under PO-IDATION008. To complete our review, could you please confirm the vendor name and the invoice currency (USD), or send a corrected copy of the invoice if any details differ?\\n\\nThank you for your help. Please reply to this email with the confirmation or corrected invoice.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 326,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1239
+ },
+ "costUsd": 0.000411,
+ "latencyMs": 6605,
+ "cached": false,
+ "cacheKey": "51d6d63e0d97f27e61f504f09c6e8ac678b79f42d2d9f4ff9f10b0b2bba50052",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "50ff8addfbf8265896c8084c0acaa1792227eecbe346709a7b58f8c5167c036f"
+ }
+}

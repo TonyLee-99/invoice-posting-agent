@@ -25,7 +25,7 @@ test:
 chaos:           ## CI-sized chaos run; writes results/chaos_ci.json (the committed 300-seed run is results/chaos.json)
 	npx tsx eval/chaos.ts --seeds $(SEEDS) --shards 4 --out results/chaos_ci.json
 	npx tsx scripts/check_results.ts chaos results/chaos_ci.json
-check: lint types test chaos
+check: lint types test chaos eval-check
 	npx tsx scripts/check_results.ts all
 
 eval-check:      ## re-run the eval from the replay cache and diff against results/ (needs `make data`)

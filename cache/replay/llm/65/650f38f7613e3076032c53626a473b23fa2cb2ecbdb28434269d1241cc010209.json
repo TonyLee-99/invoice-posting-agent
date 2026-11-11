@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held for two reasons: the tax charged (13749.01) does not match the 10.00% tax rate on PO-IPAGE4PZA5, which would give 9166.01, a difference of 4583. Also, the total of 105409.07 is above the auto-approval cap of 25000, so it needs manual review regardless of the tax issue. Please check the tax calculation against the PO terms and confirm whether the invoice total is correct before approving.\",\n\"email_subject\": \"Request for Corrected Invoice F-26-0992 (PO-IPAGE4PZA5)\",\n\"email_body\": \"Dear Klipspruit Engineering Supplies team,\\n\\nThank you for invoice F-26-0992 dated 2026-03-13 for PO-IPAGE4PZA5, totaling 105409.07 ZAR.\\n\\nDuring our review, we noticed the tax amount on the invoice (13749.01) does not match the 10.00% tax rate specified on the purchase order, which would result in tax of 9166.01. Could you please review the invoice and either issue a corrected invoice or confirm the tax calculation in writing?\\n\\nOnce we receive your response, we will continue processing. Please note that this invoice is above our auto-approval limit, so it will also go through our standard review process.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 463,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1278
+ },
+ "costUsd": 0.0004873,
+ "latencyMs": 6309,
+ "cached": false,
+ "cacheKey": "650f38f7613e3076032c53626a473b23fa2cb2ecbdb28434269d1241cc010209",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "abbe9c492c06f292161abe94f91990bf84978c0673f97069089c8f3357a1f571"
+ }
+}

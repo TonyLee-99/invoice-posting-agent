@@ -12,7 +12,6 @@ import type { Discrepancy } from "@ipa/matching";
 import { route, threeWayMatch } from "@ipa/matching";
 import type { ManifestDoc } from "./prepare.ts";
 import { gtFields, procurementFor } from "./procure.ts";
-import type { ScoredField } from "./score.ts";
 import { aggregate, bootstrapF1, scoreDoc, wilson } from "./score.ts";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -149,7 +148,7 @@ for (const { r, proc } of reviewCases) {
   const input = { invoice: { vendor: f.vendorName, invoiceNumber: f.invoiceNumber, invoiceDate: f.invoiceDate, currency: f.currency, total: f.totalMinor === null ? null : f.totalMinor / 100, poNumber: d.m.poNumber }, findings: d.m.discrepancies.map((x: Discrepancy) => ({ code: x.code, message: x.message, facts: x.facts })) };
   const resp = await llm.complete({ model: MODEL, system: DRAFT_SYSTEM, prompt: JSON.stringify(input), purpose: "draft", effort: "low" });
   type Draft = { explanation: string; email_subject: string; email_body: string };
-  let out: Draft | null = null;
+  let out: Draft | null;
   try { out = extractJson(resp.text) as Draft; } catch { out = null; }
   // Dates may be reworded ("24 April 2025"), so their parts count as given.
   const allowed = new Set((JSON.stringify(input).match(/\d+(?:\.\d+)?/g) ?? []).map(normNum));
@@ -187,7 +186,7 @@ for (const [name, body] of Object.entries(files)) {
   const text = JSON.stringify(body, null, 1) + "\n";
   const target = path.join(OUT, name);
   if (CHECK) {
-    let prev = "";
+    let prev: string;
     try { prev = readFileSync(target, "utf8"); } catch { prev = ""; }
     if (prev !== text) { diff++; process.stderr.write(`DIFF ${name}\n`); }
   } else writeFileSync(target, text);

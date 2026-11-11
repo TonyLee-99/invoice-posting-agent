@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because no open purchase order matches it (the PO number is blank), so it cannot be matched for payment as-is. The invoice date (2017-03-18) and currency (USD) also came back with low extraction confidence (0.884 and 0.76, below the 0.9 threshold), so please verify those fields against the original document before proceeding.\",\"email_subject\": \"Invoice 12222347 - Request for PO Reference and Confirmation of Details\",\"email_body\": \"Dear Gregory, Patterson and Fischer Accounts Team,\\n\\nThank you for your invoice 12222347 dated 2017-03-18 for a total of 136.13 USD.\\n\\nWe are unable to match this invoice to an open purchase order because no PO number appears on it. Could you please reply with the applicable purchase order number, or confirm if no PO applies?\\n\\nAdditionally, please confirm the invoice date and currency. If you are able, a corrected or reissued copy of the invoice showing these details clearly would be helpful.\\n\\nThank you for your assistance. We look forward to your reply.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 380,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1270
+ },
+ "costUsd": 0.00044420000000000006,
+ "latencyMs": 7552,
+ "cached": false,
+ "cacheKey": "014ea478e2dd2a73b70ab399906b05aa79273eefc07a4f16b093100d51f34cfb",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "0b9e8ff1eec10b61d9aff532422152ed681ea9ab4c25b85451874ccffdbac33b"
+ }
+}

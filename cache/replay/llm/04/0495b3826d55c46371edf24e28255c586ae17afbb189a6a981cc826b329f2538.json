@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Rojas-Cook (#33931957, total 27.5 USD) was held because the tax charged is 2.5, but the PO's 5.00% tax rate gives an expected tax of 1.25, a difference of 1.25. The invoice date and currency also came back with low extraction confidence (0.855 and 0.712, below the 0.9 threshold), so please verify those fields against the source document before proceeding.\", \"email_subject\": \"Invoice 33931957 (PO-NATRAIN017) – Tax Amount Clarification Needed\", \"email_body\": \"Dear Rojas-Cook Accounts Team,\\n\\nThank you for invoice 33931957 referencing PO-NATRAIN017, total 27.50 USD.\\n\\nDuring our review, the tax shown on the invoice is 2.50, while the tax rate on the purchase order (5.00%) corresponds to 1.25. Could you please review the tax calculation and confirm the correct amount, or send a corrected invoice?\\n\\nWe also ask that you confirm the invoice date and currency as shown on the document, as our system could not verify them with confidence.\\n\\nThank you for your help. We will continue processing once we have your confirmation.\\n\\nBest regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 425,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1321
+ },
+ "costUsd": 0.00047689999999999994,
+ "latencyMs": 7370,
+ "cached": false,
+ "cacheKey": "0495b3826d55c46371edf24e28255c586ae17afbb189a6a981cc826b329f2538",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "c506bf8f5edf12c79a90b8ebecb1724a8a0d24e0904e9031f91a015769eab0cb"
+ }
+}

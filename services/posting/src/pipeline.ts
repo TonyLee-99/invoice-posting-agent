@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
-import { Parser, fieldConfidence, llmExtract, toFields } from "@ipa/extract";
+import type { Parser } from "@ipa/extract";
+import { fieldConfidence, llmExtract, toFields } from "@ipa/extract";
 import type { LLMClient } from "@ipa/llm";
 import { extractJson } from "@ipa/llm";
 import type { InvoiceFields } from "@ipa/domain";

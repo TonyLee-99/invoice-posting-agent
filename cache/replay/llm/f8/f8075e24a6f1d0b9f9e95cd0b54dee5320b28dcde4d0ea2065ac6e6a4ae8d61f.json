@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Payne-Davis (PO-IDATION015) was held for four reasons: the line \\\"15\\\"x15\\\" White Marble Chess Top Table\\\" is billed at 600 against a PO unit price of 540, which is 60 over the tolerance of 10.8; the invoice date and currency were read with confidence below the 0.9 threshold (0.855 and 0.76); and the total of 46910.41 exceeds the 10000 auto-approval cap. Please verify the billed price against the PO, confirm the invoice date and USD currency against the original document, and review the total before routing for approval.\",\n\"email_subject\": \"Invoice 65095335 - Request for Confirmation or Corrected Invoice\",\n\"email_body\": \"Dear Payne-Davis Accounts Team,\\n\\nThank you for your invoice 65095335 dated 2017-02-15 referencing PO-IDATION015, totaling 46910.41.\\n\\nWhile reviewing the invoice, we noticed the following items that need clarification:\\n\\n1. The line item \\\"15\\\"x15\\\" White Marble Chess Top Table Carnelian Inlay Art Black Friday Gift Deco\\\" (quantity 1) is billed at 600, while our purchase order price is 540, a difference of 60.\\n2. The invoice date and currency could not be clearly confirmed from the document received.\\n\\nCould you please either confirm the billed amounts and details, or send a corrected invoice that aligns with PO-IDATION015? Please also verify the invoice date and currency (USD).\\n\\nOnce we receive your response, we will review it promptly. Thank you for your cooperation.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 565,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1435
+ },
+ "costUsd": 0.0005697,
+ "latencyMs": 6804,
+ "cached": false,
+ "cacheKey": "f8075e24a6f1d0b9f9e95cd0b54dee5320b28dcde4d0ea2065ac6e6a4ae8d61f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "907e21c2325754fc3e78f3353d040ec1da0ed5626df33d53c3ccb84d2ecc3964"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Wolds Workshop Supplies plc was held because the invoice number and total could not be read, no open purchase order matches it (PO number is missing), and the extraction confidence is low for the vendor name, invoice number, invoice date, currency, and total. Check the source document directly for the invoice number, total, and any PO reference, and confirm the vendor name and invoice date before matching or processing.\", \"email_subject\": \"Request for corrected invoice details – Wolds Workshop Supplies plc\", \"email_body\": \"Dear Wolds Workshop Supplies plc team,\\n\\nThank you for your invoice dated 2023-09-01. We are unable to process it yet because some required details could not be read or matched to a purchase order.\\n\\nCould you please send us a corrected or clarified copy that clearly shows:\\n\\n1. The invoice number\\n2. The invoice date\\n3. The total amount and currency (GBP)\\n4. The purchase order number, if one applies\\n5. The vendor name as it should appear on our records\\n\\nIf the invoice has already been issued with these details, please reply with the information above so we can match it correctly.\\n\\nThank you for your help. We look forward to hearing from you.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 699,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1554
+ },
+ "costUsd": 0.0006605000000000001,
+ "latencyMs": 7293,
+ "cached": false,
+ "cacheKey": "549eb195d738c25ef271b0583b3d7fb39d9d6eefc83e8cb8921e76d985d3af0b",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "145ec2e89dc7146fb5c6bba9424371ca359262af1f16f2f3ca7e7841de01cbcf"
+ }
+}

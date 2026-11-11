@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Etosha Gate Border Services for 20043.35 NAD was held because the total is above the auto-approval cap of 10000. Please confirm the amount against PO-LEARINGNA2 and the supporting documents, and decide whether it needs manual approval at the higher value.\",\"email_subject\": \"Request for Confirmation of Invoice 2026/4896\",\"email_body\": \"Dear Etosha Gate Border Services team,\\n\\nThank you for invoice 2026/4896 dated 2026-05-20, referencing PO-LEARINGNA2, for a total of 20043.35 NAD.\\n\\nThe invoice is currently on hold in our accounts payable review because the total exceeds our automatic approval limit. To help us process it, could you please confirm the invoice total and send a corrected or itemized invoice if any figures need adjusting?\\n\\nWe appreciate your cooperation. Please note that this message does not confirm approval or a payment date.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 341,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1186
+ },
+ "costUsd": 0.0004079,
+ "latencyMs": 6667,
+ "cached": false,
+ "cacheKey": "0cfc732391a19e78a674c93e1c1697582a5d959743d84834a003a0cd16a59c11",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "ba25cabae0105a3a7ca913c308df29234026c2e07116e441376abeadc4757f14"
+ }
+}

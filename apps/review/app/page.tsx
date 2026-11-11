@@ -58,6 +58,8 @@ export default function ReviewPage() {
 
   useEffect(() => {
     if (sel === null) return;
+    // Keep the selection in the URL so a reload (or a shared link) opens the same invoice.
+    window.history.replaceState(null, "", `?id=${sel}`);
     setErr(null);
     setDraft({});
     void api.detail(sel).then(setD).catch((e: Error) => setErr(e.message));
@@ -133,7 +135,7 @@ export default function ReviewPage() {
             </span>
           </div>
           <div className="view">
-            {inv && !showText && (isPdf ? <iframe src={api.documentUrl(inv.id)} title="document" /> : <img src={api.documentUrl(inv.id)} alt="invoice document" />)}
+            {inv && !showText && <img src={api.documentUrl(inv.id)} alt={isPdf ? "invoice (page 1 preview)" : "invoice document"} />}
             {inv && showText && <pre>{(inv as unknown as { parsed_text?: string }).parsed_text}</pre>}
           </div>
         </div>

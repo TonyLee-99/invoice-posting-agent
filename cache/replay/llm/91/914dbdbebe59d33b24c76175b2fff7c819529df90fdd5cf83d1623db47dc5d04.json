@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Copperline Workshop Supplies Ltd was held because no open purchase order matches it (PO number is blank), and the total of 55,705.08 ZMW exceeds the auto-approval cap of 10,000. Three extracted fields also fell below the 0.9 confidence threshold: invoice number (0.855), invoice date (0.76), and total (0.874). Please verify the invoice number, date, and total against the original document, and locate the correct PO before any further processing.\", \"email_subject\": \"Request for Corrected Invoice F-26-8395\", \"email_body\": \"Dear Copperline Workshop Supplies Team,\\n\\nWe are reviewing invoice F-26-8395 dated 2025-04-11 for a total of 55,705.08 ZMW, and we were unable to match it to an open purchase order. We also could not clearly read the invoice number, invoice date, and total from the document received.\\n\\nCould you please confirm the following:\\n- The correct invoice number\\n- The invoice date\\n- The total amount payable\\n- The purchase order number this invoice relates to\\n\\nIf possible, please send a corrected or clearly legible copy of the invoice. Thank you for your help. We will review the information once received.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 426,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1407
+ },
+ "costUsd": 0.0004946,
+ "latencyMs": 7086,
+ "cached": false,
+ "cacheKey": "914dbdbebe59d33b24c76175b2fff7c819529df90fdd5cf83d1623db47dc5d04",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "a916da225af3ed14a00dbdc7758ca27736db3cbf9ee3705da03cb4786a1f7247"
+ }
+}

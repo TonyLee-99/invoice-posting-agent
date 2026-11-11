@@ -4,6 +4,7 @@ const basePath = isStatic ? (process.env.PAGES_BASE_PATH ?? "") : "";
 
 export default {
   reactStrictMode: true,
+  devIndicators: false,
   ...(isStatic ? { output: "export", distDir: "out", basePath, images: { unoptimized: true } } : {}),
   env: {
     NEXT_PUBLIC_STATIC: isStatic ? "1" : "0",

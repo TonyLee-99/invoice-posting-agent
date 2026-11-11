@@ -28,3 +28,7 @@ cache/*
 !.env.example
 *.log
 .DS_Store
+apps/review/test-results/
+apps/review/next-env.d.ts
+results/llm_calls.jsonl
+results/chaos_ci.json

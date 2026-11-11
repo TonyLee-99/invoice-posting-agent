@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Pierce PLC (invoice 67856369, total 4952.82 USD, PO-ANATEST014) was held because two header fields were read with low confidence: the invoice date (0.855, below the 0.9 threshold) and the currency (0.712, below the 0.9 threshold). Please verify the invoice date of 2020-05-27 and the USD currency against the original document before proceeding.\", \"email_subject\": \"Request for confirmation - Invoice 67856369 (PO-ANATEST014)\", \"email_body\": \"Hello,\\n\\nWe are reviewing invoice 67856369 from Pierce PLC for PO-ANATEST014, with a total of 4952.82. Some details on the invoice could not be read with certainty. Could you please confirm the invoice date (currently read as 2020-05-27) and the currency (currently read as USD)? If any details are incorrect, please send a corrected copy of the invoice.\\n\\nThank you for your help. We will review your response once received.\\n\\nBest regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 352,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1239
+ },
+ "costUsd": 0.000424,
+ "latencyMs": 7600,
+ "cached": false,
+ "cacheKey": "b93cd2a3f277cbc1bc04677ec06871fded3c034642b5095904e6cb98021cf51d",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "68f604d96be8399526ed7560fc54d4d6cac6f68c9317691b92673225aae45293"
+ }
+}

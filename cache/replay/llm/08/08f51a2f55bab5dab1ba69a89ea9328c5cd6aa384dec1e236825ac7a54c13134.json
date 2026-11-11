@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the system could not read the invoice date with enough confidence (0.582 against a required 0.9), so the date on the invoice may have been misread during extraction. Please open the original invoice PDF, confirm the invoice date (the system read 2026-05-20), and check that the total of 5006.4 NAD and PO number PO-NTAGELINE1 also match before proceeding.\", \"email_subject\": \"Request for confirmation of invoice IN0001653\", \"email_body\": \"Dear Etosha Gate Shipping Agencies CC team,\\n\\nThank you for your invoice IN0001653 referencing PO-NTAGELINE1 for a total of 5006.4 NAD.\\n\\nDuring processing, we were unable to confirm the invoice date with certainty. Could you please confirm the invoice date shown on the document? If the date is incorrect or the invoice is unclear, a corrected or re-issued copy would be appreciated.\\n\\nThank you for your assistance. We will continue processing once the details are verified.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 362,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1191
+ },
+ "costUsd": 0.0004194,
+ "latencyMs": 7342,
+ "cached": false,
+ "cacheKey": "08f51a2f55bab5dab1ba69a89ea9328c5cd6aa384dec1e236825ac7a54c13134",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "d9d145b6b52e6958d45ce3c1ae5f103452c7567434e307705e88292b616564ba"
+ }
+}

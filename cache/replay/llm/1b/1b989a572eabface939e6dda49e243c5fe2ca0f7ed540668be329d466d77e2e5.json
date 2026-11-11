@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Soto and Sons (invoice 64125453, dated 2013-03-25, total 296.91 USD) was held because the system could not read the currency field with enough confidence (0.855, below the required 0.9). Please confirm the currency shown on the invoice document itself and check that it matches the PO reference PO-IDATION018 before processing.\",\"email_subject\": \"Request to Confirm Currency on Invoice 64125453\",\"email_body\": \"Dear Soto and Sons Accounts Team,\\n\\nThank you for your invoice. Before we can process invoice 64125453 (dated 2013-03-25, total 296.91, referencing PO-IDATION018), we need to verify the currency. Our system could not confidently read the currency listed on the invoice.\\n\\nCould you please confirm the currency for this invoice, or send a corrected copy that clearly states it?\\n\\nThank you for your help. We appreciate your prompt response.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 332,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1166
+ },
+ "costUsd": 0.0003994,
+ "latencyMs": 6572,
+ "cached": false,
+ "cacheKey": "1b989a572eabface939e6dda49e243c5fe2ca0f7ed540668be329d466d77e2e5",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "aced7f0941bd5051348808515be4103f635c826b5ed07e704da8f4eca48add41"
+ }
+}

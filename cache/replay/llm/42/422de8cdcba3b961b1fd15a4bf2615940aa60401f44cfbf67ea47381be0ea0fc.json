@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Okavango Hardware (Pty) Ltd for 44500.53 NAD was held for three reasons: the invoice number and invoice date were read with low confidence (0.81 and 0.76, below the 0.9 threshold), and the total exceeds the auto-approval cap of 10000. Please check the invoice number and date against the original PDF, and confirm the total against PO-NPHOTOMILD before approving through the normal review path.\", \"email_subject\": \"Request for confirmation of invoice INV-2026-70022\", \"email_body\": \"Dear Okavango Hardware team,\\n\\nThank you for your invoice. Before we can process it, we need to confirm a few details. Please could you check and confirm the following:\\n\\n1. The invoice number (we read INV-2026-70022, but the scan was unclear).\\n2. The invoice date (we read 2025-11-22, but this also needs confirmation).\\n3. The total of 44500.53 NAD against purchase order PO-NPHOTOMILD.\\n\\nIf any details are incorrect, please send a corrected invoice. Once we have your confirmation, we will continue our review. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 408,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1319
+ },
+ "costUsd": 0.000468,
+ "latencyMs": 6202,
+ "cached": false,
+ "cacheKey": "422de8cdcba3b961b1fd15a4bf2615940aa60401f44cfbf67ea47381be0ea0fc",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "1ce211d8811888e4041939fdd85da284857399e1ca8b5325b3b0eb8f2fa4490b"
+ }
+}

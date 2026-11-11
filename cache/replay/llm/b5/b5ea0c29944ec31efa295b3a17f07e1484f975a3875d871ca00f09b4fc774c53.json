@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because its currency is ZMW (Zambian Kwacha), but the linked PO PO-REFERENCE3 is denominated in USD, so the amounts cannot be matched directly. Please confirm with the vendor whether the invoice should be issued in USD per the PO, or whether a currency amendment or updated PO is needed before the invoice total of 18292.27 ZMW is processed.\",\n\"email_subject\": \"Currency Clarification Needed for Invoice INV-2026-94104 (PO-REFERENCE3)\",\n\"email_body\": \"Dear Zambezi Reach Transport Limited team,\\n\\nThank you for invoice INV-2026-94104 dated 2025-07-03, for a total of 18292.27 ZMW, referencing PO-REFERENCE3.\\n\\nOur records show that PO-REFERENCE3 is issued in USD, while the invoice is in ZMW. To proceed, could you please confirm the billing currency agreed for this order? If the invoice should be in USD, please send a corrected invoice reflecting the PO currency. If ZMW is correct, please confirm this in writing so we can review the order accordingly.\\n\\nWe appreciate your help and look forward to your reply. Please note this message does not confirm approval or a payment date.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 450,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1188
+ },
+ "costUsd": 0.00046280000000000003,
+ "latencyMs": 6595,
+ "cached": false,
+ "cacheKey": "b5ea0c29944ec31efa295b3a17f07e1484f975a3875d871ca00f09b4fc774c53",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "421caf7ceb4ed082dffd7c2ea7fbb3c51e61e320cf2c4263607700894fab3af7"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"The invoice was held because three lines (Documentation fee 478.56, Customs clearance fee 2508.48, Cargo inspection attendance 594.06) are billed well above their PO unit prices (26.02, 136.39, and 32.3 respectively, each with quantity 1). The currency field also has low extraction confidence (0.85 against a 0.9 threshold). Check these lines against the PO and confirm the invoice currency before any further processing.\", \"email_subject\": \"Query on Invoice F-26-9064 (PO-UALUSDNAD4)\", \"email_body\": \"Dear Kunene Clearing & Forwarding team,\\n\\nThank you for invoice F-26-9064 dated 2026-03-16, total 3581.1, referencing PO-UALUSDNAD4.\\n\\nDuring our review, three line items did not match the agreed purchase order prices:\\n\\n- Documentation fee: billed 478.56; PO unit price 26.02 (quantity 1)\\n- Customs clearance fee: billed 2508.48; PO unit price 136.39 (quantity 1)\\n- Cargo inspection attendance: billed 594.06; PO unit price 32.3 (quantity 1)\\n\\nCould you please confirm these charges or send a corrected invoice reflecting the PO pricing? Please also confirm the invoice currency, as we could not verify it from the document.\\n\\nOnce we receive your response, we will continue processing the invoice.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 739,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1552
+ },
+ "costUsd": 0.0006801,
+ "latencyMs": 7665,
+ "cached": false,
+ "cacheKey": "98f266795b2b02da6559a3daac6bd19c33d466fcfa8e3ab83613dee605458f9a",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "a893e68092cef07e83381c1d2ff1755bfa4450530998b90d7569f8170d0dd2f0"
+ }
+}

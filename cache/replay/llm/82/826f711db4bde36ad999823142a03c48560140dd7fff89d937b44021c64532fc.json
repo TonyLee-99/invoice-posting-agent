@@ -1,0 +1,20 @@
+{
+ "text": "```json\n{\n  \"explanation\": \"This invoice from Decker PLC (invoice 97511742, total 4746.42 USD, PO-IDATION005) was held because the system could not read the invoice date and the currency with enough confidence (0.523 against a required 0.9). Please check the invoice date (2016-04-07) and the currency (USD) against the original document before proceeding.\",\n  \"email_subject\": \"Request to Confirm Invoice 97511742 (PO-IDATION005)\",\n  \"email_body\": \"Dear Decker PLC Accounts Team,\\n\\nWe are reviewing invoice 97511742 for a total of 4746.42 USD, referencing PO-IDATION005. Our system could not clearly confirm the invoice date (listed as 2016-04-07) or the currency (listed as USD).\\n\\nCould you please confirm these details or send a corrected copy of the invoice showing the correct invoice date and currency?\\n\\nThank you for your help. We look forward to your reply.\\n\\nKind regards,\\nAccounts Payable\"\n}\n```",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 349,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1235
+ },
+ "costUsd": 0.0004217,
+ "latencyMs": 6369,
+ "cached": false,
+ "cacheKey": "826f711db4bde36ad999823142a03c48560140dd7fff89d937b44021c64532fc",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "8e5e489bf2e673d0f4118d99353824b2d677ae1b465701f65cb31568d53f4f18"
+ }
+}

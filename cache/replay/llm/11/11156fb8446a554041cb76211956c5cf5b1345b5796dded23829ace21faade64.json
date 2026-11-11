@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Mcdonald and Sons (PO-NATRAIN042, invoice 32656405) was held because no goods receipts are recorded for any of the six PO lines, which were billed at quantities of 1, 5, 4, 3, 3, and 1. Also check the currency field, which was flagged as low confidence (0.855 against a 0.9 threshold), so confirm the invoice is in USD before proceeding.\", \"email_subject\": \"Invoice 32656405 – Request for Confirmation / Corrected Invoice (PO-NATRAIN042)\", \"email_body\": \"Dear Mcdonald and Sons Accounts Team,\\n\\nThank you for your invoice 32656405 dated 2013-10-25 for a total of 882.05 USD, referencing PO-NATRAIN042.\\n\\nWe are unable to process this invoice at this time for the following reasons:\\n\\n1. Goods receipt is not yet recorded for PO lines 1 through 6 (billed quantities: 1, 5, 4, 3, 3, and 1 respectively). Could you please confirm the delivery details, such as delivery dates and any packing slips or shipment references?\\n\\n2. The currency on the invoice could not be verified with confidence. Could you please confirm the invoice currency?\\n\\nIf any corrections to the invoice are needed, please send a corrected invoice. Otherwise, please reply to confirm the details above.\\n\\nThank you for your assistance. We will review your response as soon as it is received.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 522,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1712
+ },
+ "costUsd": 0.0006036,
+ "latencyMs": 7113,
+ "cached": false,
+ "cacheKey": "11156fb8446a554041cb76211956c5cf5b1345b5796dded23829ace21faade64",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "54e38883401f28502c0199911bcff4e6ab4727d9e746c903efce6949593b4ce7"
+ }
+}

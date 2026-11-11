@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice is held because the vendor \\\"Velasquez, Ward and Ballard\\\" is not in the vendor master and no open purchase order matches it (PO number is blank). Several extracted fields also have low confidence: vendor name (0.884), invoice date (0.884), and currency (0.665), so please verify these against the original document before any further action.\", \"email_subject\": \"Invoice 71748307 – Request for Verification and Corrected Details\", \"email_body\": \"Dear Velasquez, Ward and Ballard Team,\\n\\nWe are reviewing invoice number 71748307 dated 2011-12-24 for a total of 1576.9 USD, and we need a few details to complete our processing:\\n\\n1. Please confirm your exact legal vendor name as it should appear in our records. We could not match it to an existing vendor record.\\n2. Please confirm the invoice date, which we could not read with full confidence.\\n3. Please confirm the currency of the invoice; we could not verify it from the document as received.\\n4. Please provide the purchase order number this invoice relates to, if applicable. We did not find a matching open purchase order.\\n\\nIf any details were incorrect on the original invoice, please send a corrected copy. Thank you for your help. We will review your response once received.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 436,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1420
+ },
+ "costUsd": 0.0005022000000000001,
+ "latencyMs": 6976,
+ "cached": false,
+ "cacheKey": "31eadc5924b1e1e8e64eedf57a37af2ae2d55b8b054253ba7ffc80eeed980be3",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "495f254814522e5ad0862f4b57f81fcdf75b80d09b59a3c0d5ce2fe1637e551f"
+ }
+}

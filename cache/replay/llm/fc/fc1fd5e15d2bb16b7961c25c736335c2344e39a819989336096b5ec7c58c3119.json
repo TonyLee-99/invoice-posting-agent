@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice (#36279024 from Baker, Michael and Martin, total 1255.17 USD, PO-IDATION030) was held because the matching system had low confidence in two extracted fields: the vendor name (0.855 against a required 0.9) and the currency (0.855 against a required 0.9). Please check the invoice image or PDF to confirm the vendor name matches the vendor record and that the currency is indeed USD before proceeding.\", \"email_subject\": \"Request to Confirm Invoice 36279024\", \"email_body\": \"Dear Baker, Michael and Martin team,\\n\\nThank you for your invoice. Before we can process it, we need to verify a few details. Could you please confirm the following for invoice 36279024 dated 2014-08-18 (total 1255.17, PO reference PO-IDATION030):\\n\\n1. The exact legal name of your company as it should appear on our records.\\n2. The currency of the invoice amount.\\n\\nIf any corrections are needed, please send a corrected invoice. We appreciate your help and will review your response promptly.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 374,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1242
+ },
+ "costUsd": 0.0004356,
+ "latencyMs": 6628,
+ "cached": false,
+ "cacheKey": "fc1fd5e15d2bb16b7961c25c736335c2344e39a819989336096b5ec7c58c3119",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "9f6fac24469a5cd1052de1d447ca01740f5301e2c731a71c3af4b4fde6fd029b"
+ }
+}
