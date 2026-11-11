@@ -1,8 +1,9 @@
 # invoice-posting-agent
 
-**Posts vendor invoices to QuickBooks Online without duplicate Bills or lost invoices under injected faults: across 300 randomized fault-injection seeds (4,180 invoices, 2,799 injected remote faults, 917 worker crashes) there were 0 lost invoices and 0 duplicates outside the documented residual case — the 1 duplicate (requestid memory lost + read-after-write lag) was caught by nightly reconciliation. Run live against the QuickBooks Online sandbox, the first runs exposed three gaps
-the emulator had hidden (fixed, now reproduced offline); the final live run posted 10/10 with a worker SIGKILLed
-mid-post, 0 duplicates, 0 missing. LLM field extraction: 0.941 F1 vs 0.765 for a regex baseline.**
+**An accounts-payable service that posts vendor invoices to QuickBooks Online without duplicate Bills or lost
+invoices: 0 lost and 0 duplicates in 257 non-residual fault-injection seeds (1 duplicate in 43 pre-declared
+residual-risk seeds, caught by reconciliation), and 10/10 posted on the real QuickBooks sandbox with a worker
+killed mid-post.**
 
 [![ci](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-blue)
@@ -12,9 +13,21 @@ mid-post, 0 duplicates, 0 missing. LLM field extraction: 0.941 F1 vs 0.765 for a
 
 | business problem | what I built | measured results |
 |---|---|---|
-| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | A TypeScript service: upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts to QBO with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | **0** lost invoices over **300** chaos seeds; **0** duplicates in the 257 non-residual seeds, **1** in the 43 residual-risk seeds (detected by reconciliation); with all defenses off **85 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.765** baseline on 40 public labelled invoices. Auto-approval precision **8/8** at a 20% auto-approve rate. **$0.0012** LLM cost per invoice. |
+| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | Upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | Chaos (emulator, 300 seeds): **0** lost, **0** duplicates in the 257 non-residual seeds, **1** in the 43 residual-risk seeds; all defenses off: **85 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.765** regex baseline on 40 public labelled invoices. Auto-approval **8/8** correct (n=8, Wilson 95% CI 0.68–1.00). **$0.0012** LLM cost per invoice. |
 
-Live demo (static, recorded from a real run): `docs/demo/` → GitHub Pages `/invoice-posting-agent/demo/`.
+### What ran live (QuickBooks Online sandbox, 2026-11-11)
+| run | result | source |
+|---|---|---|
+| Contract checks | repeat requestid → same Bill; same requestid + different body → original response; concurrent twin → **HTTP 425**, 1 Bill; DocNumber query saw the new Bill after **350 ms**; duplicate DocNumber with a new requestid is **accepted**; token refresh works (refresh token did not rotate) | `results/qbo_live_contract.json` |
+| Demo: 10 invoices through the real pipeline, one worker process SIGKILLed after its remote write | **10/10** posted, **1** adopted after the kill, **0** duplicates, **0** missing, reconciliation 10/10, recovery queue empty | `results/qbo_live_demo.json` |
+
+The first live runs found three gaps the emulator had hidden — QBO filling `DueDate`, HTTP 425 for in-flight
+requestids, cached requestid responses replayed to a fresh database. All three are fixed and now reproduced offline
+([postmortem](docs/INCIDENTS.md)). Demo Bills were deleted from the sandbox afterwards.
+
+**More:** [architecture](#architecture) · [run it](#run-it-offline-3-commands) · [results](#results) ·
+[real vs simulated](#what-is-real-and-what-is-simulated) · [limitations](#limitations) · [project documents](docs/README.md)
+(PRD, design, acceptance, eval, runbook, rollout, ADRs, incidents) · static demo: `docs/demo/`
 
 ## Architecture
 
@@ -54,17 +67,6 @@ make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000,
 re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations. Sizes are knobs:
 `npx tsx eval/run.ts --n 232` (the whole test split), `make chaos SEEDS=500`.
 
-### What ran live (QuickBooks Online sandbox, 2026-11-11)
-| run | result | source |
-|---|---|---|
-| Contract checks | repeat requestid → same Bill; same requestid + different body → original response; concurrent twin → **HTTP 425**, 1 Bill; DocNumber query sees a new Bill after 350–608 ms; duplicate DocNumber with a new requestid is **accepted**; token refresh works (refresh token did not rotate) | `results/qbo_live_contract.json` |
-| Live demo, 10 invoices through the real pipeline, one worker process SIGKILLed after its remote write | **10/10** posted, **1** adopted after the kill, **0** duplicates, **0** missing, reconciliation 10/10, recovery queue empty (final run; the earlier runs failed and are in INC-14..16) | `results/qbo_live_demo.json` |
-
-The first live runs found three gaps the emulator had hidden — QBO filling `DueDate`, HTTP 425 for in-flight
-requestids, and cached requestid responses replayed to a fresh database — fixed and now reproduced offline
-(`docs/INCIDENTS.md`, postmortem). The 300-seed chaos results are still emulator results. Demo Bills were deleted
-from the sandbox afterwards (`make qbo-cleanup`).
-
 ### Run against the real QuickBooks sandbox
 After the one-time setup in `docs/RUNBOOK.md` (Intuit app with
 redirect URI `http://localhost:8777/callback`, keys in the keychain as `qbo-client-id` / `qbo-client-secret`):
@@ -81,13 +83,12 @@ Without credentials each target prints `SKIP` and exits 0; the same scripts are 
 
 | measure | result | baseline / control | source |
 |---|---|---|---|
-| Duplicate Bills, 300 chaos seeds (crashes, stalls, 5xx before/after commit, resets, hangs, 429, token expiry, emulator restarts, edits) | **0** in 257 non-residual seeds; **1** in 43 residual-risk seeds, detected by reconciliation and voided by the runbook | all defenses off: 353 duplicates, 85/100 seeds | `results/chaos.json` |
-| Lost invoices / ledger≠local after reconciliation | **0 / 0** | — | same |
+| Chaos, 300 seeds on the emulator: 4,180 invoices, 917 worker crashes, 75 emulator restarts, stalls, edits, and 2,799 injected remote events — **1,615 failures** (697 5xx before commit, 683 committed-then-response-lost: 5xx after commit / connection reset / hang, 34 hangs without commit, 139 throttling, 62 token expiries) plus **1,184 latency-only** | duplicates: **0** in 257 non-residual seeds, **1** in 43 residual-risk seeds (detected by reconciliation, voided by the runbook); lost: **0**; ledger≠local after reconciliation: **0** | all defenses off: 353 duplicates, 85/100 seeds | `results/chaos.json` |
 | Deterministic fault scenarios A1–A18 incl. real SIGKILL of a worker process | all pass | requestid or query-first ablated alone → duplicate; fencing and lease guard are redundant layers (duplicate only with both off) | `services/posting/test/*.test.ts` |
 | Field extraction micro F1 (40 docs, test split) | **0.941** (0.889–0.981) | regex baseline **0.765** (0.712–0.809) | `results/extraction.json` |
 | IPP official scorer, key fields | **184 / 208** (88.5%) | — | `results/ipp_official_scores.json` |
-| Matcher vs labelled expected outcome (label fields) | **1.000** (40/40) on the eval set; **0.997** (296/297) on all labelled docs; 16/16 added FX cases | 0.975 (39/40) before the dual-currency rule | `results/matching.json` |
-| Auto-approval at threshold 0.9 | **20%** auto, precision **8/8** (Wilson 0.68–1.00) | — | same |
+| Matcher self-consistency check (label fields vs **Simulated** POs/receipts/vendors generated from the same labels — not independent evidence) | **1.000** (40/40) on the eval set; **0.997** (296/297) on all labelled docs; 16/16 added FX cases | 0.975 (39/40) before the dual-currency rule | `results/matching.json` |
+| Auto-approval at threshold 0.9 | **20%** auto-approved; **8/8** correct (n=8, Wilson 95% CI 0.68–1.00) | — | `results/routing.json` |
 | Drafted vendor emails with only grounded numbers | **10 / 10** (first run 4/10, fixed: INC-6) | — | `results/drafts.json` |
 | LLM cost / latency per invoice | **$0.0012**, p50 9.5 s | — | `results/cost.json` |
 
@@ -105,11 +106,16 @@ Emulator differences and every QBO assumption with its source: `docs/QBO_SEMANTI
 
 ## Limitations
 - 40-document extraction sample; CIs are wide. OCR on phone photos and handwriting causes 17 of 26 field errors.
+- The matcher numbers are a self-consistency check: POs, receipts and vendors are generated from the same invoice labels
+  the matcher reads (`eval/procure.ts`), and the expected outcomes follow rules I wrote. They show the implementation
+  does what the policy says, not that the policy is right for a real AP team.
+- Auto-approval precision rests on 8 approvals (Wilson lower bound 0.68); it is not evidence of 98% precision.
 - One residual duplicate path is not prevented, only detected: requestid memory lost **and** the first write invisible
   to the query. It happened once in 43 residual-eligible chaos seeds (seed 30) and reconciliation caught it.
+- Chaos and fault numbers come from the emulator; the live sandbox runs are one contract check and one 10-invoice demo.
 - Requestid retention is unpublished by Intuit and not measured; concurrency semantics were observed live (425).
 - Confidence is a heuristic score (monotone with accuracy in the table), not a fitted calibrator.
-- Credit notes, payments, multi-currency FX and tax codes are out of scope.
+- Credit notes, payments and tax codes are out of scope.
 
 ## From demo to production
 1. Production Intuit keys (sandbox contract checks are done: `results/qbo_live_contract.json`); then shadow mode (ROLLOUT §0).

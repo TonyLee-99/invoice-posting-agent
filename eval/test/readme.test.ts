@@ -20,16 +20,22 @@ describe("README matches results/", () => {
     expect(s.lostInvoices).toBe(0);
     expect(s.residualDuplicatesDetectedByReconcile).toBe(s.residualSeedsWithDuplicate);
     has(`**${s.nonResidualSeedsWithViolation}** duplicates in the ${s.nonResidualSeeds} non-residual seeds, **${s.duplicateBills}** in the ${s.residualEligibleSeeds} residual-risk seeds`);
-    // Remote faults injected by the emulator; worker crashes and restarts are counted separately.
-    const remote = Object.entries(s.faultsFired as Record<string, number>).filter(([k]) => k !== "worker_crash" && k !== "emulator_restart").reduce((a, [, v]) => a + v, 0);
-    has(`${s.seeds} randomized fault-injection seeds (${s.invoices.toLocaleString("en-US")} invoices, ${remote.toLocaleString("en-US")} injected remote faults, ${s.faultsFired.worker_crash} worker crashes)`);
-    has(`${s.faultsFired.worker_crash} worker crashes`);
+    // Remote events by class; latency-only injections are reported separately from failures.
+    const f = s.faultsFired as Record<string, number>;
+    const sumOf = (pred: (k: string) => boolean) => Object.entries(f).filter(([k]) => pred(k)).reduce((x, [, v]) => x + v, 0);
+    const remote = sumOf((k) => k !== "worker_crash" && k !== "emulator_restart");
+    const latency = sumOf((k) => k.endsWith(":latency"));
+    const before5xx = sumOf((k) => /error50\d_before$/.test(k));
+    const lostResponse = sumOf((k) => /(error500_after|reset_after_commit|hang_after_commit)$/.test(k));
+    const n = (x: number) => x.toLocaleString("en-US");
+    has(`${n(remote)} injected remote events — **${n(remote - latency)} failures** (${before5xx} 5xx before commit, ${lostResponse} committed-then-response-lost`);
+    has(`${sumOf((k) => k.endsWith("hang_before_commit"))} hangs without commit, ${sumOf((k) => k.endsWith("throttle429"))} throttling, ${sumOf((k) => k.endsWith("expire_token"))} token expiries) plus **${n(latency)} latency-only**`);
+    has(`${n(s.invoices)} invoices, ${f.worker_crash} worker crashes, ${f.emulator_restart} emulator restarts`);
     has(`${chaos.all_off.summary.duplicateBills} duplicates, ${chaos.all_off.summary.seedsWithViolation}/100 seeds`);
     has(`**${chaos.all_off.summary.seedsWithViolation} of 100** seeds produce duplicates`);
   });
   it("extraction", () => {
     const f3 = (x: number) => (Math.round(x * 1000) / 1000).toFixed(3);
-    has(`${f3(ex.llm.microF1)} F1 vs ${f3(ex.baseline.microF1)}`);
     has(`(95% CI ${f3(ex.llm.microF1CI95[0])}–${f3(ex.llm.microF1CI95[1])})`);
     has(`baseline **${f3(ex.baseline.microF1)}** (${f3(ex.baseline.microF1CI95[0])}–${f3(ex.baseline.microF1CI95[1])})`);
     has(`F1 **${f3(ex.llm.microF1)}**`);
@@ -37,8 +43,9 @@ describe("README matches results/", () => {
   });
   it("routing and official scorer", () => {
     expect(rt.chosen.precision).toBe(1);
-    has(`precision **${rt.chosen.autoApproved}/${rt.chosen.autoApproved}**`);
-    has(`**${Math.round(rt.chosen.autoRate * 100)}%** auto`);
+    const ci = rt.chosen.precisionCI95.map((x: number) => x.toFixed(2)).join("–");
+    has(`**${rt.chosen.autoApproved}/${rt.chosen.autoApproved}** correct (n=${rt.chosen.autoApproved}, Wilson 95% CI ${ci})`);
+    has(`**${Math.round(rt.chosen.autoRate * 100)}%** auto-approved`);
     has(`**${official.key_fields.correct} / ${official.key_fields.scored}**`);
     const mt = JSON.parse(readFileSync(path.join(ROOT, "results/matching.json"), "utf8"));
     const f3m = (x: number) => (Math.round(x * 1000) / 1000).toFixed(3);
