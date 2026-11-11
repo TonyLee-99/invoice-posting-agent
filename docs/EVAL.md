@@ -82,7 +82,9 @@ fitted calibrator; with 40 docs a fitted model would overfit. ECE/Brier were not
 
 ## 3. Matching and routing
 
-- **Matcher on label fields** (isolates the deterministic matcher; `npx tsx eval/match_eval.ts` → `results/matching.json`):
+- **Matcher self-consistency check on label fields** — POs, receipts and vendors are generated from the same labels
+  (`eval/procure.ts`) and the expected outcomes follow my rules, so this is **not independent evidence**; it shows the
+  implementation follows the stated policy (isolates the deterministic matcher; `npx tsx eval/match_eval.ts` → `results/matching.json`):
   - original 40-doc set: 39/40 = 0.975 in round 1; the miss was a dual-currency invoice (lines in USD, amount payable in
     NAD at a printed rate). Round 2 added a general rule instead of a special case: documents carry `fxBase` +
     `exchangeRate` (parsed deterministically from text like "1 USD = 18.3920 NAD", never by the model) and the line
@@ -102,7 +104,7 @@ fitted calibrator; with 40 docs a fitted model would overfit. ECE/Brier were not
   subtotal confidence are 0.85 < 0.9.) Confusion:
   clean → auto 8, clean → review 16; reject → reject 4; review → review 11, review → reject 1. The errors are in the
   safe direction except one review case rejected (an invoice the LLM typed as `other`).
-- **Auto-approval** at 0.9: 8 of 40 auto-approved (20%), precision 8/8 = 1.00 (Wilson 95% CI 0.68–1.00). Zero false
+- **Auto-approval** at 0.9: 8 of 40 auto-approved (20%), precision 8/8 = 1.00 (n=8, Wilson 95% CI 0.68–1.00). Zero false
   approvals at every threshold from 0.5 (19 auto-approved) to 0.95; target ≥ 0.98 precision is met on the point
   estimate, but 8 approvals cannot establish it — the CI lower bound is 0.68.
 
@@ -118,7 +120,8 @@ $0.0012 per invoice (list-price equivalent, Haiku 5.5), $0.048 total. LLM latenc
 parse p50 1.8 s, p95 14.4 s (OCR). Owner policy: Haiku for all runs; a Sonnet 5.5 comparison was not run.
 
 ## 6. Reliability (fault injection)
-`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,799 injected remote faults, 917 worker crashes, 75 emulator restarts, plus
+`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,799 injected remote events (1,615 failures: 697 5xx before commit, 683
+committed-then-response-lost, 34 hangs without commit, 139 throttling, 62 token expiries; plus 1,184 latency-only), 917 worker crashes, 75 emulator restarts, plus
 stalls and edits: **0 lost invoices, 0 ledger/local mismatches after reconciliation, every seed quiescent after
 faults stopped, 0 duplicate Bills in the 257 non-residual seeds**. 43 seeds were pre-classified as residual-risk eligible (requestid memory lost while
 a write could be invisible or a stale request could land); **one** of them (seed 30: emulator restart + 182 ms
