@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held for four reasons: the line \\\"15\\\"x15\\\" White Marble Chess Top Table...\\\" is billed at 600 against a PO price of 540, which is 60 over the tolerance of 10.8; the invoice date (confidence 0.855) and currency (confidence 0.76) were read with low confidence, so they should be checked against the original document; and the total of 46910.41 exceeds the auto-approval cap of 25000. Please verify the billed unit price against PO-IDATION015 and confirm the invoice date, currency, and total before routing for approval.\",\n\"email_subject\": \"Request for Corrected Invoice 65095335 - PO-IDATION015\",\n\"email_body\": \"Dear Payne-Davis team,\\n\\nThank you for invoice 65095335 dated 2017-02-15 for a total of 46910.41 USD, referencing PO-IDATION015.\\n\\nDuring our review, we found the following items that need clarification:\\n\\n- Line \\\"15\\\"x15\\\" White Marble Chess Top Table Carnelian Inlay Art Black Friday Gift Deco\\\": billed at 600, while the purchase order price is 540 (a difference of 60).\\n- Invoice date and currency: we could not clearly confirm these from the document as received.\\n\\nPlease send a corrected invoice, or written confirmation that the billed amounts and details are correct, so we can complete our review. Please note that this email does not confirm approval or payment.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 514,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1436
+ },
+ "costUsd": 0.0005444,
+ "latencyMs": 7011,
+ "cached": false,
+ "cacheKey": "d36510d3c1721cb8a4bcdbc0ce057a8b7af505ae38afb0468ed9c37a4afe12c2",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "5f5ade068a908b9c6a9278f2c4ac2e86fda082ee4f52db7d0ed40b7c11392c76"
+ }
+}

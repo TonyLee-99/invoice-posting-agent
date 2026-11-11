@@ -1,0 +1,2628 @@
+{
+ "meta": {
+  "system": "invoice-posting-agent claude-haiku-5-5 extract-v1",
+  "run_date": "2026-11-11",
+  "notes": null
+ },
+ "summary": {
+  "documents": 24,
+  "documents_in_corpus": 181,
+  "documents_without_prediction": 0,
+  "fully_correct": 19,
+  "key_fields": {
+   "correct": 184,
+   "scored": 208
+  },
+  "fields": {
+   "vendor_name": {
+    "correct": 23,
+    "scored": 24
+   },
+   "invoice_number": {
+    "correct": 20,
+    "scored": 24
+   },
+   "invoice_date": {
+    "correct": 19,
+    "scored": 24
+   },
+   "due_date": {
+    "correct": 12,
+    "scored": 16
+   },
+   "currency": {
+    "correct": 24,
+    "scored": 24
+   },
+   "subtotal": {
+    "correct": 21,
+    "scored": 24
+   },
+   "tax": {
+    "correct": 21,
+    "scored": 24
+   },
+   "total": {
+    "correct": 21,
+    "scored": 24
+   },
+   "document_type": {
+    "correct": 23,
+    "scored": 24
+   },
+   "line_items": {
+    "correct": 20,
+    "scored": 24
+   },
+   "flag": {
+    "correct": 22,
+    "scored": 24
+   },
+   "references": {
+    "correct": 0,
+    "scored": 3
+   }
+  },
+  "line_items": {
+   "docs": 24,
+   "f1_sum": 20.0,
+   "f1_mean": 0.833,
+   "all_lines_right": 20
+  },
+  "flags": {
+   "inconsistent_invoices": {
+    "total": 1,
+    "flagged": 0
+   },
+   "multi_invoice_files": {
+    "total": 1,
+    "flagged": 0
+   },
+   "consistent_documents": {
+    "total": 22,
+    "flagged": 0
+   }
+  },
+  "categories": {
+   "clean": {
+    "docs": 3,
+    "fully_correct": 3
+   },
+   "currency": {
+    "docs": 3,
+    "fully_correct": 3
+   },
+   "tax": {
+    "docs": 2,
+    "fully_correct": 2
+   },
+   "credit": {
+    "docs": 3,
+    "fully_correct": 3
+   },
+   "multipage": {
+    "docs": 2,
+    "fully_correct": 2
+   },
+   "freight": {
+    "docs": 3,
+    "fully_correct": 3
+   },
+   "scan": {
+    "docs": 2,
+    "fully_correct": 2
+   },
+   "photo": {
+    "docs": 2,
+    "fully_correct": 0
+   },
+   "handwritten": {
+    "docs": 2,
+    "fully_correct": 0
+   },
+   "hard": {
+    "docs": 2,
+    "fully_correct": 1
+   }
+  },
+  "difficulty": {
+   "easy": {
+    "docs": 7,
+    "fully_correct": 6
+   },
+   "medium": {
+    "docs": 4,
+    "fully_correct": 3
+   },
+   "hard": {
+    "docs": 13,
+    "fully_correct": 10
+   }
+  },
+  "severity": {
+   "mild": {
+    "docs": 2,
+    "fully_correct": 1
+   },
+   "moderate": {
+    "docs": 2,
+    "fully_correct": 1
+   }
+  }
+ },
+ "documents": [
+  {
+   "doc_id": "clean-us-clean-simple",
+   "category": "clean",
+   "difficulty": "easy",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "fixture"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Acme Industrial Supply Co",
+     "got": "Acme Industrial Supply Co",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "ACM-100145",
+     "got": "ACM-100145",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2024-03-12",
+     "got": "2024-03-12",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "USD",
+     "got": "USD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 346.5,
+     "got": 346.5,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 25.99,
+     "got": 25.99,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 372.49,
+     "got": 372.49,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "clean-us-with-shipping",
+   "category": "clean",
+   "difficulty": "easy",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "fixture"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Northwind Logistics LLC",
+     "got": "Northwind Logistics LLC",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "NWL-20240318-002",
+     "got": "NWL-20240318-002",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2024-03-18",
+     "got": "2024-03-18",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "USD",
+     "got": "USD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 1422.0,
+     "got": 1422.0,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 92.43,
+     "got": 92.43,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 1599.43,
+     "got": 1599.43,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "clean-us-delivery-alias",
+   "category": "clean",
+   "difficulty": "easy",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "fixture"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Greenleaf Office Supply",
+     "got": "Greenleaf Office Supply",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "GLO-9015",
+     "got": "GLO-9015",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2024-03-14",
+     "got": "2024-03-14",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "USD",
+     "got": "USD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 747.0,
+     "got": 747.0,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 59.76,
+     "got": 59.76,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 841.76,
+     "got": 841.76,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 2,
+     "got": 2,
+     "within_band": null,
+     "detail": "F1 1.00 (2 of 2 matched, 2 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "currency-eur-2",
+   "category": "currency",
+   "difficulty": "easy",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Waalhaven Industrial Supply B.V.",
+     "got": "Waalhaven Industrial Supply B.V.",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "BN-19064",
+     "got": "BN-19064",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-06-06",
+     "got": "2025-06-06",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "EUR",
+     "got": "EUR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 8367.15,
+     "got": 8367.15,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 1757.1,
+     "got": 1757.1,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 10124.25,
+     "got": 10124.25,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-08-05",
+     "got": "2025-08-05",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "currency-dual-usd-zar-3",
+   "category": "currency",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "dual_currency"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Kransberg Clearing & Forwarding (Pty) Ltd",
+     "got": "Kransberg Clearing & Forwarding (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "098052",
+     "got": "098052",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-02-06",
+     "got": "2026-02-06",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 1709.7,
+     "got": 1709.7,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 256.46,
+     "got": 256.46,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 1966.16,
+     "got": 1966.16,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-03-08",
+     "got": "2026-03-08",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "currency-dual-usd-nad-4",
+   "category": "currency",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "dual_currency"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Kunene Clearing & Forwarding (Pty) Ltd",
+     "got": "Kunene Clearing & Forwarding (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "F-26-9064",
+     "got": "F-26-9064",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-03-16",
+     "got": "2026-03-16",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 3581.1,
+     "got": 3581.1,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 0.0,
+     "got": 0.0,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 3581.1,
+     "got": 3581.1,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-04-15",
+     "got": "2026-04-15",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "tax-sage-subtotal-after-vat-2",
+   "category": "tax",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "sage_layout"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Highveld Packaging (Pty) Ltd",
+     "got": "Highveld Packaging (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "049181",
+     "got": "049181",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-02-28",
+     "got": "2026-02-28",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 12843.69,
+     "got": 12843.69,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 1926.55,
+     "got": 1926.55,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 14770.24,
+     "got": 14770.24,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-03-30",
+     "got": "2026-03-30",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "tax-percentage-line-1",
+   "category": "tax",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "percentage_line"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Etosha Gate Shipping Agencies CC",
+     "got": "Etosha Gate Shipping Agencies CC",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "IN0001653",
+     "got": "IN0001653",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-05-20",
+     "got": "2026-05-20",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 4353.39,
+     "got": 4353.39,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 653.01,
+     "got": 653.01,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 5006.4,
+     "got": 5006.4,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "credit-note-minus-za",
+   "category": "credit",
+   "difficulty": "easy",
+   "severity": null,
+   "kind": "credit_note",
+   "tags": [
+    "credit_note",
+    "neg_minus"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Suidkus Packaging (Pty) Ltd",
+     "got": "Suidkus Packaging (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "CN-2026-0933",
+     "got": "CN-2026-0933",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-02-28",
+     "got": "2026-02-28",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 7010.28,
+     "got": 7010.28,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 1051.54,
+     "got": 1051.54,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 8061.82,
+     "got": 8061.82,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "credit_note",
+     "got": "credit_note",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 2,
+     "got": 2,
+     "within_band": null,
+     "detail": "F1 1.00 (2 of 2 matched, 2 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "credit-ndc-za-ref",
+   "category": "credit",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "credit_note",
+   "tags": [
+    "credit_note",
+    "neg_symbol_minus"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Kransberg Tyre & Parts (Pty) Ltd",
+     "got": "Kransberg Tyre & Parts (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "NdC90426",
+     "got": "NdC90426",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-03-17",
+     "got": "2026-03-17",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 3397.84,
+     "got": 3397.84,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 509.68,
+     "got": 509.68,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 3907.52,
+     "got": 3907.52,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "credit_note",
+     "got": "credit_note",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 1,
+     "got": 1,
+     "within_band": null,
+     "detail": "F1 1.00 (1 of 1 matched, 1 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "credit-cr-suffix-za",
+   "category": "credit",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "credit_note",
+   "tags": [
+    "credit_note",
+    "neg_cr_suffix"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Highveld Office Supplies (Pty) Ltd",
+     "got": "Highveld Office Supplies (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "CN-2026-0974",
+     "got": "CN-2026-0974",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-04-24",
+     "got": "2025-04-24",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 5081.3,
+     "got": 5081.3,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 762.2,
+     "got": 762.2,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 5843.5,
+     "got": 5843.5,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "credit_note",
+     "got": "credit_note",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 3,
+     "got": 3,
+     "within_band": null,
+     "detail": "F1 1.00 (3 of 3 matched, 3 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "multipage-4p-za-5",
+   "category": "multipage",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "multipage",
+    "pages_4",
+    "carried_forward"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Klipspruit Engineering Supplies (Pty) Ltd",
+     "got": "Klipspruit Engineering Supplies (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "F-26-0992",
+     "got": "F-26-0992",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-03-13",
+     "got": "2026-03-13",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 91660.06,
+     "got": 91660.06,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 13749.01,
+     "got": 13749.01,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 105409.07,
+     "got": 105409.07,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 58,
+     "got": 58,
+     "within_band": null,
+     "detail": "F1 1.00 (58 of 58 matched, 58 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-04-12",
+     "got": "2026-04-12",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "multipage-5p-na-7",
+   "category": "multipage",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "multipage",
+    "pages_5"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Kunene Office Supplies CC",
+     "got": "Kunene Office Supplies CC",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "IN0070697",
+     "got": "IN0070697",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-07-04",
+     "got": "2025-07-04",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 105354.65,
+     "got": 105354.65,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 15803.2,
+     "got": 15803.2,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 121157.85,
+     "got": 121157.85,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 61,
+     "got": 61,
+     "within_band": null,
+     "detail": "F1 1.00 (61 of 61 matched, 61 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-09-02",
+     "got": "2025-09-02",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "freight-carrier-za-4",
+   "category": "freight",
+   "difficulty": "medium",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "carrier",
+    "fuel_surcharge",
+    "accessorials"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Drakensig Freight (Pty) Ltd",
+     "got": "Drakensig Freight (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "2026/2251",
+     "got": "2026/2251",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-01-18",
+     "got": "2026-01-18",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 21279.25,
+     "got": 21279.25,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 3191.89,
+     "got": 3191.89,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 24471.14,
+     "got": 24471.14,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-02-17",
+     "got": "2026-02-17",
+     "within_band": null,
+     "detail": ""
+    },
+    "references": {
+     "field": "references",
+     "correct": false,
+     "expected": [
+      "TR46452",
+      "LD-749871"
+     ],
+     "got": [],
+     "within_band": null,
+     "detail": "missing ['TR46452', 'LD-749871']"
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "freight-clearing-na-2",
+   "category": "freight",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "clearing",
+    "disbursements"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Etosha Gate Border Services (Pty) Ltd",
+     "got": "Etosha Gate Border Services (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "2026/4896",
+     "got": "2026/4896",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2026-05-20",
+     "got": "2026-05-20",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 19795.95,
+     "got": 19795.95,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 247.4,
+     "got": 247.4,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 20043.35,
+     "got": 20043.35,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 6,
+     "got": 6,
+     "within_band": null,
+     "detail": "F1 1.00 (6 of 6 matched, 6 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2026-05-27",
+     "got": "2026-05-27",
+     "within_band": null,
+     "detail": ""
+    },
+    "references": {
+     "field": "references",
+     "correct": false,
+     "expected": [
+      "IPPU2317776"
+     ],
+     "got": [],
+     "within_band": null,
+     "detail": "missing ['IPPU2317776']"
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "freight-trip-reference-3",
+   "category": "freight",
+   "difficulty": "medium",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "trip_reference"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Zambezi Reach Transport Limited",
+     "got": "Zambezi Reach Transport Limited",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "INV-2026-94104",
+     "got": "INV-2026-94104",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-07-03",
+     "got": "2025-07-03",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZMW",
+     "got": "ZMW",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 15769.2,
+     "got": 15769.2,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 2523.07,
+     "got": 2523.07,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 18292.27,
+     "got": 18292.27,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 2,
+     "got": 2,
+     "within_band": null,
+     "detail": "F1 1.00 (2 of 2 matched, 2 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-09-01",
+     "got": "2025-09-01",
+     "within_band": null,
+     "detail": ""
+    },
+    "references": {
+     "field": "references",
+     "correct": false,
+     "expected": [
+      "TR45899",
+      "LD-248097"
+     ],
+     "got": [],
+     "within_band": null,
+     "detail": "missing ['TR45899', 'LD-248097']"
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "handwritten-invoice-book-average-3",
+   "category": "handwritten",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "handwritten",
+    "legibility_average"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Kafue Office Supplies Limited",
+     "got": "Kafue Office Supplies Limited",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": false,
+     "expected": "3738",
+     "got": "2729",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": false,
+     "expected": "2025-10-29",
+     "got": "2025-10-24",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZMW",
+     "got": "ZMW",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 3658.63,
+     "got": 3658.63,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 585.38,
+     "got": 585.38,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 4244.01,
+     "got": 4244.01,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 2,
+     "got": 2,
+     "within_band": null,
+     "detail": "F1 1.00 (2 of 2 matched, 2 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": false,
+     "expected": "2025-11-28",
+     "got": "2025-01-29",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": false,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "handwritten",
+    "legibility_poor"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Erongo Workshop Supplies (Pty) Ltd",
+     "got": "Erongo Workshop Supplies (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": false,
+     "expected": "9518",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": false,
+     "expected": "2025-04-17",
+     "got": "2025-10-27",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": false,
+     "expected": 6284.61,
+     "got": 6204.61,
+     "within_band": false,
+     "detail": "off by 80.00"
+    },
+    "tax": {
+     "field": "tax",
+     "correct": false,
+     "expected": 942.69,
+     "got": 942.6,
+     "within_band": false,
+     "detail": "off by 0.09"
+    },
+    "total": {
+     "field": "total",
+     "correct": false,
+     "expected": 7227.3,
+     "got": 2227.2,
+     "within_band": false,
+     "detail": "off by 5,000.10"
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": false,
+     "expected": 3,
+     "got": 1,
+     "within_band": null,
+     "detail": "F1 0.00 (0 of 3 matched, 1 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": false,
+   "line_f1": 0.0
+  },
+  {
+   "doc_id": "photo-motion-blur-moderate",
+   "category": "photo",
+   "difficulty": "medium",
+   "severity": "moderate",
+   "kind": "invoice",
+   "tags": [
+    "motion_blur"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Wolds Workshop Supplies plc",
+     "got": "Wolds Workshop Supplies plc",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": false,
+     "expected": "050179",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": false,
+     "expected": "2025-08-02",
+     "got": "2023-09-01",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "GBP",
+     "got": "GBP",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": false,
+     "expected": 14953.29,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "tax": {
+     "field": "tax",
+     "correct": false,
+     "expected": 2990.66,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "total": {
+     "field": "total",
+     "correct": false,
+     "expected": 17943.95,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": false,
+     "expected": 4,
+     "got": 0,
+     "within_band": null,
+     "detail": "F1 0.00 (0 of 4 matched, 0 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": false,
+     "expected": "2025-09-01",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": false,
+   "line_f1": 0.0
+  },
+  {
+   "doc_id": "photo-screen-photo-mild",
+   "category": "photo",
+   "difficulty": "easy",
+   "severity": "mild",
+   "kind": "invoice",
+   "tags": [
+    "screen_photo"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Okavango Hardware (Pty) Ltd",
+     "got": "Okavango Hardware (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "INV-2026-70022",
+     "got": "INV-2026-70022",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": false,
+     "expected": "2025-09-23",
+     "got": "2025-11-22",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 38696.11,
+     "got": 38696.11,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 5804.42,
+     "got": 5804.42,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 44500.53,
+     "got": 44500.53,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": false,
+     "expected": "2025-11-22",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": false,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "scan-fax-mild",
+   "category": "scan",
+   "difficulty": "easy",
+   "severity": "mild",
+   "kind": "invoice",
+   "tags": [
+    "fax"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Copperline Workshop Supplies Ltd",
+     "got": "Copperline Workshop Supplies Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "F-26-8395",
+     "got": "F-26-8395",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-04-11",
+     "got": "2025-04-11",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZMW",
+     "got": "ZMW",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 48021.62,
+     "got": 48021.62,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 7683.46,
+     "got": 7683.46,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 55705.08,
+     "got": 55705.08,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": false,
+     "expected": 4,
+     "got": 0,
+     "within_band": null,
+     "detail": "F1 0.00 (0 of 4 matched, 0 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-05-11",
+     "got": "2025-05-11",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 0.0
+  },
+  {
+   "doc_id": "scan-stamp-moderate",
+   "category": "scan",
+   "difficulty": "medium",
+   "severity": "moderate",
+   "kind": "invoice",
+   "tags": [
+    "stamp"
+   ],
+   "should_flag": false,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Okavango Hardware (Pty) Ltd",
+     "got": "Okavango Hardware (Pty) Ltd",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "INV-2026-70022",
+     "got": "INV-2026-70022",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-09-23",
+     "got": "2025-09-23",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "NAD",
+     "got": "NAD",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 38696.11,
+     "got": 38696.11,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 5804.42,
+     "got": 5804.42,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 44500.53,
+     "got": 44500.53,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": true,
+     "expected": false,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-11-22",
+     "got": "2025-11-22",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  },
+  {
+   "doc_id": "hard-multiple-invoices-3",
+   "category": "hard",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "multi_invoice",
+   "tags": [
+    "multi_invoice"
+   ],
+   "should_flag": true,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": false,
+     "expected": "Karoo Engineering Supplies (Pty) Ltd",
+     "got": null,
+     "within_band": null,
+     "detail": "similarity 0.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": false,
+     "expected": "INV-2026-19520",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": false,
+     "expected": "2026-07-11",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": false,
+     "expected": 16162.28,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "tax": {
+     "field": "tax",
+     "correct": false,
+     "expected": 2424.34,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "total": {
+     "field": "total",
+     "correct": false,
+     "expected": 18586.62,
+     "got": null,
+     "within_band": false,
+     "detail": "missing"
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": false,
+     "expected": "invoice",
+     "got": "other",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": false,
+     "expected": 4,
+     "got": 0,
+     "within_band": null,
+     "detail": "F1 0.00 (0 of 4 matched, 0 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": false,
+     "expected": true,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": false,
+     "expected": "2026-08-10",
+     "got": null,
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": false,
+   "line_f1": 0.0
+  },
+  {
+   "doc_id": "hard-total-inflated",
+   "category": "hard",
+   "difficulty": "hard",
+   "severity": null,
+   "kind": "invoice",
+   "tags": [
+    "inconsistent"
+   ],
+   "should_flag": true,
+   "predicted": true,
+   "fields": {
+    "vendor_name": {
+     "field": "vendor_name",
+     "correct": true,
+     "expected": "Blouberg Industrial Supply CC",
+     "got": "Blouberg Industrial Supply CC",
+     "within_band": null,
+     "detail": "similarity 1.0"
+    },
+    "invoice_number": {
+     "field": "invoice_number",
+     "correct": true,
+     "expected": "RA-81392",
+     "got": "RA-81392",
+     "within_band": null,
+     "detail": ""
+    },
+    "invoice_date": {
+     "field": "invoice_date",
+     "correct": true,
+     "expected": "2025-01-16",
+     "got": "2025-01-16",
+     "within_band": null,
+     "detail": ""
+    },
+    "currency": {
+     "field": "currency",
+     "correct": true,
+     "expected": "ZAR",
+     "got": "ZAR",
+     "within_band": null,
+     "detail": ""
+    },
+    "subtotal": {
+     "field": "subtotal",
+     "correct": true,
+     "expected": 15659.82,
+     "got": 15659.82,
+     "within_band": true,
+     "detail": ""
+    },
+    "tax": {
+     "field": "tax",
+     "correct": true,
+     "expected": 2348.97,
+     "got": 2348.97,
+     "within_band": true,
+     "detail": ""
+    },
+    "total": {
+     "field": "total",
+     "correct": true,
+     "expected": 21430.46,
+     "got": 21430.46,
+     "within_band": true,
+     "detail": ""
+    },
+    "document_type": {
+     "field": "document_type",
+     "correct": true,
+     "expected": "invoice",
+     "got": "invoice",
+     "within_band": null,
+     "detail": ""
+    },
+    "line_items": {
+     "field": "line_items",
+     "correct": true,
+     "expected": 4,
+     "got": 4,
+     "within_band": null,
+     "detail": "F1 1.00 (4 of 4 matched, 4 read)"
+    },
+    "flag": {
+     "field": "flag",
+     "correct": false,
+     "expected": true,
+     "got": false,
+     "within_band": null,
+     "detail": ""
+    },
+    "due_date": {
+     "field": "due_date",
+     "correct": true,
+     "expected": "2025-01-30",
+     "got": "2025-01-30",
+     "within_band": null,
+     "detail": ""
+    }
+   },
+   "fully_correct": true,
+   "line_f1": 1.0
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Conley Ltd (invoice 58478169, total 12261.98 USD, PO-ANATEST011) was held because the system could not read two fields with enough confidence: the invoice date (57% confidence, below the 90% threshold) and the currency (about 67%, also below 90%). Please open the original invoice document and confirm the invoice date (it was read as 2016-07-04) and that the currency is USD before matching it to the purchase order.\", \"email_subject\": \"Request to confirm invoice 58478169 details (PO-ANATEST011)\", \"email_body\": \"Dear Conley Ltd team,\\n\\nThank you for your invoice 58478169 referencing PO-ANATEST011 for a total of 12261.98 USD.\\n\\nOur system could not clearly read the invoice date or the currency on the document. Could you please confirm the invoice date and the currency, or send a corrected copy of the invoice with these fields clearly displayed?\\n\\nOnce we receive this, we will review it further. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 364,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1235
+ },
+ "costUsd": 0.0004292,
+ "latencyMs": 7082,
+ "cached": false,
+ "cacheKey": "cc566080b4fb42d8083f35e92d10a74f7f4b91ae53cd50f350bea56f505a5a7e",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "98c39456b788bf5a130451f0bacc6f476ad3b959200aaa0759b89ce701ec15f7"
+ }
+}

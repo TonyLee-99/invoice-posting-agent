@@ -1,0 +1,81 @@
+{
+ "label": "Simulated assumption model",
+ "assumptions": {
+  "invoicesPerMonth": 600,
+  "manualMinutes": 6,
+  "reviewMinutes": 2.5,
+  "loadedCostPerHour": 38,
+  "duplicateRateManual": 0.002,
+  "avgInvoiceUsd": 2400,
+  "duplicateRecoveryShare": 0.7,
+  "platformCostPerMonth": 150
+ },
+ "measured": {
+  "autoRate": 0.2,
+  "llmUsdPerInvoice": 0.001199
+ },
+ "baseCaseMonthlySavingUsd": 2233,
+ "sensitivity": [
+  {
+   "autoRate": 0,
+   "reviewMinutes": 1.5,
+   "monthlySavingUsd": 2423
+  },
+  {
+   "autoRate": 0,
+   "reviewMinutes": 2.5,
+   "monthlySavingUsd": 2043
+  },
+  {
+   "autoRate": 0,
+   "reviewMinutes": 4,
+   "monthlySavingUsd": 1473
+  },
+  {
+   "autoRate": 0.2,
+   "reviewMinutes": 1.5,
+   "monthlySavingUsd": 2537
+  },
+  {
+   "autoRate": 0.2,
+   "reviewMinutes": 2.5,
+   "monthlySavingUsd": 2233
+  },
+  {
+   "autoRate": 0.2,
+   "reviewMinutes": 4,
+   "monthlySavingUsd": 1777
+  },
+  {
+   "autoRate": 0.4,
+   "reviewMinutes": 1.5,
+   "monthlySavingUsd": 2651
+  },
+  {
+   "autoRate": 0.4,
+   "reviewMinutes": 2.5,
+   "monthlySavingUsd": 2423
+  },
+  {
+   "autoRate": 0.4,
+   "reviewMinutes": 4,
+   "monthlySavingUsd": 2081
+  },
+  {
+   "autoRate": 0.6,
+   "reviewMinutes": 1.5,
+   "monthlySavingUsd": 2765
+  },
+  {
+   "autoRate": 0.6,
+   "reviewMinutes": 2.5,
+   "monthlySavingUsd": 2613
+  },
+  {
+   "autoRate": 0.6,
+   "reviewMinutes": 4,
+   "monthlySavingUsd": 2385
+  }
+ ],
+ "note": "Duplicate-loss term uses an assumed manual duplicate rate; the chaos suite measures duplicates under injected faults, not in a real AP team."
+}
