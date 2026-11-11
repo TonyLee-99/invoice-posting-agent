@@ -17,7 +17,7 @@ playwright-report/
 test-results/
 
 # data (downloaded, licensed separately)
-data/
+/data/
 !data/README.md
 
 # live LLM cache is large; the CI replay subset lives in cache/replay/
