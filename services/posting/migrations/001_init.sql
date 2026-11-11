@@ -162,6 +162,9 @@ create table postings (
   payload_hash text not null,
   adopted boolean not null default false,
   posted_at timestamptz not null default now(),
+  -- A Bill deleted in QBO and acknowledged by a person keeps its history row but is no longer live.
+  voided_at timestamptz,
+  void_reason text,
   unique (realm_id, bill_id)
 );
 

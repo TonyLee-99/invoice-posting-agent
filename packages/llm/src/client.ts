@@ -79,7 +79,8 @@ export type BackendName = "replay" | "claude-cli" | "anthropic" | "auto";
 export function createClient(backend: BackendName, opts: { cacheDir?: string; callLog?: string; concurrency?: number } = {}): CachedClient {
   const cache = new FileCache(opts.cacheDir ?? DEFAULT_CACHE_DIR);
   let live: LLMClient | null = null;
-  if (backend === "anthropic" || (backend === "auto" && process.env.ANTHROPIC_API_KEY)) {
+  // "auto" only picks the API backend when explicitly allowed, so a key present for another purpose is never spent by accident.
+  if (backend === "anthropic" || (backend === "auto" && process.env.ANTHROPIC_API_KEY && process.env.IPA_ALLOW_ANTHROPIC === "1")) {
     if (!process.env.ANTHROPIC_API_KEY) throw new Error("anthropic backend requires ANTHROPIC_API_KEY");
     live = new AnthropicClient();
   } else if (backend === "claude-cli" || backend === "auto") {
