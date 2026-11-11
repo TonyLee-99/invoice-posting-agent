@@ -231,6 +231,7 @@ export class QboEmulator {
 
     if (op === "query") return this.query(url, res, rule);
     if (op === "read") return this.read(id!, res);
+    if (url.searchParams.get("operation") === "delete") return this.remove(body, res);
     return this.create(url, body, res, rule);
   }
 
@@ -359,10 +360,28 @@ export class QboEmulator {
       const page = rows.slice(start - 1, start - 1 + max).map(strip);
       return this.send(res, 200, { QueryResponse: page.length ? { Bill: page, startPosition: start, maxResults: page.length } : {}, time: new Date().toISOString() });
     }
+    m = q.match(/^select \* from Vendor(?: where Active = true)?(?: MAXRESULTS (\d+))?$/i);
+    if (m) {
+      const vs = [...this.vendors.values()].slice(0, Number(m[1] ?? "100")).map((v) => ({ Id: v.id, DisplayName: v.name, Active: true, CurrencyRef: { value: v.currency } }));
+      return this.send(res, 200, { QueryResponse: vs.length ? { Vendor: vs } : {}, time: new Date().toISOString() });
+    }
+    if (/^select \* from Account where AccountType = 'Expense'(?: MAXRESULTS \d+)?$/i.test(q)) {
+      return this.send(res, 200, { QueryResponse: { Account: [{ Id: "7", Name: "Expenses", AccountType: "Expense" }] }, time: new Date().toISOString() });
+    }
     if (/^select count\(\*\) from Bill$/i.test(q)) {
       return this.send(res, 200, { QueryResponse: { totalCount: visible.length }, time: new Date().toISOString() });
     }
     return this.send(res, 400, fault("QueryValidationError", `unsupported query in emulator: ${q}`, "4000"));
+  }
+
+  private remove(body: string, res: http.ServerResponse): void {
+    const { Id, SyncToken } = JSON.parse(body) as { Id: string; SyncToken: string };
+    const b = this.state.bills[Id];
+    if (!b || b._deleted) return this.send(res, 400, fault("ValidationFault", "Object Not Found", "610"));
+    if (b.SyncToken !== SyncToken) return this.send(res, 400, fault("ValidationFault", "Stale Object Error", "5010"));
+    b._deleted = true;
+    this.persist();
+    return this.send(res, 200, { Bill: { Id, status: "Deleted", domain: "QBO" }, time: new Date().toISOString() });
   }
 
   private read(id: string, res: http.ServerResponse): void {

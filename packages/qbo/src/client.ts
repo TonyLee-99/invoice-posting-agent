@@ -157,6 +157,32 @@ export class QboClient {
     return this.query(`select * from Bill where DocNumber = '${escaped}'`);
   }
 
+  /** Any read-only query (e.g. Vendor, Account lookups for the live demo). Returns the QueryResponse object. */
+  async rawQuery(q: string): Promise<Record<string, unknown>> {
+    let res: Response, text: string;
+    try {
+      ({ res, text } = await this.authed(`/v3/company/${this.cfg.realmId}/query?query=${encodeURIComponent(q)}&minorversion=${this.minor()}`, { method: "GET" }));
+    } catch (e) {
+      if (e instanceof AuthFailed) throw new QboAuthError(e.message);
+      throw new QboUnavailableError(`query failed: ${(e as Error).message}`, null);
+    }
+    if (res.status !== 200) throw new QboUnavailableError(`query http ${res.status}: ${text.slice(0, 200)}`, res.status);
+    return (JSON.parse(text) as { QueryResponse?: Record<string, unknown> }).QueryResponse ?? {};
+  }
+
+  /** Delete a Bill (sandbox clean-up of contract-check Bills only; the posting service never deletes). */
+  async deleteBill(id: string, syncToken: string, requestId: string): Promise<boolean> {
+    const { res } = await this.authed(`/v3/company/${this.cfg.realmId}/bill?operation=delete&requestid=${encodeURIComponent(requestId)}&minorversion=${this.minor()}`, {
+      method: "POST", body: JSON.stringify({ Id: id, SyncToken: syncToken }), headers: { "content-type": "application/json" },
+    });
+    return res.status === 200;
+  }
+
+  /** Current access token (used by the contract check to force a refresh). Never log it. */
+  async currentAccessToken(): Promise<string | null> {
+    return (await this.tokens.load())?.tokens.accessToken ?? null;
+  }
+
   async listBills(startPosition: number, maxResults: number): Promise<Bill[]> {
     return this.query(`select * from Bill STARTPOSITION ${startPosition} MAXRESULTS ${maxResults}`);
   }
