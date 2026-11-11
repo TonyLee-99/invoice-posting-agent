@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the currency on the invoice (ZAR) does not match the purchase order currency (USD), and three line items are billed far above their PO unit prices: Documentation fee at 508.52 versus 24.8, Delivery order handling at 725.32 versus 39.31, and Cargo inspection attendance at 475.86 versus 25.79, each with quantity 1 and a tolerance of 1. Before any decision, confirm the correct billing currency with the vendor and check whether the PO prices or the invoiced amounts are wrong, and whether the invoice total of 1966.16 reflects these lines.\", \"email_subject\": \"Invoice 098052 - Currency and Pricing Clarification Needed (PO-UALUSDZAR3)\", \"email_body\": \"Dear Kransberg Clearing & Forwarding team,\\n\\nThank you for invoice 098052 dated 2026-02-06 for a total of 1966.16 ZAR, referencing PO-UALUSDZAR3.\\n\\nDuring our review, we found the following items that need clarification:\\n\\n1. Currency: The invoice is in ZAR, but the purchase order is in USD.\\n2. Pricing: The following lines are billed at amounts that differ from the PO unit prices (quantity 1 in each case):\\n   - Documentation fee: billed 508.52, PO price 24.8\\n   - Delivery order handling: billed 725.32, PO price 39.31\\n   - Cargo inspection attendance: billed 475.86, PO price 25.79\\n\\nPlease confirm the correct billing currency and either send a corrected invoice or confirm the billed amounts against the purchase order. We will process the invoice once these points are resolved; this message does not confirm any payment.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 613,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1559
+ },
+ "costUsd": 0.0006185000000000001,
+ "latencyMs": 6908,
+ "cached": false,
+ "cacheKey": "5d50ade202d0313a2cb0f4672797fa882ee8786508ade10ba65067a67612459c",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "15efd639d9d340a3b00f9ba27a00766c9c3106c0d6af5efaab55bec459687bd5"
+ }
+}

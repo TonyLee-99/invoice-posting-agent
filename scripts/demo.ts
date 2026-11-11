@@ -42,7 +42,8 @@ const t = emu.issueTokens();
 await store.swap({ accessToken: t.accessToken, refreshToken: t.refreshToken, accessExpiresAt: Date.now() + 3_600_000, refreshExpiresAt: Date.now() + 8e9, realmId: emu.realmId }, 0);
 const qbo = new QboClient({ apiBaseUrl: emuUrl, authorizeUrl: `${emuUrl}/connect/oauth2`, tokenUrl: `${emuUrl}/oauth2/v1/tokens/bearer`, clientId: emu.clientId, clientSecret: emu.clientSecret, redirectUri: "http://localhost:4000/oauth/callback", realmId: emu.realmId, timeoutMs: 1500 }, store);
 // Demo routing policy: cap 25,000 (production starts at 1,000 per ROLLOUT phase 1); everything else is the default.
-const svc = new PostingService(db, { realmId: emu.realmId, routingPolicy: { version: "route-2026-11-11-demo", minFieldConfidence: 0.9, autoApproveCapMinor: 2_500_000, autoApproveEnabled: true } });
+const fxRates = Object.assign({}, ...demo.map((d) => d.proc.fxRates ?? {})) as Record<string, number>; // Simulated treasury table
+const svc = new PostingService(db, { realmId: emu.realmId, fxRates, routingPolicy: { version: "route-2026-11-11-demo", minFieldConfidence: 0.9, autoApproveCapMinor: 2_500_000, autoApproveEnabled: true } });
 
 /** Page-1 PNG preview for PDFs (pdftoppm), so the review UI shows the document the same way in every browser. */
 function preview(file: string): string {

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Klipspruit Engineering Supplies (Pty) Ltd (F-26-0992, PO-IPAGE4PZA5) was held because the tax charged is 13,749.01 ZAR, but the PO tax rate of 10.00% implies 9,166.01 ZAR, a difference of 4,583.00 ZAR. Please check whether the vendor applied a different tax rate or included items not covered by the PO, and confirm the correct tax amount against the PO before deciding how to proceed.\", \"email_subject\": \"Tax amount query on invoice F-26-0992 (PO-IPAGE4PZA5)\", \"email_body\": \"Dear Klipspruit Engineering Supplies team,\\n\\nThank you for invoice F-26-0992 dated 2026-03-13 for a total of ZAR 105,409.07, referencing PO-IPAGE4PZA5.\\n\\nWhen we checked the invoice against the purchase order, the tax amount of ZAR 13,749.01 does not match the 10.00% tax rate on the PO, which gives ZAR 9,166.01. The difference is ZAR 4,583.00.\\n\\nCould you please review this and either send a corrected invoice or confirm the tax calculation and applicable rate? We will process the invoice once this is resolved.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 470,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1224
+ },
+ "costUsd": 0.00048000000000000007,
+ "latencyMs": 7664,
+ "cached": false,
+ "cacheKey": "8dbfb132ea990abcfdca4a24aebaca0ea0486c4859b0e7a6ffa32df90f524cb8",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "9a39243d69d2307f145daee1d6b90e61b5c3480fb091a5194440d86c93cad120"
+ }
+}

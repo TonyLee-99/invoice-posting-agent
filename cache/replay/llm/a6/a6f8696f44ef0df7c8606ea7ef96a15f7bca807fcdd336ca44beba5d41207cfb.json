@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because it is billed in ZAR while PO-UALUSDZAR3 is in USD, and the stated exchange rate of 18.4512 differs from the reference rate of 21.2615 by more than the 1% tolerance. The Documentation fee is also billed at 27.56 against an expected 24.8 on the PO, an over-billing of 2.76. Check the currency and FX rate against the PO and the vendor's terms, and confirm the Documentation fee amount before deciding how to proceed.\",\n\"email_subject\": \"Invoice 098052 – Currency, exchange rate and fee clarification needed\",\n\"email_body\": \"Dear Kransberg Clearing & Forwarding team,\\n\\nThank you for invoice 098052 dated 2026-02-06 for a total of 1966.16 ZAR, referencing PO-UALUSDZAR3.\\n\\nWhile reviewing the invoice, we found the following items that need clarification:\\n\\n1. Currency: The invoice is in ZAR, but PO-UALUSDZAR3 is in USD. Please confirm the billing currency agreed for this order.\\n2. Exchange rate: The rate stated on the document is 1 USD = 18.4512 ZAR, which differs from our reference rate of 21.2615. Please confirm the rate used and its source.\\n3. Documentation fee: The line is billed at 27.56, while the PO unit price is 24.8 for quantity 1. Please confirm the correct amount.\\n\\nPlease send a corrected invoice or written confirmation of the items above so we can complete our review. We will not be able to process the invoice until these points are resolved.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 840,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1437
+ },
+ "costUsd": 0.0007076000000000001,
+ "latencyMs": 8322,
+ "cached": false,
+ "cacheKey": "a6f8696f44ef0df7c8606ea7ef96a15f7bca807fcdd336ca44beba5d41207cfb",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "7906574e963469504a17b83964ef7088ebfd8336d5bad06b6fde930499fb10ad"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"Invoice F-26-9064 is held because it is billed in NAD while PO-UALUSDNAD4 is in USD, and three lines are billed well above the PO unit prices: Documentation fee (478.56 billed vs. 26.02 expected), Customs clearance fee (2508.48 vs. 136.39), and Cargo inspection attendance (594.06 vs. 32.3). Check whether the PO currency and unit prices are correct, and confirm with the vendor whether these charges are approved additions or billing errors before any payment decision is made.\",\"email_subject\": \"Invoice F-26-9064 – Currency and Pricing Clarification Needed (PO-UALUSDNAD4)\",\"email_body\": \"Dear Kunene Clearing & Forwarding team,\\n\\nThank you for invoice F-26-9064 dated 2026-03-16, totaling 3581.1 NAD, referencing PO-UALUSDNAD4.\\n\\nWe are reviewing this invoice and need some clarification before we can proceed:\\n\\n1. Currency: The invoice is in NAD, but the purchase order is in USD. Please confirm the currency that applies to this order.\\n\\n2. Line pricing: The following lines are billed at amounts that differ significantly from the purchase order unit prices:\\n   - Documentation fee: billed 478.56; PO unit price 26.02 (quantity 1)\\n   - Customs clearance fee: billed 2508.48; PO unit price 136.39 (quantity 1)\\n   - Cargo inspection attendance: billed 594.06; PO unit price 32.3 (quantity 1)\\n\\nPlease either send a corrected invoice that matches the purchase order, or confirm in writing the basis for these amounts (for example, an approved change order or additional agreed charges) along with supporting documentation.\\n\\nOnce we receive your response, we will continue our review. Thank you for your cooperation.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 921,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1565
+ },
+ "costUsd": 0.0007737,
+ "latencyMs": 9086,
+ "cached": false,
+ "cacheKey": "a505dd4765065179ba5046e25a907d2743e7d08d4438ff1f0a8ff4d96c258850",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "be132758c76f72b794db2563805801f20b1edc055f4dbf0e445b9b849e370fca"
+ }
+}
