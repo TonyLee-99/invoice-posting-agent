@@ -80,7 +80,7 @@ Evidence commands: `make check` (offline: lint, types, 89 tests, 50-seed chaos, 
 | B9 | PASS (numeric-presence check) | 10/10 drafts use only numbers present in their input (first run 4/10; INC-6) |
 | C1 | PASS | `make check` green offline, `live: 0` LLM calls |
 | C2 | PASS (not yet run on GitHub) | `.github/workflows/ci.yml` with a Postgres 16 service runs `make check` |
-| C3 | PASS (emulator-verified; not live) | `packages/qbo/test/qbo.test.ts`; `docs/QBO_SEMANTICS.md` |
+| C3 | PASS (emulator-verified; not live) | `packages/qbo/test/qbo.test.ts`; `docs/QBO_SEMANTICS.md`; live path prepared (`make qbo-auth` / `qbo-contract` / `qbo-live-demo`, rehearsed against the emulator in `live_rehearsal.test.ts`), not run |
 | C4 | PASS | Playwright e2e (2 tests, no skips) on the live API: edit → new hash → approve → posted → read-only; recovery item visible; screenshots in `docs/img/` |
 | C5 | PASS | `docs/demo/` static export, Playwright check against a local static server |
 | C6 | PASS | PRD, DISCOVERY (Simulated), ROLLOUT, RUNBOOK, 4 ADRs, INCIDENTS (8 + postmortem), FEEDBACK_TO_PRODUCT, EVAL |

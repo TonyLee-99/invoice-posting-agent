@@ -52,6 +52,18 @@ make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000,
 re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations. Sizes are knobs:
 `npx tsx eval/run.ts --n 232` (the whole test split), `make chaos SEEDS=500`.
 
+### Run against the real QuickBooks sandbox
+Not run live yet (needs the owner's Intuit app). After the one-time setup in `docs/RUNBOOK.md` (Intuit app with
+redirect URI `http://localhost:8765/callback`, keys in the keychain as `qbo-client-id` / `qbo-client-secret`):
+
+```bash
+make qbo-auth        # OAuth connect -> private/qbo_tokens.json (0600, gitignored)
+make qbo-contract    # sandbox contract checks for the documented-vs-unknown QBO behaviors -> results/qbo_live_contract.json
+make qbo-live-demo   # 10 Bills through the real pipeline + worker SIGKILL + reconciliation -> results/qbo_live_demo.json
+```
+
+Without credentials each target prints `SKIP` and exits 0; the same scripts are rehearsed against the emulator in CI.
+
 ## Results
 
 | measure | result | baseline / control | source |

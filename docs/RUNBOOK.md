@@ -38,3 +38,32 @@
   the query (DESIGN §5). Reconciliation detects it: it happened once in 43 such chaos seeds (seed 233) and was caught
   as an `orphan_remote_bill`. Void the extra Bill in QBO (§4).
 - Do not "fix" a stuck POSTING invoice by editing status in SQL; the transition trigger rejects it on purpose.
+
+## Run against the QuickBooks sandbox (live)
+Nothing here has been run live yet; the same scripts are rehearsed against the emulator in CI
+(`services/posting/test/live_rehearsal.test.ts`).
+
+One-time setup (owner):
+1. developer.intuit.com → create an app (QuickBooks Online and Payments) → **Development / sandbox keys**; scope
+   **Accounting** (`com.intuit.quickbooks.accounting`). A sandbox company is created with the developer account.
+2. Redirect URI in the app's Development settings, exactly: `http://localhost:8765/callback`.
+3. Store the keys in the login keychain (prompts for the value; nothing on the command line or in history):
+   `security add-generic-password -s qbo-client-id -a "$USER" -w` and
+   `security add-generic-password -s qbo-client-secret -a "$USER" -w`.
+4. `make qbo-auth` — starts a server on 127.0.0.1:8765, opens Intuit's consent page, receives `code` + `realmId`,
+   checks `state`, exchanges the code, and writes `private/qbo_tokens.json` + `private/qbo_realm.json` (mode 0600,
+   gitignored, never printed). **Port 8765 is also used by the job-tracker server**; stop it for a minute if busy.
+
+Runs:
+- `make qbo-contract` → `results/qbo_live_contract.json`: repeat requestid, same requestid with a different body,
+  concurrent same requestid, DocNumber query freshness, duplicate DocNumber with a new requestid, token refresh
+  rotation. Creates `IPA-CT-…` Bills marked `ipa-contract` and deletes them afterwards. Update rows 5, 6, 8, 9 of
+  `docs/QBO_SEMANTICS.md` from the result.
+- `make qbo-live-demo` → `results/qbo_live_demo.json`: 10 Simulated invoices mapped onto the sandbox's own vendors
+  and first Expense account, posted through ingest → match → route → outbox → worker; one worker **process** is
+  SIGKILLed after its first remote write and a second worker recovers after the lease expires; then reconciliation
+  and an independent per-DocNumber check in the sandbox (expect 10 Bills, 0 duplicates, ledger totals equal). Add
+  `--cleanup` (`npx tsx scripts/qbo/live_demo.ts --n 10 --cleanup`) to delete the demo Bills afterwards.
+- All three print `SKIP: …` and exit 0 when keychain items or tokens are missing.
+- Tokens: access token ~1 h, refreshed automatically under a file lock (refresh tokens rotate; the newest is kept).
+  To disconnect, revoke the app in the sandbox company and delete `private/qbo_tokens.json`.

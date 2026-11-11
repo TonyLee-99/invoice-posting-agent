@@ -42,6 +42,7 @@ read-after-write lag.
 - Fault codes are representative.
 
 ## To run live (needs owner)
-Create an Intuit developer account and sandbox company, register the redirect URI, set `QBO_CLIENT_ID`,
-`QBO_CLIENT_SECRET`, `QBO_REDIRECT_URI`, `QBO_REALM_ID`, run the authorize flow once, then run the contract checks in
-this table (repeat-requestid response, concurrent same-requestid, DocNumber query freshness) before trusting rows 5, 6, 8, 9.
+`make qbo-auth` then `make qbo-contract` (see `docs/RUNBOOK.md`, "Run against the QuickBooks sandbox"). The contract
+script checks rows 1, 6, 8, 9 and 11 directly and records the same-requestid-different-body behavior; rows 5 (retention
+window) cannot be measured in a short run. Until `results/qbo_live_contract.json` exists, every row marked unknown or
+assumed stays as written here.
