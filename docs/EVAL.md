@@ -118,15 +118,15 @@ $0.0012 per invoice (list-price equivalent, Haiku 5.5), $0.048 total. LLM latenc
 parse p50 1.8 s, p95 14.4 s (OCR). Owner policy: Haiku for all runs; a Sonnet 5.5 comparison was not run.
 
 ## 6. Reliability (fault injection)
-`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,803 injected remote faults, 925 worker crashes, 75 emulator restarts, plus
+`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,799 injected remote faults, 917 worker crashes, 75 emulator restarts, plus
 stalls and edits: **0 lost invoices, 0 ledger/local mismatches after reconciliation, every seed quiescent after
 faults stopped, 0 duplicate Bills in the 257 non-residual seeds**. 43 seeds were pre-classified as residual-risk eligible (requestid memory lost while
-a write could be invisible or a stale request could land); **one** of them (seed 233: emulator restart + 284 ms
-query lag + after-commit faults) produced 1 duplicate Bill, which nightly reconciliation reported as an orphan and the
+a write could be invisible or a stale request could land); **one** of them (seed 30: emulator restart + 182 ms
+query lag + reset-after-commit faults) produced 1 duplicate Bill, which nightly reconciliation reported as an orphan and the
 runbook voided. That is the designed residual, not a surprise — but it is real. Ablations (100 seeds each):
-no stable requestid 13/100 seeds violate (28 duplicates); no query-first 13/100 (22); no fencing + no lease guard
+no stable requestid 13/100 seeds violate (31 duplicates); no query-first 12/100 (22); no fencing + no lease guard
 0/100 (random stalls are rare — the deterministic test shows the duplicate when both are off); all defenses off
-86/100 (360 duplicates). Claims are scoped to these injected scenarios.
+85/100 (353 duplicates). Claims are scoped to these injected scenarios.
 
 ## 7. ROI (Simulated assumption model)
 `results/roi.json`: with the measured 20% auto-approval rate and assumed inputs (600 invoices/month, 6 min manual vs

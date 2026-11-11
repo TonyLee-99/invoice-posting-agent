@@ -16,7 +16,7 @@ by (1) QBO's `requestid` dedup and (2) query-before-every-write by DocNumber wit
 - **Call QBO inside the approval request**: a crash after QBO commits but before our commit loses the link; a timeout
   leaves the user with an unknown result. This is exactly fault A2/A4 in `docs/ACCEPTANCE.md`.
 - **Outbox alone**: prevents local double-enqueue only. With query-first and stable requestid ablated, the 100-seed
-  chaos run produced duplicate Bills on 86 of 100 seeds (`results/chaos.json`, variant `all_off`).
+  chaos run produced duplicate Bills on 85 of 100 seeds (`results/chaos.json`, variant `all_off`).
 
 ## Consequences
 At-least-once delivery means every handler step must be idempotent and fenced (claim generation). Uncertain outcomes

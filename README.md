@@ -1,6 +1,6 @@
 # invoice-posting-agent
 
-**Posts vendor invoices to QuickBooks Online without duplicate Bills or lost invoices under injected faults: across 300 randomized fault-injection seeds (4,180 invoices, 2,803 injected remote faults, 925 worker crashes) there were 0 lost invoices and 0 duplicates outside the documented residual case — the 1 duplicate (requestid memory lost + read-after-write lag) was caught by nightly reconciliation. LLM field extraction: 0.941 F1 vs 0.765 for a regex baseline.**
+**Posts vendor invoices to QuickBooks Online without duplicate Bills or lost invoices under injected faults: across 300 randomized fault-injection seeds (4,180 invoices, 2,799 injected remote faults, 917 worker crashes) there were 0 lost invoices and 0 duplicates outside the documented residual case — the 1 duplicate (requestid memory lost + read-after-write lag) was caught by nightly reconciliation. LLM field extraction: 0.941 F1 vs 0.765 for a regex baseline.**
 
 [![ci](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-blue)
@@ -10,7 +10,7 @@
 
 | business problem | what I built | measured results |
 |---|---|---|
-| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | A TypeScript service: upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts to QBO with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | **0** lost invoices over **300** chaos seeds; **0** duplicates in the 257 non-residual seeds, **1** in the 43 residual-risk seeds (detected by reconciliation); with all defenses off **86 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.765** baseline on 40 public labelled invoices. Auto-approval precision **8/8** at a 20% auto-approve rate. **$0.0012** LLM cost per invoice. |
+| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | A TypeScript service: upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts to QBO with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | **0** lost invoices over **300** chaos seeds; **0** duplicates in the 257 non-residual seeds, **1** in the 43 residual-risk seeds (detected by reconciliation); with all defenses off **85 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.765** baseline on 40 public labelled invoices. Auto-approval precision **8/8** at a 20% auto-approve rate. **$0.0012** LLM cost per invoice. |
 
 Live demo (static, recorded from a real run): `docs/demo/` → GitHub Pages `/invoice-posting-agent/demo/`.
 
@@ -44,7 +44,7 @@ response for a repeat), **query-before-every-write** by DocNumber with an integr
 
 ```bash
 make init                         # npm ci + Playwright browser; needs Node 24 and Postgres 16 on localhost
-make check                        # lint, types, 100 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
+make check                        # lint, types, 105 unit/fault tests, 50-seed chaos, replay eval diff — zero LLM calls
 make demo & npm run dev -w @ipa/review   # API + worker + QBO emulator on :4000, review UI on :3000
 ```
 
@@ -79,7 +79,7 @@ Without credentials each target prints `SKIP` and exits 0; the same scripts are 
 
 | measure | result | baseline / control | source |
 |---|---|---|---|
-| Duplicate Bills, 300 chaos seeds (crashes, stalls, 5xx before/after commit, resets, hangs, 429, token expiry, emulator restarts, edits) | **0** in 257 non-residual seeds; **1** in 43 residual-risk seeds, detected by reconciliation and voided by the runbook | all defenses off: 360 duplicates, 86/100 seeds | `results/chaos.json` |
+| Duplicate Bills, 300 chaos seeds (crashes, stalls, 5xx before/after commit, resets, hangs, 429, token expiry, emulator restarts, edits) | **0** in 257 non-residual seeds; **1** in 43 residual-risk seeds, detected by reconciliation and voided by the runbook | all defenses off: 353 duplicates, 85/100 seeds | `results/chaos.json` |
 | Lost invoices / ledger≠local after reconciliation | **0 / 0** | — | same |
 | Deterministic fault scenarios A1–A18 incl. real SIGKILL of a worker process | all pass | requestid or query-first ablated alone → duplicate; fencing and lease guard are redundant layers (duplicate only with both off) | `services/posting/test/*.test.ts` |
 | Field extraction micro F1 (40 docs, test split) | **0.941** (0.889–0.981) | regex baseline **0.765** (0.712–0.809) | `results/extraction.json` |
@@ -104,7 +104,7 @@ Emulator differences and every QBO assumption with its source: `docs/QBO_SEMANTI
 ## Limitations
 - 40-document extraction sample; CIs are wide. OCR on phone photos and handwriting causes 17 of 26 field errors.
 - One residual duplicate path is not prevented, only detected: requestid memory lost **and** the first write invisible
-  to the query. It happened once in 43 residual-eligible chaos seeds (seed 233) and reconciliation caught it.
+  to the query. It happened once in 43 residual-eligible chaos seeds (seed 30) and reconciliation caught it.
 - Requestid retention is unpublished by Intuit and not measured; concurrency semantics were observed live (425).
 - Confidence is a heuristic score (monotone with accuracy in the table), not a fitted calibrator.
 - Credit notes, payments, multi-currency FX and tax codes are out of scope.

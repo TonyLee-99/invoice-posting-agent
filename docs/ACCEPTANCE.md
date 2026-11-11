@@ -54,14 +54,14 @@ Targets that are missed are reported with the real number; they are not moved.
 
 ## Results (2026-11-11)
 
-Evidence commands: `make check` (offline: lint, types, 100 tests, 50-seed chaos, replay eval diff — PASS), `make chaos-full`,
+Evidence commands: `make check` (offline: lint, types, 105 tests, 50-seed chaos, replay eval diff — PASS), `make chaos-full`,
 `npx tsx eval/run.ts --n 40 --backend claude-cli`, `npm run -w @ipa/review e2e`. Sample sizes follow the owner's rescope
 (40 invoices, 40 labelled matching cases, 300 chaos seeds).
 
 | id | result | evidence |
 |---|---|---|
 | A1–A10 | PASS | `faults.test.ts` (crash before/after write, after intent/after commit, duplicate delivery, timeout after commit incl. query lag, 5xx storm, 429, 8 workers × 60 jobs, edit-before-post incl. race, edit refused while POSTING/POSTED, emulator restart without requestid memory, unresolvable unknown outcome) |
-| A11 | PASS (as scoped) | `results/chaos.json`: 300 seeds, 4,180 invoices, 2,803 remote faults + 925 worker crashes + 75 restarts; 257 non-residual seeds: 0 duplicates; 0 lost and 0 ledger/local mismatches on all 300; 43 residual-eligible seeds (classified before the run): 1 duplicate (seed 233), detected by reconciliation and voided by the runbook |
+| A11 | PASS (as scoped) | `results/chaos.json`: 300 seeds, 4,180 invoices, 2,799 remote faults + 917 worker crashes + 75 restarts; 257 non-residual seeds: 0 duplicates; 0 lost and 0 ledger/local mismatches on all 300; 43 residual-eligible seeds (classified before the run): 1 duplicate (seed 30), detected by reconciliation and voided by the runbook |
 | A12 | PARTIAL | stable requestid and query-first each fail their deterministic schedule alone; fencing and the lease guard do **not** fail alone — they are redundant layers and the schedule duplicates only with both off (`ablations.test.ts`); all-off chaos violates on ≥ 20% of seeds (`results/chaos.json`) |
 | A13 | PASS | `reconcile.test.ts`: deleted, changed and orphan Bills detected, idempotent re-run, partial run on read failure, ledger == local after runbook |
 | A14 | PASS | `sigkill.test.ts`: real child worker SIGKILLed before and after the remote write; a second, independent worker process recovers; 1 Bill |
