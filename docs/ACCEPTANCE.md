@@ -72,7 +72,7 @@ Evidence commands: `make check` (offline: lint, types, 89 tests, 50-seed chaos, 
 | B1 | PARTIAL | 297 labelled docs in the manifest with licenses recorded; this run uses 40 (rescope); split fixed before tuning |
 | B2 | PASS | LLM micro F1 0.941 (0.889–0.981) vs baseline 0.765 (0.712–0.809): +0.176 ≥ +0.15 |
 | B3 | PASS | per-field table + all 26 errors categorized (`docs/EVAL.md` §2) |
-| B4 | FAIL (0.975 < 0.98) | matcher on label fields 39/40; the miss is a dual-currency document (kept, not relabelled) |
+| B4 | PASS after round 2 (was FAIL 0.975) | original 40-doc set: 39/40 = 0.975 before, **40/40** after the general dual-currency rule (same labels, label generator v1 and v2 agree on this set). Larger check, all 297 labelled docs: 296/297 = 0.997 with label generator v2 (288/297 = 0.970 under v1, which assumed every generated "clean" case was clean even when its own labels were incomplete or did not add up). Added: 16 FX variants (4 dual-currency docs × reference agrees / off 3% / no reference / rate not printed), 16/16. Remaining miss: a multi-invoice file whose label fields describe only the first invoice (`results/matching.json`). Caveat: generator v2 was written after seeing v1's misses, so the 297-doc number is not independent evidence |
 | B5 | PASS | end-to-end confusion matrix reported (0.575 agreement; errors mostly in the safe direction) |
 | B6 | PARTIAL (point estimate met, not established) | 8/8 auto-approvals correct (Wilson 0.68–1.00); 0 false approvals at any threshold 0.5–0.95; n too small to establish 0.98 |
 | B7 | PARTIAL | reliability table reported; ECE/Brier and a fitted calibrator not done (heuristic score) |

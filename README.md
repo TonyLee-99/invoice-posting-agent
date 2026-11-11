@@ -61,7 +61,7 @@ re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations.
 | Deterministic fault scenarios A1–A18 incl. real SIGKILL of a worker process | all pass | requestid or query-first ablated alone → duplicate; fencing and lease guard are redundant layers (duplicate only with both off) | `services/posting/test/*.test.ts` |
 | Field extraction micro F1 (40 docs, test split) | **0.941** (0.889–0.981) | regex baseline **0.765** (0.712–0.809) | `results/extraction.json` |
 | IPP official scorer, key fields | **184 / 208** (88.5%) | — | `results/ipp_official_scores.json` |
-| Matcher vs labelled expected outcome (label fields) | **0.975** (39/40) | — | `results/routing.json` |
+| Matcher vs labelled expected outcome (label fields) | **1.000** (40/40) on the eval set; **0.997** (296/297) on all labelled docs; 16/16 added FX cases | 0.975 (39/40) before the dual-currency rule | `results/matching.json` |
 | Auto-approval at threshold 0.9 | **20%** auto, precision **8/8** (Wilson 0.68–1.00) | — | same |
 | Drafted vendor emails with only grounded numbers | **10 / 10** (first run 4/10, fixed: INC-6) | — | `results/drafts.json` |
 | LLM cost / latency per invoice | **$0.0012**, p50 9.5 s | — | `results/cost.json` |
