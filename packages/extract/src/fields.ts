@@ -22,6 +22,25 @@ export function toFields(e: LlmExtraction): InvoiceFields {
   };
 }
 
+/**
+ * Deterministic FX detection from the parsed text (the model is not trusted with rates): a printed
+ * "1 USD = 18.3920 NAD" style rate whose target is the payable currency. The line currency is taken from the rate
+ * only when the extracted line amounts add up to the subtotal *after* conversion, not before.
+ */
+export function applyStatedFx(f: InvoiceFields, text: string): InvoiceFields {
+  const m = text.match(/1\s*([A-Z]{3})\s*=\s*([0-9]+(?:[.,][0-9]+)?)\s*([A-Z]{3})/);
+  if (!m || !f.currency || f.subtotalMinor === null || !f.lines.length) return f;
+  const [, from, rateText, to] = m;
+  const rate = Number(rateText!.replace(",", "."));
+  if (to !== f.currency || from === to || !(rate > 0)) return f;
+  const lineSum = f.lines.reduce((s, l) => s + l.amountMinor, 0);
+  const close = (a: number, b: number) => Math.abs(a - b) <= Math.max(2, Math.abs(b) * 0.005);
+  const withRate = { ...f, fxBase: from!, exchangeRate: rate };
+  if (close(lineSum, f.subtotalMinor)) return { ...withRate, lineCurrency: f.currency }; // lines in the payable currency
+  if (close(Math.round(lineSum * rate), f.subtotalMinor)) return { ...withRate, lineCurrency: from! };
+  return withRate; // rate recorded; the lines do not add up either way, which the matcher reports
+}
+
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 /** Is the value literally supported by the source text (after normalization)? */

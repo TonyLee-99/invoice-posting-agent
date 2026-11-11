@@ -42,7 +42,7 @@ const EDITABLE: InvoiceStatus[] = ["EXTRACTED", "MATCHED", "NEEDS_REVIEW", "AUTO
 export class PostingService {
   constructor(
     readonly db: Db,
-    readonly opts: { realmId: string; matchPolicy?: MatchPolicy; routingPolicy?: RoutingPolicy } = { realmId: "9341455000000001" },
+    readonly opts: { realmId: string; matchPolicy?: MatchPolicy; routingPolicy?: RoutingPolicy; fxRates?: Record<string, number> } = { realmId: "9341455000000001" },
   ) {}
 
   private get routing(): RoutingPolicy {
@@ -95,11 +95,12 @@ export class PostingService {
   private async matchLocked(tx: Tx, invoiceId: number, fields: InvoiceFields, isDuplicate: boolean): Promise<MatchResult> {
     const ref = await this.referenceData(tx);
     const policy = this.opts.matchPolicy ?? DEFAULT_MATCH_POLICY;
-    let m = threeWayMatch({ fields, vendors: ref.vendors, purchaseOrders: ref.pos, receipts: ref.receipts, isDuplicate }, policy);
+    const fxRates = this.opts.fxRates ?? {};
+    let m = threeWayMatch({ fields, vendors: ref.vendors, purchaseOrders: ref.pos, receipts: ref.receipts, isDuplicate, fxRates }, policy);
     if (m.poNumber) {
       await tx.query("select 1 from purchase_orders where po_number = $1 for update", [m.poNumber]);
       const reserved = await this.reservedByOthers(tx, m.poNumber, invoiceId);
-      m = threeWayMatch({ fields, vendors: ref.vendors, purchaseOrders: ref.pos, receipts: ref.receipts, isDuplicate, reservedByOthers: reserved }, policy);
+      m = threeWayMatch({ fields, vendors: ref.vendors, purchaseOrders: ref.pos, receipts: ref.receipts, isDuplicate, reservedByOthers: reserved, fxRates }, policy);
     }
     return m;
   }
