@@ -21,6 +21,8 @@ export interface Harness {
   newClient(): QboClient;
   worker(opts?: WorkerOptions): OutboxWorker;
   restartEmulator(opts?: Partial<EmulatorOptions>): Promise<void>;
+  /** Fresh emulator + empty service tables, same database (chaos runs many seeds per database). */
+  reset(opts: EmulatorOptions): Promise<void>;
   close(): Promise<void>;
 }
 
@@ -31,6 +33,7 @@ export async function createHarness(opts: { emulator?: EmulatorOptions; requestT
   const db = scratch.db;
   const requestTimeoutMs = opts.requestTimeoutMs ?? 150;
   const emuOpts: EmulatorOptions = { vendors: [{ id: "56", name: SIM_VENDOR.name, currency: "USD" }], ...opts.emulator };
+  let emuOpts2 = emuOpts;
   let emu = new QboEmulator(emuOpts);
   let url = await emu.start();
   const store = new PgTokenStore(db);
@@ -53,9 +56,21 @@ export async function createHarness(opts: { emulator?: EmulatorOptions; requestT
       // Same port so existing clients keep working; state comes back from the snapshot file.
       const port = Number(new URL(url).port);
       await emu.stop();
-      emu = new QboEmulator({ ...emuOpts, ...more, port });
+      emu = new QboEmulator({ ...emuOpts2, ...more, port });
       url = await emu.start();
       h.emu = emu;
+    },
+    reset: async (o: EmulatorOptions) => {
+      await emu.stop();
+      await db.query(`truncate invoices, approvals, po_line_reservations, outbox, post_attempts, postings, recovery_queue, audit_log, reconciliation_runs, qbo_tokens restart identity cascade`);
+      emuOpts2 = { vendors: [{ id: "56", name: SIM_VENDOR.name, currency: "USD" }], ...o };
+      emu = new QboEmulator(emuOpts2);
+      url = await emu.start();
+      h.emu = emu;
+      const tk = emu.issueTokens();
+      await store.swap({ accessToken: tk.accessToken, refreshToken: tk.refreshToken, accessExpiresAt: Date.now() + 3_600_000, refreshExpiresAt: Date.now() + 8e9, realmId: emu.realmId }, 0);
+      h.qbo = mkClient();
+      await db.query("delete from purchase_orders where po_number <> 'PO-SIM-1'");
     },
     close: async () => {
       await emu.stop();

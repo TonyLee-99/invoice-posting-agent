@@ -7,6 +7,8 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@ipa/domain": "*"
+    "@ipa/domain": "*",
+    "pdfjs-dist": "^6.5.438",
+    "tesseract.js": "^7.0.0"
   }
 }

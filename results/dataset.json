@@ -1,0 +1,25 @@
+{
+  "total": 297,
+  "excludedUnlabelled": [
+    "katana/validation-001",
+    "katana/validation-029",
+    "katana/train-009",
+    "katana/train-011"
+  ],
+  "bySource": {
+    "ipp": 181,
+    "katana": 116
+  },
+  "bySplit": {
+    "dev": 65,
+    "test": 232
+  },
+  "byMime": {
+    "pdf": 113,
+    "image": 184
+  },
+  "licenses": {
+    "ipp": "CC BY 4.0 (data), MIT (code) - https://github.com/DrewKraken/invoice-extraction-benchmark; dataset card states synthetic documents made by InvoiceParser Pro",
+    "katana": "MIT per HF card katanaml-org/invoices-donut-data-v1; source: Kozlowski & Weichbroth (2021), Samples of electronic invoices, Mendeley Data V2, doi:10.17632/tnj49gpmtz.2"
+  }
+}

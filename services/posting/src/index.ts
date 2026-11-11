@@ -7,3 +7,4 @@ export * from "./reconcile.ts";
 export * from "./recovery.ts";
 export * from "./tokens.ts";
 export * from "./harness.ts";
+export * from "./chaos.ts";
