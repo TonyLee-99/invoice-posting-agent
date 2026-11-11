@@ -31,3 +31,4 @@ cache/*
 apps/review/test-results/
 apps/review/next-env.d.ts
 results/chaos_ci.json
+apps/review/public/demo-data/
