@@ -3,5 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "exports": { ".": "./src/index.ts" }
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@ipa/domain": "*",
+    "@ipa/qbo": "*",
+    "@ipa/matching": "*",
+    "@ipa/llm": "*",
+    "@ipa/extract": "*"
+  }
 }
