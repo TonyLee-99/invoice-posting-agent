@@ -19,12 +19,19 @@ export interface ParsedDoc {
 const MIN_TEXT_CHARS_PER_PAGE = 40;
 
 export class Parser {
-  private worker: Worker | null = null;
+  // One shared OCR worker, created once even when many documents are parsed concurrently.
+  private worker: Promise<Worker> | null = null;
 
   constructor(private readonly opts: { cacheDir: string; tessdataDir: string; offline?: boolean }) {}
 
   /** Parse a document, cache-first by content hash. With `offline`, a cache miss is an error (CI). */
-  async parse(file: string, mime: string): Promise<ParsedDoc> {
+  async parse(file: string, mime: string, knownSha256?: string): Promise<ParsedDoc> {
+    // With a known hash (from the manifest) the cache is consulted without reading the file, so CI replays
+    // without the licensed documents being present.
+    if (knownSha256) {
+      const hit = path.join(this.opts.cacheDir, `${knownSha256}.json`);
+      if (existsSync(hit)) return JSON.parse(readFileSync(hit, "utf8")) as ParsedDoc;
+    }
     const bytes = readFileSync(file);
     const hash = sha256(bytes);
     const cached = path.join(this.opts.cacheDir, `${hash}.json`);
@@ -51,20 +58,22 @@ export class Parser {
   }
 
   async close(): Promise<void> {
-    await this.worker?.terminate();
+    const w = this.worker;
     this.worker = null;
+    if (w) await (await w).terminate();
   }
 
   private async ocr(image: Buffer): Promise<{ text: string; confidence: number }> {
-    if (!this.worker) {
+    this.worker ??= (async () => {
       const { createWorker } = await import("tesseract.js");
       mkdirSync(this.opts.tessdataDir, { recursive: true });
-      // langPath/cachePath keep eng.traineddata on disk after the first download.
-      this.worker = await createWorker("eng", 1, { cachePath: this.opts.tessdataDir });
+      // cachePath keeps eng.traineddata on disk after the first download.
+      const w = await createWorker("eng", 1, { cachePath: this.opts.tessdataDir });
       // PSM 6 = assume a uniform block of text; keeps table rows on one line far better than the default.
-      await this.worker.setParameters({ tessedit_pageseg_mode: "6" as never, preserve_interword_spaces: "1" });
-    }
-    const r = await this.worker.recognize(image);
+      await w.setParameters({ tessedit_pageseg_mode: "6" as never, preserve_interword_spaces: "1" });
+      return w;
+    })();
+    const r = await (await this.worker).recognize(image);
     return { text: r.data.text, confidence: (r.data.confidence ?? 0) / 100 };
   }
 

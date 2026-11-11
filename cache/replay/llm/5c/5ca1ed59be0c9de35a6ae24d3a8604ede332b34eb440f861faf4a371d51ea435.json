@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Garcia, Stewart and Payne\", \"confidence\": 0.93}, \"vendor_tax_id\": {\"value\": \"949-78-5411\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"34528548\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2015-11-02\", \"confidence\": 0.8}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.93}, \"subtotal\": {\"value\": 729.75, \"confidence\": 0.97}, \"tax\": {\"value\": 72.98, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 802.73, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Dell Desktop Computers [] Core i5 16GB 2TB HD 512GB SSD [] Windows 10 PC 22\\\" LCD\", \"quantity\": 2, \"unit_price\": 139.95, \"amount\": 279.90}, {\"description\": \"Dell Optiplex Desktop Computer with Dual 19\\\" LCD Monitors Windows 10 Pro\", \"quantity\": 3, \"unit_price\": 149.95, \"amount\": 449.85}], \"lines_confidence\": 0.93, \"notes\": \"Date 11/02/2015 read as MM/DD/YYYY because the document uses US dollar amounts and a US military (FPO AE) address. Gross line worths (307.89 + 494.83 = 802.72) differ from the printed total of 802.73 by one cent, likely rounding. Line descriptions retain '[]' glyphs from the source text.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1340,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1250
+ },
+ "costUsd": 0.00092827,
+ "latencyMs": 9506,
+ "cached": false,
+ "cacheKey": "5ca1ed59be0c9de35a6ae24d3a8604ede332b34eb440f861faf4a371d51ea435",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "7f25c5b32722686d485f660794dc87e03a037df61e8800f98d6d28e19edee845"
+ }
+}

@@ -104,7 +104,8 @@ function pairLines(fields: InvoiceFields, po: PurchaseOrder, policy: MatchPolicy
   fields.lines.forEach((line, i) => {
     po.lines.forEach((pl, j) => {
       const sim = tokenSimilarity(line.description, pl.description);
-      const qty = line.quantity ?? pl.quantity;
+      // Services POs commit an amount per line (2-way, amount-based); goods POs a quantity at a unit price.
+      const qty = po.kind === "services" ? pl.quantity : (line.quantity ?? pl.quantity);
       const expected = toMinor(pl.unitPrice * qty, po.currency);
       const amountCloseness = expected === 0 ? 0 : Math.max(0, 1 - Math.abs(line.amountMinor - expected) / Math.abs(expected));
       cands.push({ i, j, sim, score: sim + 0.25 * amountCloseness });
@@ -120,7 +121,7 @@ function pairLines(fields: InvoiceFields, po: PurchaseOrder, policy: MatchPolicy
     usedJ.add(c.j);
     const pl = po.lines[c.j]!;
     const line = fields.lines[c.i]!;
-    const qty = line.quantity ?? pl.quantity;
+    const qty = po.kind === "services" ? pl.quantity : (line.quantity ?? pl.quantity);
     out[c.i] = { invoiceLine: c.i, poLineNo: pl.lineNo, quantity: qty, invoiceAmountMinor: line.amountMinor, expectedAmountMinor: toMinor(pl.unitPrice * qty, po.currency), similarity: c.sim };
   }
   return out;
@@ -163,13 +164,13 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
   if (fields.lines.length && fields.subtotalMinor !== null) {
     const lineSum = sum(fields.lines.map((l) => l.amountMinor));
     if (Math.abs(lineSum - fields.subtotalMinor) > policy.arithmeticToleranceMinor) {
-      d.push({ code: "arithmetic_mismatch", severity: "review", message: `Line amounts add up to ${lineSum / 100} but the subtotal says ${fields.subtotalMinor / 100}.`, facts: { lineSum: lineSum / 100, subtotal: fields.subtotalMinor / 100 } });
+      d.push({ code: "arithmetic_mismatch", severity: "review", message: `Line amounts add up to ${lineSum / 100} but the subtotal says ${fields.subtotalMinor / 100}.`, facts: { lineSum: lineSum / 100, subtotal: fields.subtotalMinor / 100, difference: (fields.subtotalMinor - lineSum) / 100 } });
     }
   }
   if (fields.totalMinor !== null && fields.subtotalMinor !== null) {
     const expectTotal = fields.subtotalMinor + (fields.taxMinor ?? 0) + (fields.freightMinor ?? 0);
     if (Math.abs(expectTotal - fields.totalMinor) > policy.arithmeticToleranceMinor) {
-      d.push({ code: "arithmetic_mismatch", severity: "review", message: `Subtotal + tax + freight is ${expectTotal / 100} but the total says ${fields.totalMinor / 100}.`, facts: { computedTotal: expectTotal / 100, total: fields.totalMinor / 100 } });
+      d.push({ code: "arithmetic_mismatch", severity: "review", message: `Subtotal + tax + freight is ${expectTotal / 100} but the total says ${fields.totalMinor / 100}.`, facts: { computedTotal: expectTotal / 100, total: fields.totalMinor / 100, difference: (fields.totalMinor - expectTotal) / 100 } });
     }
   }
 
@@ -208,7 +209,7 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
       d.push({
         code: "price_over_tolerance", severity: "review",
         message: `Line "${line.description}" is billed at ${line.amountMinor / 100}; the PO price gives ${expected / 100} (tolerance ${tol / 100}).`,
-        facts: { billed: line.amountMinor / 100, expected: expected / 100, tolerance: tol / 100, poUnitPrice: pl.unitPrice, quantity: lm.quantity },
+        facts: { billed: line.amountMinor / 100, expected: expected / 100, overBy: (line.amountMinor - expected) / 100, tolerance: tol / 100, poUnitPrice: pl.unitPrice, quantity: lm.quantity },
         lineIndex: lm.invoiceLine,
       });
     }
@@ -219,10 +220,8 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
       if (rec === 0) {
         d.push({ code: "receipt_missing", severity: "review", message: `No goods receipt recorded for PO line ${pl.lineNo} ("${pl.description}").`, facts: { poLine: pl.lineNo, billedQty: qty }, lineIndex: lm.invoiceLine });
       } else if (qty > rec - other + 1e-9) {
-        d.push({ code: "qty_over_received", severity: "review", message: `Billed quantity ${qty} exceeds received quantity ${rec - other} for PO line ${pl.lineNo}.`, facts: { billedQty: qty, receivedQty: rec, reservedByOthers: other, poLine: pl.lineNo }, lineIndex: lm.invoiceLine });
+        d.push({ code: "qty_over_received", severity: "review", message: `Billed quantity ${qty} exceeds received quantity ${rec - other} for PO line ${pl.lineNo}.`, facts: { billedQty: qty, receivedQty: rec, available: rec - other, overBy: qty - (rec - other), reservedByOthers: other, poLine: pl.lineNo }, lineIndex: lm.invoiceLine });
       }
-    } else if (qty > pl.quantity - other + 1e-9) {
-      d.push({ code: "qty_over_ordered", severity: "review", message: `Billed quantity ${qty} exceeds the ordered quantity ${pl.quantity - other} on PO line ${pl.lineNo}.`, facts: { billedQty: qty, orderedQty: pl.quantity, reservedByOthers: other, poLine: pl.lineNo }, lineIndex: lm.invoiceLine });
     }
   }
 
@@ -230,11 +229,11 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
     const expectedTax = Math.round(fields.subtotalMinor * po.taxRate);
     const tol = Math.max(Math.round(Math.abs(expectedTax) * policy.taxTolerancePct), policy.taxToleranceAbsMinor);
     if (Math.abs(fields.taxMinor - expectedTax) > tol) {
-      d.push({ code: "tax_mismatch", severity: "review", message: `Tax is ${fields.taxMinor / 100}; the PO tax rate ${(po.taxRate * 100).toFixed(2)}% gives ${expectedTax / 100}.`, facts: { tax: fields.taxMinor / 100, expectedTax: expectedTax / 100, taxRatePct: Number((po.taxRate * 100).toFixed(2)) } });
+      d.push({ code: "tax_mismatch", severity: "review", message: `Tax is ${fields.taxMinor / 100}; the PO tax rate ${(po.taxRate * 100).toFixed(2)}% gives ${expectedTax / 100}.`, facts: { tax: fields.taxMinor / 100, expectedTax: expectedTax / 100, difference: (fields.taxMinor - expectedTax) / 100, taxRatePct: Number((po.taxRate * 100).toFixed(2)) } });
     }
   }
   if ((fields.freightMinor ?? 0) > po.freightAllowanceMinor + policy.freightToleranceMinor) {
-    d.push({ code: "freight_over_allowance", severity: "review", message: `Freight ${fields.freightMinor! / 100} exceeds the PO allowance ${po.freightAllowanceMinor / 100}.`, facts: { freight: fields.freightMinor! / 100, allowance: po.freightAllowanceMinor / 100 } });
+    d.push({ code: "freight_over_allowance", severity: "review", message: `Freight ${fields.freightMinor! / 100} exceeds the PO allowance ${po.freightAllowanceMinor / 100}.`, facts: { freight: fields.freightMinor! / 100, allowance: po.freightAllowanceMinor / 100, overBy: (fields.freightMinor! - po.freightAllowanceMinor) / 100 } });
   }
   return { vendorId: vendor?.vendorId ?? null, poNumber: po.poNumber, matchType: po.kind === "goods" ? "3-way" : "2-way", discrepancies: d, lineMatches: lines, policyVersion: policy.version };
 }

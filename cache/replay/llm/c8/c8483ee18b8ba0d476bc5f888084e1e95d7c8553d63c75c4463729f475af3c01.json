@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice is held because the invoice number is missing, the stated total of 2227.2 does not match the computed subtotal, tax, and freight sum of 7147.21, and two amounts differ from the PO. The line \\\"Hex bolts M12 X50 galvanised (box 50)\\\" is billed at 6204.61 against an expected 3243.04 (tolerance 64.86), and tax is 942.6 where the PO rate of 15.00% gives 930.69. Check the invoice against PO-EBOOKPOOR6 and confirm the line price, tax, and total before any further processing.\", \"email_subject\": \"Request for corrected invoice – PO-EBOOKPOOR6\", \"email_body\": \"Dear Erongo Workshop Supplies team,\\n\\nThank we for your invoice dated 2025-10-27 relating to PO-EBOOKPOOR6. Before we can process it, we need the following to be checked and corrected:\\n\\n1. The invoice number is missing from the document. Please provide it.\\n2. The stated total of 2227.2 does not agree with the sum of the subtotal, tax, and freight, which comes to 7147.21. Please confirm the correct total.\\n3. The line \\\"Hex bolts M12 X50 galvanised (box 50)\\\" is billed at 6204.61, while the PO price gives 3243.04. Please confirm the unit price and quantity.\\n4. The tax amount is 942.6, while the PO tax rate of 15.00% gives 930.69. Please confirm the tax calculation.\\n\\nPlease send a corrected invoice or written confirmation of the figures above. We will review it once received. This email does not confirm approval or a payment date.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 948,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1451
+ },
+ "costUsd": 0.0007643999999999999,
+ "latencyMs": 8715,
+ "cached": false,
+ "cacheKey": "c8483ee18b8ba0d476bc5f888084e1e95d7c8553d63c75c4463729f475af3c01",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "f63550eed7c5d4d59364348d7c7756d1070ae67f0f4d65a0fe1b9866495e61de"
+ }
+}

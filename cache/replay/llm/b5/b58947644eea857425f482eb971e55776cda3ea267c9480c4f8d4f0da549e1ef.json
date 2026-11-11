@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Highveld Packaging (Pty) Ltd\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"4574422684\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"049181\", \"confidence\": 0.97}, \"po_number\": {\"value\": \"ORD-9835\", \"confidence\": 0.96}, \"invoice_date\": {\"value\": \"2026-02-28\", \"confidence\": 0.97}, \"due_date\": {\"value\": \"2026-03-30\", \"confidence\": 0.96}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 12843.69, \"confidence\": 0.97}, \"tax\": {\"value\": 1926.55, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 14770.24, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Pallet strapping kit\", \"quantity\": 6, \"unit_price\": 457.08, \"amount\": 2742.48}, {\"description\": \"Air filter element, heavy duty\", \"quantity\": 5, \"unit_price\": 887.24, \"amount\": 4436.2}, {\"description\": \"Angle grinder discs 115mm (10)\", \"quantity\": 15, \"unit_price\": 197.31, \"amount\": 2959.65}, {\"description\": \"Toner cartridge, black, high yield\", \"quantity\": 4, \"unit_price\": 676.34, \"amount\": 2705.36}], \"lines_confidence\": 0.96, \"notes\": \"Amounts use South African format (comma decimal, space thousands). Line amounts, subtotal, VAT at 15% and total reconcile.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 944,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1205
+ },
+ "costUsd": 0.00072127,
+ "latencyMs": 7528,
+ "cached": false,
+ "cacheKey": "b58947644eea857425f482eb971e55776cda3ea267c9480c4f8d4f0da549e1ef",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "15e99a34ecd17e4339b5a31633dae8e28b5b5cdee20993e668e7da31541265af"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Cox, Bell and Rodriguez\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"999-833-6062\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"75299595\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2011-06-03\", \"confidence\": 0.6}, \"due_date\": {\"value\": null, \"confidence\": 0.9}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.85}, \"subtotal\": {\"value\": 247.86, \"confidence\": 0.97}, \"tax\": {\"value\": 24.79, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.9}, \"total\": {\"value\": 272.65, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"Chef Wine Bottle Holder\", \"quantity\": 2, \"unit_price\": 65.95, \"amount\": 131.90}, {\"description\": \"9.5 Inch Dinosaur Bones Wine Bottle Holder\", \"quantity\": 1, \"unit_price\": 24.00, \"amount\": 24.00}, {\"description\": \"mDesign Metal Wine Rack Storage Organizer, 6 Bottles - Chrome\", \"quantity\": 4, \"unit_price\": 22.99, \"amount\": 91.96}], \"lines_confidence\": 0.9, \"notes\": \"Invoice date 06/03/2011 read as MM/DD/YYYY (2011-06-03) because amounts are in USD and the seller address is in the US; if the document was meant as DD/MM, the date would be 2011-03-06. The line-1 label has OCR noise ('EY,') that was ignored. Line totals, subtotal and VAT reconcile (2 x 65.95 = 131.90; 4 x 22.99 = 91.96; net sum 247.86; 10% VAT = 24.79).\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1298,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1265
+ },
+ "costUsd": 0.0009102699999999999,
+ "latencyMs": 8151,
+ "cached": false,
+ "cacheKey": "346ac547c317efd298302628592dbe71fe94e8f69e1a475d9f783c4c8ab7c364",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "be8baf991efa76a1d4d1524976b59a074e7ecf958c43044f5bdf60a40abd228a"
+ }
+}

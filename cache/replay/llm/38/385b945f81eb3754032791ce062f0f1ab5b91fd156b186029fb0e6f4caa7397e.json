@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Soto and Sons\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"953-83-6829\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"64125453\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2013-03-25\", \"confidence\": 0.95}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.9}, \"subtotal\": {\"value\": 269.92, \"confidence\": 0.97}, \"tax\": {\"value\": 26.99, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 296.91, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"New Fully Automatic Red Wine Bottle Opener Electric Red Wine Opener Corkscrew\", \"quantity\": 3.0, \"unit_price\": 25.99, \"amount\": 77.97}, {\"description\": \"NEW Wall Mounted Metal Relax Glass and Bottle Holder Wine Cork Storage 4 Rack\", \"quantity\": 5.0, \"unit_price\": 35.99, \"amount\": 179.95}, {\"description\": \"Wine Glasses Goblets Pair Clear Glass\", \"quantity\": 1.0, \"unit_price\": 12.0, \"amount\": 12.0}], \"lines_confidence\": 0.8, \"notes\": \"Line 1 net worth printed as 717,97 but 3 x 25,99 = 77,97, and the subtotal 269,92 and gross 85,77 both confirm 77,97, so the OCR misread was corrected. The leading '8' before 'Wine Glasses' is treated as a row-number artifact. Currency is inferred from the $ symbol and the US-style address and date format; the seller's country is not stated explicitly.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1396,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1283
+ },
+ "costUsd": 0.00096287,
+ "latencyMs": 8654,
+ "cached": false,
+ "cacheKey": "385b945f81eb3754032791ce062f0f1ab5b91fd156b186029fb0e6f4caa7397e",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "542eda20493e0321fffba7aad88492ce926cc9b92dda5d8252c6ccd549606277"
+ }
+}

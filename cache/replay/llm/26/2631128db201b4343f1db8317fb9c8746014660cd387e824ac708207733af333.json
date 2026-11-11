@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"The invoice was held because its line items do not add up to the stated total: subtotal, tax, and freight come to 18008.79, but the invoice total shows 21430.46, a difference of 3421.67. Please check the invoice's line amounts, tax, and freight against the total, and confirm the PO reference PO-ALINFLATED matches the order you intended.\", \"email_subject\": \"Request for corrected invoice RA-81392\", \"email_body\": \"Dear Blouberg Industrial Supply CC team,\\n\\nThank you for invoice RA-81392 dated 2025-01-16. During our review, we found that the subtotal plus tax and freight comes to 18008.79 ZAR, while the invoice total shows 21430.46 ZAR, a difference of 3421.67 ZAR. We also noted that the PO reference on the invoice is PO-ALINFLATED.\\n\\nCould you please review the invoice and send us either a corrected invoice or written confirmation of the correct total and PO number? We will be able to continue processing once we receive this.\\n\\nThank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 377,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1199
+ },
+ "costUsd": 0.0004285,
+ "latencyMs": 7191,
+ "cached": false,
+ "cacheKey": "2631128db201b4343f1db8317fb9c8746014660cd387e824ac708207733af333",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "d23be02bae32e0adff221b8fbc75cd68e202fdba1a9b8cb6c032fd7a5d7ebea8"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Rojas-Cook\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"957-97-8143\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"33931957\", \"confidence\": 0.98}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2015-12-17\", \"confidence\": 0.9}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.75}, \"subtotal\": {\"value\": 25.00, \"confidence\": 0.97}, \"tax\": {\"value\": 2.50, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 27.50, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"NWT Women’s MAX EDITION Classy Gray Knit Stretch Dress side bow tie % sleeve XL\", \"quantity\": 2, \"unit_price\": 12.50, \"amount\": 25.00}], \"lines_confidence\": 0.93, \"notes\": \"Date 12/17/2015 read as MM/DD/YYYY because 17 cannot be a month. Currency inferred from the $ symbol in the summary; the seller has a GB IBAN, so confirm the payable currency. Tax ID formatted as printed.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 871,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1178
+ },
+ "costUsd": 0.00067937,
+ "latencyMs": 7281,
+ "cached": false,
+ "cacheKey": "63f2bc1f738fe10e81dc5af88f7956f1b2cb9374009cbcaf96395eec9db15d97",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "8983a72e107a95f3ff8a64836beaa31dc2ea9686956b661152a959c6da8d8ca9"
+ }
+}

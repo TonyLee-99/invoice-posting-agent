@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Gregory, Patterson and Fischer\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"958-94-6606\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"12222347\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2017-03-18\", \"confidence\": 0.93}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.8}, \"subtotal\": {\"value\": 123.75, \"confidence\": 0.97}, \"tax\": {\"value\": 12.38, \"confidence\": 0.96}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 136.13, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Zara Yellow Shift Dress XS\", \"quantity\": 5, \"unit_price\": 24.75, \"amount\": 123.75}], \"lines_confidence\": 0.93, \"notes\": \"Currency is USD from the $ symbol and the US seller address. The IBAN prefix is GB and the numbers use comma decimals, so the currency is worth a quick check. Net amounts reconcile: 5 x 24.75 = 123.75, 10% VAT = 12.38, total 136.13.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 948,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1144
+ },
+ "costUsd": 0.0007110700000000001,
+ "latencyMs": 7018,
+ "cached": false,
+ "cacheKey": "dc98628899daa3aa5be98fb3f6606c183c0e2290bf64e1def03f3656c174df2d",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "75199de5704be49289c70a046b85f579306575431065d2e0e3d704adcb726e87"
+ }
+}

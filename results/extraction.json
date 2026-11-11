@@ -1,0 +1,708 @@
+{
+ "sample": {
+  "n": 40,
+  "ipp": 24,
+  "katana": 16,
+  "split": "test",
+  "byParse": {
+   "text_layer": 18,
+   "ocr": 22
+  },
+  "byCategory": {
+   "clean": 3,
+   "credit": 3,
+   "currency": 3,
+   "freight": 3,
+   "handwritten": 2,
+   "hard": 2,
+   "multipage": 2,
+   "photo": 2,
+   "scan": 2,
+   "tax": 2,
+   "katana": 16
+  }
+ },
+ "model": "claude-haiku-5-5",
+ "promptVersion": "extract-v1",
+ "llm": {
+  "docs": 40,
+  "microP": 0.9639,
+  "microR": 0.9188,
+  "microF1": 0.9408,
+  "accuracy": 0.9188,
+  "lineF1Mean": 0.9,
+  "perField": {
+   "vendor_name": {
+    "n": 40,
+    "accuracy": 0.975,
+    "p": 1,
+    "r": 0.975,
+    "f1": 0.9873
+   },
+   "vendor_tax_id": {
+    "n": 16,
+    "accuracy": 0.9375,
+    "p": 0.9375,
+    "r": 0.9375,
+    "f1": 0.9375
+   },
+   "invoice_number": {
+    "n": 40,
+    "accuracy": 0.9,
+    "p": 0.973,
+    "r": 0.9,
+    "f1": 0.9351
+   },
+   "invoice_date": {
+    "n": 40,
+    "accuracy": 0.875,
+    "p": 0.8974,
+    "r": 0.875,
+    "f1": 0.8861
+   },
+   "due_date": {
+    "n": 16,
+    "accuracy": 0.75,
+    "p": 0.9231,
+    "r": 0.75,
+    "f1": 0.8276
+   },
+   "currency": {
+    "n": 24,
+    "accuracy": 1,
+    "p": 1,
+    "r": 1,
+    "f1": 1
+   },
+   "subtotal": {
+    "n": 40,
+    "accuracy": 0.925,
+    "p": 0.9737,
+    "r": 0.925,
+    "f1": 0.9487
+   },
+   "tax": {
+    "n": 40,
+    "accuracy": 0.9,
+    "p": 0.973,
+    "r": 0.9,
+    "f1": 0.9351
+   },
+   "total": {
+    "n": 40,
+    "accuracy": 0.925,
+    "p": 0.9737,
+    "r": 0.925,
+    "f1": 0.9487
+   },
+   "document_type": {
+    "n": 24,
+    "accuracy": 0.9583,
+    "p": 0.9583,
+    "r": 0.9583,
+    "f1": 0.9583
+   }
+  },
+  "microF1CI95": [
+   0.8893,
+   0.981
+  ],
+  "ipp": {
+   "docs": 24,
+   "microP": 0.9482,
+   "microR": 0.8798,
+   "microF1": 0.9127,
+   "accuracy": 0.8798,
+   "lineF1Mean": 0.8333,
+   "perField": {
+    "vendor_name": {
+     "n": 24,
+     "accuracy": 0.9583,
+     "p": 1,
+     "r": 0.9583,
+     "f1": 0.9787
+    },
+    "invoice_number": {
+     "n": 24,
+     "accuracy": 0.8333,
+     "p": 0.9524,
+     "r": 0.8333,
+     "f1": 0.8889
+    },
+    "invoice_date": {
+     "n": 24,
+     "accuracy": 0.7917,
+     "p": 0.8261,
+     "r": 0.7917,
+     "f1": 0.8085
+    },
+    "due_date": {
+     "n": 16,
+     "accuracy": 0.75,
+     "p": 0.9231,
+     "r": 0.75,
+     "f1": 0.8276
+    },
+    "currency": {
+     "n": 24,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "subtotal": {
+     "n": 24,
+     "accuracy": 0.875,
+     "p": 0.9545,
+     "r": 0.875,
+     "f1": 0.913
+    },
+    "tax": {
+     "n": 24,
+     "accuracy": 0.8333,
+     "p": 0.9524,
+     "r": 0.8333,
+     "f1": 0.8889
+    },
+    "total": {
+     "n": 24,
+     "accuracy": 0.875,
+     "p": 0.9545,
+     "r": 0.875,
+     "f1": 0.913
+    },
+    "document_type": {
+     "n": 24,
+     "accuracy": 0.9583,
+     "p": 0.9583,
+     "r": 0.9583,
+     "f1": 0.9583
+    }
+   }
+  },
+  "katana": {
+   "docs": 16,
+   "microP": 0.9911,
+   "microR": 0.9911,
+   "microF1": 0.9911,
+   "accuracy": 0.9911,
+   "lineF1Mean": 1,
+   "perField": {
+    "vendor_name": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "vendor_tax_id": {
+     "n": 16,
+     "accuracy": 0.9375,
+     "p": 0.9375,
+     "r": 0.9375,
+     "f1": 0.9375
+    },
+    "invoice_number": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "invoice_date": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "subtotal": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "tax": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "total": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    }
+   }
+  },
+  "schemaFailures": 0,
+  "repaired": 0
+ },
+ "baseline": {
+  "docs": 40,
+  "microP": 0.8383,
+  "microR": 0.6969,
+  "microF1": 0.7611,
+  "accuracy": 0.6969,
+  "lineF1Mean": 0.7035,
+  "perField": {
+   "vendor_name": {
+    "n": 40,
+    "accuracy": 0.575,
+    "p": 0.575,
+    "r": 0.575,
+    "f1": 0.575
+   },
+   "vendor_tax_id": {
+    "n": 16,
+    "accuracy": 0.9375,
+    "p": 0.9375,
+    "r": 0.9375,
+    "f1": 0.9375
+   },
+   "invoice_number": {
+    "n": 40,
+    "accuracy": 0.85,
+    "p": 0.9444,
+    "r": 0.85,
+    "f1": 0.8947
+   },
+   "invoice_date": {
+    "n": 40,
+    "accuracy": 0.825,
+    "p": 0.8684,
+    "r": 0.825,
+    "f1": 0.8462
+   },
+   "due_date": {
+    "n": 16,
+    "accuracy": 0.8125,
+    "p": 0.9286,
+    "r": 0.8125,
+    "f1": 0.8667
+   },
+   "currency": {
+    "n": 24,
+    "accuracy": 0.5,
+    "p": 0.6316,
+    "r": 0.5,
+    "f1": 0.5581
+   },
+   "subtotal": {
+    "n": 40,
+    "accuracy": 0.4,
+    "p": 0.7619,
+    "r": 0.4,
+    "f1": 0.5246
+   },
+   "tax": {
+    "n": 40,
+    "accuracy": 0.45,
+    "p": 0.9,
+    "r": 0.45,
+    "f1": 0.6
+   },
+   "total": {
+    "n": 40,
+    "accuracy": 0.9,
+    "p": 0.9474,
+    "r": 0.9,
+    "f1": 0.9231
+   },
+   "document_type": {
+    "n": 24,
+    "accuracy": 0.9583,
+    "p": 0.9583,
+    "r": 0.9583,
+    "f1": 0.9583
+   }
+  },
+  "microF1CI95": [
+   0.7096,
+   0.8052
+  ],
+  "ipp": {
+   "docs": 24,
+   "microP": 0.7796,
+   "microR": 0.6971,
+   "microF1": 0.736,
+   "accuracy": 0.6971,
+   "lineF1Mean": 0.6951,
+   "perField": {
+    "vendor_name": {
+     "n": 24,
+     "accuracy": 0.2917,
+     "p": 0.2917,
+     "r": 0.2917,
+     "f1": 0.2917
+    },
+    "invoice_number": {
+     "n": 24,
+     "accuracy": 0.75,
+     "p": 0.9,
+     "r": 0.75,
+     "f1": 0.8182
+    },
+    "invoice_date": {
+     "n": 24,
+     "accuracy": 0.7083,
+     "p": 0.7727,
+     "r": 0.7083,
+     "f1": 0.7391
+    },
+    "due_date": {
+     "n": 16,
+     "accuracy": 0.8125,
+     "p": 0.9286,
+     "r": 0.8125,
+     "f1": 0.8667
+    },
+    "currency": {
+     "n": 24,
+     "accuracy": 0.5,
+     "p": 0.6316,
+     "r": 0.5,
+     "f1": 0.5581
+    },
+    "subtotal": {
+     "n": 24,
+     "accuracy": 0.6667,
+     "p": 0.7619,
+     "r": 0.6667,
+     "f1": 0.7111
+    },
+    "tax": {
+     "n": 24,
+     "accuracy": 0.75,
+     "p": 0.9,
+     "r": 0.75,
+     "f1": 0.8182
+    },
+    "total": {
+     "n": 24,
+     "accuracy": 0.875,
+     "p": 0.9545,
+     "r": 0.875,
+     "f1": 0.913
+    },
+    "document_type": {
+     "n": 24,
+     "accuracy": 0.9583,
+     "p": 0.9583,
+     "r": 0.9583,
+     "f1": 0.9583
+    }
+   }
+  },
+  "katana": {
+   "docs": 16,
+   "microP": 0.975,
+   "microR": 0.6964,
+   "microF1": 0.8125,
+   "accuracy": 0.6964,
+   "lineF1Mean": 0.7161,
+   "perField": {
+    "vendor_name": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "vendor_tax_id": {
+     "n": 16,
+     "accuracy": 0.9375,
+     "p": 0.9375,
+     "r": 0.9375,
+     "f1": 0.9375
+    },
+    "invoice_number": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "invoice_date": {
+     "n": 16,
+     "accuracy": 1,
+     "p": 1,
+     "r": 1,
+     "f1": 1
+    },
+    "subtotal": {
+     "n": 16,
+     "accuracy": 0,
+     "p": 0,
+     "r": 0,
+     "f1": 0
+    },
+    "tax": {
+     "n": 16,
+     "accuracy": 0,
+     "p": 0,
+     "r": 0,
+     "f1": 0
+    },
+    "total": {
+     "n": 16,
+     "accuracy": 0.9375,
+     "p": 0.9375,
+     "r": 0.9375,
+     "f1": 0.9375
+    }
+   }
+  }
+ },
+ "calibration": [
+  {
+   "lo": 0,
+   "hi": 0.5,
+   "n": 9,
+   "correct": 3,
+   "accuracy": 0.333
+  },
+  {
+   "lo": 0.5,
+   "hi": 0.8,
+   "n": 10,
+   "correct": 7,
+   "accuracy": 0.7
+  },
+  {
+   "lo": 0.8,
+   "hi": 0.9,
+   "n": 19,
+   "correct": 18,
+   "accuracy": 0.947
+  },
+  {
+   "lo": 0.9,
+   "hi": 0.95,
+   "n": 74,
+   "correct": 71,
+   "accuracy": 0.959
+  },
+  {
+   "lo": 0.95,
+   "hi": 1,
+   "n": 72,
+   "correct": 72,
+   "accuracy": 1
+  }
+ ],
+ "errors": [
+  {
+   "docId": "ipp/currency-dual-usd-nad-4",
+   "category": "currency",
+   "parse": "text_layer",
+   "field": "tax",
+   "gt": 0,
+   "pred": null
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-average-3",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "invoice_number",
+   "gt": "3738",
+   "pred": "2729"
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-average-3",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "invoice_date",
+   "gt": "2025-10-29",
+   "pred": "2025-10-24"
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-average-3",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "due_date",
+   "gt": "2025-11-28",
+   "pred": "2025-01-29"
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "invoice_number",
+   "gt": "9518",
+   "pred": null
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "invoice_date",
+   "gt": "2025-04-17",
+   "pred": "2025-10-27"
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "subtotal",
+   "gt": 6284.61,
+   "pred": 6204.61
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "tax",
+   "gt": 942.69,
+   "pred": 942.6
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "category": "handwritten",
+   "parse": "ocr",
+   "field": "total",
+   "gt": 7227.3,
+   "pred": 2227.2
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "vendor_name",
+   "gt": "Karoo Engineering Supplies (Pty) Ltd",
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "invoice_number",
+   "gt": "INV-2026-19520",
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "invoice_date",
+   "gt": "2026-07-11",
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "due_date",
+   "gt": "2026-08-10",
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "subtotal",
+   "gt": 16162.28,
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "tax",
+   "gt": 2424.34,
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "total",
+   "gt": 18586.62,
+   "pred": null
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "category": "hard",
+   "parse": "text_layer",
+   "field": "document_type",
+   "gt": "invoice",
+   "pred": "other"
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "invoice_number",
+   "gt": "050179",
+   "pred": null
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "invoice_date",
+   "gt": "2025-08-02",
+   "pred": "2023-09-01"
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "due_date",
+   "gt": "2025-09-01",
+   "pred": null
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "subtotal",
+   "gt": 14953.29,
+   "pred": null
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "tax",
+   "gt": 2990.66,
+   "pred": null
+  },
+  {
+   "docId": "ipp/photo-motion-blur-moderate",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "total",
+   "gt": 17943.95,
+   "pred": null
+  },
+  {
+   "docId": "ipp/photo-screen-photo-mild",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "invoice_date",
+   "gt": "2025-09-23",
+   "pred": "2025-11-22"
+  },
+  {
+   "docId": "ipp/photo-screen-photo-mild",
+   "category": "photo",
+   "parse": "ocr",
+   "field": "due_date",
+   "gt": "2025-11-22",
+   "pred": null
+  },
+  {
+   "docId": "katana/validation-035",
+   "category": "katana",
+   "parse": "ocr",
+   "field": "vendor_tax_id",
+   "gt": "999-83-6062",
+   "pred": "999-833-6062"
+  }
+ ]
+}

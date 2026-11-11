@@ -1,0 +1,20 @@
+{
+ "text": "{\n \"vendor_name\": {\"value\": \"Zambezi Reach Transport Limited\", \"confidence\": 0.97},\n \"vendor_tax_id\": {\"value\": \"1012097866\", \"confidence\": 0.95},\n \"invoice_number\": {\"value\": \"INV-2026-94104\", \"confidence\": 0.97},\n \"po_number\": {\"value\": null, \"confidence\": 0.85},\n \"invoice_date\": {\"value\": \"2025-07-03\", \"confidence\": 0.93},\n \"due_date\": {\"value\": \"2025-09-01\", \"confidence\": 0.93},\n \"currency\": {\"value\": \"ZMW\", \"confidence\": 0.93},\n \"subtotal\": {\"value\": 15769.20, \"confidence\": 0.98},\n \"tax\": {\"value\": 2523.07, \"confidence\": 0.97},\n \"freight\": {\"value\": null, \"confidence\": 0.95},\n \"total\": {\"value\": 18292.27, \"confidence\": 0.98},\n \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98},\n \"lines\": [\n  {\"description\": \"Abnormal load escort\", \"quantity\": 1, \"unit_price\": 6272.36, \"amount\": 6272.36},\n  {\"description\": \"Local delivery, 8t rigid\", \"quantity\": 4, \"unit_price\": 2374.21, \"amount\": 9496.84}\n ],\n \"lines_confidence\": 0.96,\n \"notes\": \"Trip Ref TR45899 and Load Ref LD-248097 are shipment references, not PO numbers, so po_number is null. The date order (DD/MM) is consistent with the 60-day terms, which give a due date of 2025-09-01. The K prefix is read as Zambian kwacha (ZMW).\"\n}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1095,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1227
+ },
+ "costUsd": 0.00080117,
+ "latencyMs": 7977,
+ "cached": false,
+ "cacheKey": "a2de2bd1d03b94282358aeb03ae75948465d29029adeca0f8a05530ae8f29de8",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "e44730758e958f6cc8f3f87087c09824ab7a3cd1e5daa85827f1af391e6e94ca"
+ }
+}

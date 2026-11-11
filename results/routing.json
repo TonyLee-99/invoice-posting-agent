@@ -1,0 +1,247 @@
+{
+ "note": "POs, receipts and vendor master are Simulated from labels; expected outcome is part of the generated label.",
+ "cases": 40,
+ "scenarios": {
+  "clean": 23,
+  "price_within_tolerance": 3,
+  "price_over_tolerance": 4,
+  "currency_mismatch": 2,
+  "tax_rate_mismatch": 3,
+  "duplicate": 1,
+  "no_po": 1,
+  "unknown_vendor": 1,
+  "no_receipt": 1,
+  "partial_receipts": 1
+ },
+ "matcherOnLabels": {
+  "accuracy": 0.975,
+  "confusion": {
+   "clean": {
+    "clean": 23,
+    "review": 1
+   },
+   "reject": {
+    "reject": 4
+   },
+   "review": {
+    "review": 12
+   }
+  },
+  "misses": [
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   }
+  ]
+ },
+ "endToEndOnExtracted": {
+  "threshold": 0.9,
+  "accuracy": 0.575,
+  "confusion": {
+   "clean": {
+    "clean": 8,
+    "review": 16
+   },
+   "reject": {
+    "reject": 4
+   },
+   "review": {
+    "review": 11,
+    "reject": 1
+   }
+  },
+  "misses": [
+   {
+    "docId": "ipp/currency-dual-usd-nad-4",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "ipp/handwritten-invoice-book-poor-6",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "ipp/hard-multiple-invoices-3",
+    "scenario": "tax_rate_mismatch",
+    "expected": "review",
+    "got": "reject"
+   },
+   {
+    "docId": "ipp/photo-motion-blur-moderate",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "ipp/scan-fax-mild",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "ipp/tax-percentage-line-1",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/test-011",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/test-014",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/train-027",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-005",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-008",
+    "scenario": "price_within_tolerance",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-018",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-023",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-030",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-032",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-035",
+    "scenario": "clean",
+    "expected": "clean",
+    "got": "review"
+   },
+   {
+    "docId": "katana/validation-037",
+    "scenario": "partial_receipts",
+    "expected": "clean",
+    "got": "review"
+   }
+  ]
+ },
+ "thresholdSweep": [
+  {
+   "threshold": 0.5,
+   "autoApproved": 19,
+   "autoRate": 0.475,
+   "precision": 1,
+   "precisionCI95": [
+    0.8318,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.7,
+   "autoApproved": 14,
+   "autoRate": 0.35,
+   "precision": 1,
+   "precisionCI95": [
+    0.7847,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.8,
+   "autoApproved": 12,
+   "autoRate": 0.3,
+   "precision": 1,
+   "precisionCI95": [
+    0.7575,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.85,
+   "autoApproved": 10,
+   "autoRate": 0.25,
+   "precision": 1,
+   "precisionCI95": [
+    0.7225,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.9,
+   "autoApproved": 8,
+   "autoRate": 0.2,
+   "precision": 1,
+   "precisionCI95": [
+    0.6756,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.95,
+   "autoApproved": 6,
+   "autoRate": 0.15,
+   "precision": 1,
+   "precisionCI95": [
+    0.6097,
+    1
+   ],
+   "falseApprovals": []
+  },
+  {
+   "threshold": 0.99,
+   "autoApproved": 0,
+   "autoRate": 0,
+   "precision": null,
+   "precisionCI95": null,
+   "falseApprovals": []
+  }
+ ],
+ "chosen": {
+  "threshold": 0.9,
+  "autoApproved": 8,
+  "autoRate": 0.2,
+  "precision": 1,
+  "precisionCI95": [
+   0.6756,
+   1
+  ],
+  "falseApprovals": []
+ }
+}

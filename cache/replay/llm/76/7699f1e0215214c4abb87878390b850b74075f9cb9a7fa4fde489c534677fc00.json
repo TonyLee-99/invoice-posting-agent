@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Mcdonald and Sons\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"991-86-2003\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"32656405\", \"confidence\": 0.98}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2013-10-25\", \"confidence\": 0.97}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.9}, \"subtotal\": {\"value\": 801.86, \"confidence\": 0.97}, \"tax\": {\"value\": 80.19, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 882.05, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Toddler Kids Monster Jam Shoes Size 11c Grave Digger\", \"quantity\": 1, \"unit_price\": 9.00, \"amount\": 9.00}, {\"description\": \"PUMA Pre-School Scuderia Ferrari Drift Cat 5 Ultra Il Shoes Boys 12c\", \"quantity\": 5, \"unit_price\": 21.22, \"amount\": 106.10}, {\"description\": \"Newborn Infant Baby Girl Boy Kid Winter Warm Coat Knit Outwear Hooded Jumpsuit\", \"quantity\": 4, \"unit_price\": 22.69, \"amount\": 90.76}, {\"description\": \"Nike Kids KD Trey 5 / Nike Black Size 4.5aY\", \"quantity\": 3, \"unit_price\": 22.00, \"amount\": 66.00}, {\"description\": \"Skechers Shoes Kids Size 2\", \"quantity\": 3, \"unit_price\": 10.00, \"amount\": 30.00}, {\"description\": \"Nautica Kids Boys Navy & Red with White Rubber Sole Running Sneakers Shoes US 10\", \"quantity\": 1, \"unit_price\": 500.00, \"amount\": 500.00}], \"lines_confidence\": 0.9, \"notes\": \"Quantities use a comma decimal separator (e.g. '1,00' read as 1). Date 10/25/2013 is read as month/day because 25 cannot be a month. Line amounts sum to the net subtotal of 801.86.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1555,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1466
+ },
+ "costUsd": 0.00107897,
+ "latencyMs": 9006,
+ "cached": false,
+ "cacheKey": "7699f1e0215214c4abb87878390b850b74075f9cb9a7fa4fde489c534677fc00",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "ad3398c586a4a0652b7455fbf1a4c6f2c972ae6b5254c2dd7e7270c41feb9fa1"
+ }
+}

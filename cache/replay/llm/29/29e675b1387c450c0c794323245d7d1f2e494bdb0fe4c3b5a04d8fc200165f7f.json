@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Jones Ltd\", \"confidence\": 0.9}, \"vendor_tax_id\": {\"value\": \"936-72-2389\", \"confidence\": 0.85}, \"invoice_number\": {\"value\": \"61942465\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2012-08-27\", \"confidence\": 0.95}, \"due_date\": {\"value\": null, \"confidence\": 0.9}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.6}, \"subtotal\": {\"value\": 40.00, \"confidence\": 0.97}, \"tax\": {\"value\": 4.00, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 44.00, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"DESIGNER MICHAEL KORS DRESS SIZE S\", \"quantity\": 2, \"unit_price\": 20.00, \"amount\": 40.00}], \"lines_confidence\": 0.93, \"notes\": \"Currency is inferred from the $ symbol in the summary. The seller has a GB IBAN and the address is an FPO AP military address, so the currency is ambiguous. Tax id format and date were read as printed; the date is MM/DD/YYYY because 27 cannot be a month.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 762,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1157
+ },
+ "costUsd": 0.00062067,
+ "latencyMs": 6428,
+ "cached": false,
+ "cacheKey": "29e675b1387c450c0c794323245d7d1f2e494bdb0fe4c3b5a04d8fc200165f7f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "b787d8ae8fdbd1c14675e27f09bb1eb3d903788cc86db6ae3720e44fb638c68d"
+ }
+}

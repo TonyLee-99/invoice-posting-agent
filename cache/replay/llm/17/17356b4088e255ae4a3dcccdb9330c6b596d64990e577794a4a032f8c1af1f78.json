@@ -1,0 +1,20 @@
+{
+ "text": "```json\n{\n \"vendor_name\": {\"value\": \"Mcgrath-Ruiz\", \"confidence\": 0.9},\n \"vendor_tax_id\": {\"value\": \"911-76-9645\", \"confidence\": 0.85},\n \"invoice_number\": {\"value\": \"18001573\", \"confidence\": 0.95},\n \"po_number\": {\"value\": null, \"confidence\": 0.9},\n \"invoice_date\": {\"value\": \"2012-12-30\", \"confidence\": 0.95},\n \"due_date\": {\"value\": null, \"confidence\": 0.95},\n \"currency\": {\"value\": \"USD\", \"confidence\": 0.85},\n \"subtotal\": {\"value\": 100.97, \"confidence\": 0.95},\n \"tax\": {\"value\": 10.10, \"confidence\": 0.95},\n \"freight\": {\"value\": null, \"confidence\": 0.9},\n \"total\": {\"value\": 111.07, \"confidence\": 0.95},\n \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95},\n \"lines\": [\n  {\"description\": \"mDesign Metal Wine Rack Storage Organizer, 6 Bottles - Chrome\", \"quantity\": 3, \"unit_price\": 22.99, \"amount\": 68.97},\n  {\"description\": \"New Never Used CROFTON CHEFS COLLECTION WINE COOLING STICK IN PACKAGE\", \"quantity\": 4, \"unit_price\": 3.00, \"amount\": 12.00},\n  {\"description\": \"Refinery Wine Opener\", \"quantity\": 2, \"unit_price\": 10.00, \"amount\": 20.00}\n ],\n \"lines_confidence\": 0.9,\n \"notes\": \"Date read as month/day/year because 12/30 cannot be day/month. Currency inferred as USD from the $ symbol and the US seller address; the IBAN prefix is GB, but no GBP amounts appear. Line net amounts sum to the 100.97 subtotal, and the 10% VAT of 10.10 gives the 111.07 total. Item number '8' on the Refinery Wine Opener row appears to be an OCR artifact for '3'. Decimal commas in quantities were read as decimal points (3,00 = 3).\"\n}\n```",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1480,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1277
+ },
+ "costUsd": 0.00100367,
+ "latencyMs": 9535,
+ "cached": false,
+ "cacheKey": "17356b4088e255ae4a3dcccdb9330c6b596d64990e577794a4a032f8c1af1f78",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "a640ad90d53d8c70dfa85cdbb35c89a031124463d8180d46a7a2c6f7bb1bf10f"
+ }
+}

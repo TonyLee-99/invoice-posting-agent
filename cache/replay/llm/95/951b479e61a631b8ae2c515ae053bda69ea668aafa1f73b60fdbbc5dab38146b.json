@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Waalhaven Industrial Supply B.V.\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"NL204359116\", \"confidence\": 0.93}, \"invoice_number\": {\"value\": \"BN-19064\", \"confidence\": 0.98}, \"po_number\": {\"value\": \"P238205\", \"confidence\": 0.97}, \"invoice_date\": {\"value\": \"2025-06-06\", \"confidence\": 0.97}, \"due_date\": {\"value\": \"2025-08-05\", \"confidence\": 0.97}, \"currency\": {\"value\": \"EUR\", \"confidence\": 0.99}, \"subtotal\": {\"value\": 8367.15, \"confidence\": 0.98}, \"tax\": {\"value\": 1757.10, \"confidence\": 0.98}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 10124.25, \"confidence\": 0.98}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Safety boots, steel toe, size 9\", \"quantity\": 2, \"unit_price\": 905.12, \"amount\": 1810.24}, {\"description\": \"Ratchet straps 50mm x 9m (4)\", \"quantity\": 9, \"unit_price\": 305.57, \"amount\": 2750.13}, {\"description\": \"Toner cartridge, black, high yield\", \"quantity\": 2, \"unit_price\": 1324.83, \"amount\": 2649.66}, {\"description\": \"Copy paper A4 80gsm, box of 5 reams\", \"quantity\": 4, \"unit_price\": 289.28, \"amount\": 1157.12}], \"lines_confidence\": 0.96, \"notes\": null}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 953,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1280
+ },
+ "costUsd": 0.00074077,
+ "latencyMs": 7273,
+ "cached": false,
+ "cacheKey": "951b479e61a631b8ae2c515ae053bda69ea668aafa1f73b60fdbbc5dab38146b",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "7f93d53018b41dd97ea4da924b4ed61013cc73992b389c22f08d31604117126e"
+ }
+}

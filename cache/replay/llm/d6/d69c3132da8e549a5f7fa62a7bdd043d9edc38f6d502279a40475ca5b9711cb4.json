@@ -1,0 +1,20 @@
+{
+ "text": "{\n \"vendor_name\": {\"value\": \"Suidkus Packaging (Pty) Ltd\", \"confidence\": 0.97},\n \"vendor_tax_id\": {\"value\": \"4614332794\", \"confidence\": 0.95},\n \"invoice_number\": {\"value\": \"CN-2026-0933\", \"confidence\": 0.95},\n \"po_number\": {\"value\": null, \"confidence\": 0.95},\n \"invoice_date\": {\"value\": \"2026-02-28\", \"confidence\": 0.97},\n \"due_date\": {\"value\": null, \"confidence\": 0.95},\n \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97},\n \"subtotal\": {\"value\": 7010.28, \"confidence\": 0.97},\n \"tax\": {\"value\": 1051.54, \"confidence\": 0.97},\n \"freight\": {\"value\": null, \"confidence\": 0.95},\n \"total\": {\"value\": 8061.82, \"confidence\": 0.97},\n \"document_type\": {\"value\": \"credit_note\", \"confidence\": 0.98},\n \"lines\": [\n  {\"description\": \"Stretch wrap film 500mm x 300m\", \"quantity\": 32, \"unit_price\": 162.80, \"amount\": 5209.60},\n  {\"description\": \"Safety boots, steel toe, size 9\", \"quantity\": 2, \"unit_price\": 900.34, \"amount\": 1800.68}\n ],\n \"lines_confidence\": 0.93,\n \"notes\": null\n}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1084,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1954
+ },
+ "costUsd": 0.000933,
+ "latencyMs": 7699,
+ "cached": false,
+ "cacheKey": "d69c3132da8e549a5f7fa62a7bdd043d9edc38f6d502279a40475ca5b9711cb4",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "f880019e054b860738264a5fe639cc1516e63ce6170bf4eeb43d862042662905"
+ }
+}

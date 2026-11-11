@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": null, \"confidence\": 0.9}, \"vendor_tax_id\": {\"value\": null, \"confidence\": 0.9}, \"invoice_number\": {\"value\": null, \"confidence\": 0.9}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": null, \"confidence\": 0.9}, \"due_date\": {\"value\": null, \"confidence\": 0.9}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.95}, \"subtotal\": {\"value\": null, \"confidence\": 0.9}, \"tax\": {\"value\": null, \"confidence\": 0.9}, \"freight\": {\"value\": null, \"confidence\": 0.9}, \"total\": {\"value\": null, \"confidence\": 0.9}, \"document_type\": {\"value\": \"other\", \"confidence\": 0.98}, \"lines\": [], \"lines_confidence\": 0.0, \"notes\": \"File contains three separate supplier invoices, so no single set of header or total values applies: (1) Karoo Engineering Supplies (Pty) Ltd, Invoice INV-2026-19520, PO 4500608608, total R 18 586,62; (2) Karoo Workshop Supplies (Pty) Ltd, Invoice IN0054738, PO P938603, total R18 138.38; (3) Kransberg Office Supplies (Pty) Ltd, Invoice 021995, total R 17 224,83. Each should be split and extracted as its own invoice. Currency is ZAR from the R symbol and South African suppliers.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 999,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 2079
+ },
+ "costUsd": 0.0009235700000000001,
+ "latencyMs": 10359,
+ "cached": false,
+ "cacheKey": "52f474c9e541074ba244710368e0a61b78f9b7fb42b4f844fd1ab9cb7b102597",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "6884fb75788c614cab9965807d09418171fe1e79635bb48af0b532f5e7b3031d"
+ }
+}

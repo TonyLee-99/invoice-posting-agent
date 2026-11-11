@@ -33,11 +33,14 @@ export interface Gt {
   tax: number | null;
   total: number | null;
   document_type: "invoice" | "credit_note" | "other";
+  /** IPP: the publisher marks inconsistent documents (totals that do not add up, several invoices in one file). */
+  should_flag?: boolean;
   lines: GtLine[];
 }
 
 export interface ManifestDoc {
   docId: string;
+  sha256: string;
   source: "ipp" | "katana";
   file: string; // relative to repo root
   mime: string;
@@ -62,6 +65,7 @@ async function ipp(): Promise<ManifestDoc[]> {
     const scored: string[] = e.scored.map((s: string) => (s === "line_items" ? "lines" : s)).filter((s: string) => s !== "flag");
     return {
       docId: `ipp/${r.doc_id}`,
+      sha256: "",
       source: "ipp",
       file: path.relative(ROOT, path.join(base, r.file_name)),
       mime: ext === "pdf" ? "application/pdf" : ext === "png" ? "image/png" : "image/jpeg",
@@ -81,6 +85,7 @@ async function ipp(): Promise<ManifestDoc[]> {
         tax: e.tax ?? null,
         total: e.total ?? null,
         document_type: e.document_type,
+        should_flag: Boolean(e.should_flag),
         lines: (e.lines ?? []).map((l: { description: string; amount: number; alt_amounts?: number[] }) => ({ description: l.description, quantity: null, unit_price: null, amount: l.amount, alt_amounts: l.alt_amounts ?? [] })),
       },
     } satisfies ManifestDoc;
@@ -112,6 +117,7 @@ async function katana(): Promise<ManifestDoc[]> {
       const items: Record<string, string>[] = Array.isArray(g.items) ? g.items : g.items ? [g.items] : [];
       out.push({
         docId: `katana/${id}`,
+        sha256: "",
         source: "katana",
         file: rel,
         mime: "image/jpeg",
@@ -139,7 +145,7 @@ async function katana(): Promise<ManifestDoc[]> {
   return out;
 }
 
-const docs = [...(await ipp()), ...(await katana())];
+const docs = [...(await ipp()), ...(await katana())].map((d) => ({ ...d, sha256: createHash("sha256").update(readFileSync(path.join(ROOT, d.file))).digest("hex") }));
 mkdirSync(path.join(ROOT, "eval/data"), { recursive: true });
 writeFileSync(path.join(ROOT, "eval/data/manifest.json"), JSON.stringify({ version: 1, generatedBy: "tsx eval/prepare.ts", docs }, null, 1) + "\n");
 const count = (f: (d: ManifestDoc) => boolean) => docs.filter(f).length;

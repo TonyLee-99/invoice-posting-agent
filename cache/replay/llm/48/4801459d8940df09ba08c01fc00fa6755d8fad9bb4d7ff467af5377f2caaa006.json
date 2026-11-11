@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This document is a credit note (CN-2026-0933) from Suidkus Packaging for ZAR 8061.82, dated 2026-02-28, referencing PO-OTEMINUSZA. It was held because credit notes are not posted as Bills and are handled manually, so please route it to the manual vendor-credit process rather than expecting it to post automatically.\", \"email_subject\": \"Credit Note CN-2026-0933 - Request for Confirmation (PO-OTEMINUSZA)\", \"email_body\": \"Dear Suidkus Packaging (Pty) Ltd team,\\n\\nThank you for your credit note CN-2026-0933 dated 28 February 2026, for a total of ZAR 8,061.82, referencing PO-OTEMINUSZA.\\n\\nOur accounts payable system is unable to process this document type automatically, so it is being handled manually. To help us complete our review, could you please confirm the following:\\n\\n1. That CN-2026-0933 is a credit note issued in relation to PO-OTEMINUSZA.\\n2. The total amount of ZAR 8,061.82 is correct.\\n\\nIf any details differ, please send a corrected document. Please note that receiving this request does not confirm any payment or credit application.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 449,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1198
+ },
+ "costUsd": 0.00046430000000000006,
+ "latencyMs": 6584,
+ "cached": false,
+ "cacheKey": "4801459d8940df09ba08c01fc00fa6755d8fad9bb4d7ff467af5377f2caaa006",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "5adcc6a24cad3a27d7ea1a7bb08269012243c1c6fe5213dddf72b61f65c4d9d2"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because three lines are billed well above their PO unit prices, beyond the allowed tolerance: Documentation fee at 478.56 against a PO price of 26.02 (tolerance 1), Customs clearance fee at 2508.48 against 136.39 (tolerance 2.73), and Cargo inspection attendance at 594.06 against 32.3 (tolerance 1). Check the PO pricing for PO-UALUSDNAD4 and confirm whether these charges are correct, were approved as extra charges, or were billed in error.\",\"email_subject\": \"Invoice F-26-9064 - Line Price Discrepancies (PO-UALUSDNAD4)\",\"email_body\": \"Dear Kunene Clearing & Forwarding team,\\n\\nThank you for invoice F-26-9064 dated 2026-03-16 for a total of 3581.1 NAD, referencing PO-UALUSDNAD4.\\n\\nWhen matching the invoice to our purchase order, we found the following line items billed above the agreed PO unit prices:\\n\\n- Documentation fee: billed 478.56; PO unit price 26.02 (quantity 1)\\n- Customs clearance fee: billed 2508.48; PO unit price 136.39 (quantity 1)\\n- Cargo inspection attendance: billed 594.06; PO unit price 32.3 (quantity 1)\\n\\nCould you please review these lines and either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for the amounts billed, such as an approved change order or additional authorization? \\n\\nOnce we receive your response, we will review the invoice again. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 995,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1490
+ },
+ "costUsd": 0.0007957000000000001,
+ "latencyMs": 8214,
+ "cached": false,
+ "cacheKey": "b34d0c6b7c5c741161647f4afddc8066935005abdaf378a2168c5531283d4d76",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "4cb19cecbadc28cc553babddf6e86b77b0d48d9bcd0b95b3c28aac1716521bcd"
+ }
+}

@@ -1,0 +1,1362 @@
+{
+  "generatedAt": "2026-11-11T10:05:10.145Z",
+  "command": "tsx eval/chaos.ts --seeds 300 --ablation-seeds 100 --ablations --shards 4 --out results/chaos.json",
+  "firstSeed": 1,
+  "variants": {
+    "all_defenses": {
+      "defenses": {
+        "stableRequestId": true,
+        "queryFirst": true,
+        "fencing": true,
+        "leaseGuard": true
+      },
+      "wallMs": 139313,
+      "summary": {
+        "seeds": 300,
+        "seedsWithViolation": 0,
+        "nonResidualSeeds": 257,
+        "nonResidualSeedsWithViolation": 0,
+        "residualEligibleSeeds": 43,
+        "residualSeedsWithDuplicate": 0,
+        "residualDuplicatesDetectedByReconcile": 0,
+        "invoices": 4180,
+        "posted": 4180,
+        "duplicateBills": 0,
+        "lostInvoices": 0,
+        "staleContentPostings": 0,
+        "ledgerLocalMismatches": 0,
+        "inRecoveryAfterRunbook": 0,
+        "notQuiescent": 0,
+        "livenessMsP50": 26,
+        "livenessMsP95": 549,
+        "workerCrashes": 942,
+        "editsApplied": 163,
+        "editsRefused409": 307,
+        "faultsFired": {
+          "query:expire_token": 33,
+          "query:latency": 653,
+          "create:hang_after_commit": 146,
+          "create:latency": 332,
+          "create:error500_before": 277,
+          "create:expire_token": 16,
+          "token:latency": 4,
+          "worker_crash": 942,
+          "emulator_restart": 75,
+          "create:error503_before": 146,
+          "create:error500_after": 228,
+          "create:reset_after_commit": 160,
+          "create:throttle429": 103,
+          "create:hang_before_commit": 29,
+          "query:error500_before": 177,
+          "token:expire_token": 2
+        },
+        "recoveryItemsOpened": {
+          "unknown_outcome": 1
+        }
+      },
+      "violations": []
+    },
+    "no_stable_requestid": {
+      "defenses": {
+        "stableRequestId": false,
+        "queryFirst": true,
+        "fencing": true,
+        "leaseGuard": true
+      },
+      "wallMs": 49810,
+      "summary": {
+        "seeds": 100,
+        "seedsWithViolation": 14,
+        "nonResidualSeeds": 86,
+        "nonResidualSeedsWithViolation": 10,
+        "residualEligibleSeeds": 14,
+        "residualSeedsWithDuplicate": 4,
+        "residualDuplicatesDetectedByReconcile": 3,
+        "invoices": 1380,
+        "posted": 1380,
+        "duplicateBills": 29,
+        "lostInvoices": 0,
+        "staleContentPostings": 0,
+        "ledgerLocalMismatches": 1,
+        "inRecoveryAfterRunbook": 0,
+        "notQuiescent": 0,
+        "livenessMsP50": 22,
+        "livenessMsP95": 515,
+        "workerCrashes": 322,
+        "editsApplied": 53,
+        "editsRefused409": 105,
+        "faultsFired": {
+          "query:expire_token": 8,
+          "create:latency": 123,
+          "query:latency": 234,
+          "query:error500_before": 66,
+          "create:error500_before": 87,
+          "worker_crash": 322,
+          "emulator_restart": 24,
+          "create:hang_after_commit": 52,
+          "create:error503_before": 48,
+          "create:error500_after": 77,
+          "create:reset_after_commit": 55,
+          "create:throttle429": 24,
+          "create:hang_before_commit": 11,
+          "create:expire_token": 10,
+          "token:latency": 1
+        },
+        "recoveryItemsOpened": {
+          "ambiguous_remote": 4,
+          "unknown_outcome": 1
+        }
+      },
+      "violations": [
+        {
+          "seed": 8,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 20,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 27,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 34,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 50,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 53,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 58,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 63,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 73,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 81,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 84,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 96,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 99,
+          "residualEligible": true,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 1,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 100,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        }
+      ]
+    },
+    "no_query_first": {
+      "defenses": {
+        "stableRequestId": true,
+        "queryFirst": false,
+        "fencing": true,
+        "leaseGuard": true
+      },
+      "wallMs": 50111,
+      "summary": {
+        "seeds": 100,
+        "seedsWithViolation": 12,
+        "nonResidualSeeds": 86,
+        "nonResidualSeedsWithViolation": 4,
+        "residualEligibleSeeds": 14,
+        "residualSeedsWithDuplicate": 8,
+        "residualDuplicatesDetectedByReconcile": 8,
+        "invoices": 1380,
+        "posted": 1380,
+        "duplicateBills": 22,
+        "lostInvoices": 0,
+        "staleContentPostings": 0,
+        "ledgerLocalMismatches": 0,
+        "inRecoveryAfterRunbook": 0,
+        "notQuiescent": 0,
+        "livenessMsP50": 27,
+        "livenessMsP95": 556,
+        "workerCrashes": 334,
+        "editsApplied": 49,
+        "editsRefused409": 109,
+        "faultsFired": {
+          "create:hang_after_commit": 68,
+          "create:error500_before": 106,
+          "create:latency": 128,
+          "worker_crash": 334,
+          "emulator_restart": 24,
+          "create:error503_before": 60,
+          "create:error500_after": 111,
+          "create:reset_after_commit": 45,
+          "create:throttle429": 34,
+          "create:hang_before_commit": 11,
+          "create:expire_token": 9,
+          "token:latency": 1
+        },
+        "recoveryItemsOpened": {}
+      },
+      "violations": [
+        {
+          "seed": 9,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 14,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 19,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 32,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 37,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 45,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 67,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 75,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 76,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 95,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 99,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 100,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        }
+      ]
+    },
+    "no_fencing_no_lease_guard": {
+      "defenses": {
+        "stableRequestId": true,
+        "queryFirst": true,
+        "fencing": false,
+        "leaseGuard": false
+      },
+      "wallMs": 47631,
+      "summary": {
+        "seeds": 100,
+        "seedsWithViolation": 0,
+        "nonResidualSeeds": 86,
+        "nonResidualSeedsWithViolation": 0,
+        "residualEligibleSeeds": 14,
+        "residualSeedsWithDuplicate": 0,
+        "residualDuplicatesDetectedByReconcile": 0,
+        "invoices": 1380,
+        "posted": 1380,
+        "duplicateBills": 0,
+        "lostInvoices": 0,
+        "staleContentPostings": 0,
+        "ledgerLocalMismatches": 0,
+        "inRecoveryAfterRunbook": 0,
+        "notQuiescent": 0,
+        "livenessMsP50": 8,
+        "livenessMsP95": 580,
+        "workerCrashes": 326,
+        "editsApplied": 47,
+        "editsRefused409": 111,
+        "faultsFired": {
+          "query:expire_token": 15,
+          "create:latency": 129,
+          "query:latency": 223,
+          "query:error500_before": 59,
+          "worker_crash": 326,
+          "emulator_restart": 24,
+          "create:error500_before": 85,
+          "create:hang_after_commit": 64,
+          "create:error503_before": 51,
+          "create:error500_after": 81,
+          "create:reset_after_commit": 53,
+          "create:throttle429": 28,
+          "create:hang_before_commit": 12,
+          "create:expire_token": 6,
+          "token:latency": 1
+        },
+        "recoveryItemsOpened": {}
+      },
+      "violations": []
+    },
+    "all_off": {
+      "defenses": {
+        "stableRequestId": false,
+        "queryFirst": false,
+        "fencing": false,
+        "leaseGuard": false
+      },
+      "wallMs": 63177,
+      "summary": {
+        "seeds": 100,
+        "seedsWithViolation": 84,
+        "nonResidualSeeds": 86,
+        "nonResidualSeedsWithViolation": 70,
+        "residualEligibleSeeds": 14,
+        "residualSeedsWithDuplicate": 14,
+        "residualDuplicatesDetectedByReconcile": 14,
+        "invoices": 1380,
+        "posted": 1380,
+        "duplicateBills": 353,
+        "lostInvoices": 0,
+        "staleContentPostings": 0,
+        "ledgerLocalMismatches": 1,
+        "inRecoveryAfterRunbook": 0,
+        "notQuiescent": 0,
+        "livenessMsP50": 39,
+        "livenessMsP95": 584,
+        "workerCrashes": 353,
+        "editsApplied": 51,
+        "editsRefused409": 107,
+        "faultsFired": {
+          "create:hang_after_commit": 77,
+          "create:error500_before": 111,
+          "create:latency": 138,
+          "worker_crash": 353,
+          "emulator_restart": 24,
+          "create:error503_before": 62,
+          "create:error500_after": 123,
+          "create:reset_after_commit": 49,
+          "create:throttle429": 38,
+          "create:hang_before_commit": 11,
+          "create:expire_token": 8,
+          "token:latency": 1
+        },
+        "recoveryItemsOpened": {
+          "unknown_outcome": 3
+        }
+      },
+      "violations": [
+        {
+          "seed": 1,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 3,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 4,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 5,
+          "residualEligible": false,
+          "duplicates": 13,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 6,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 8,
+          "residualEligible": false,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 9,
+          "residualEligible": false,
+          "duplicates": 9,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 10,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 11,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 12,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 13,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 14,
+          "residualEligible": true,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 15,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 16,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 17,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 18,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 19,
+          "residualEligible": true,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 20,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 21,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 22,
+          "residualEligible": false,
+          "duplicates": 8,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 23,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 26,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 27,
+          "residualEligible": true,
+          "duplicates": 10,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 28,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 29,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 30,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 31,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 32,
+          "residualEligible": true,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 34,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 35,
+          "residualEligible": false,
+          "duplicates": 7,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 36,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 37,
+          "residualEligible": true,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 38,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 39,
+          "residualEligible": false,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 40,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 41,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 42,
+          "residualEligible": false,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 43,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 45,
+          "residualEligible": true,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 47,
+          "residualEligible": false,
+          "duplicates": 8,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 48,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 49,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 50,
+          "residualEligible": false,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 51,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 52,
+          "residualEligible": false,
+          "duplicates": 8,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 53,
+          "residualEligible": true,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 56,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 57,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 58,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 59,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 60,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 61,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 62,
+          "residualEligible": false,
+          "duplicates": 8,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 63,
+          "residualEligible": false,
+          "duplicates": 9,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 64,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 65,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 66,
+          "residualEligible": false,
+          "duplicates": 16,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 67,
+          "residualEligible": false,
+          "duplicates": 6,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 68,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 1,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 69,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 70,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 71,
+          "residualEligible": false,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 73,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 75,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 76,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 77,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 79,
+          "residualEligible": false,
+          "duplicates": 7,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 80,
+          "residualEligible": false,
+          "duplicates": 11,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 81,
+          "residualEligible": false,
+          "duplicates": 11,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 83,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 84,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 85,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 86,
+          "residualEligible": false,
+          "duplicates": 2,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 87,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 88,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 89,
+          "residualEligible": false,
+          "duplicates": 5,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 91,
+          "residualEligible": true,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 92,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 94,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 95,
+          "residualEligible": true,
+          "duplicates": 3,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 97,
+          "residualEligible": false,
+          "duplicates": 1,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 98,
+          "residualEligible": false,
+          "duplicates": 4,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 99,
+          "residualEligible": true,
+          "duplicates": 9,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        },
+        {
+          "seed": 100,
+          "residualEligible": true,
+          "duplicates": 7,
+          "lost": 0,
+          "localWithoutLedger": 0,
+          "ledgerWithoutLocal": 0,
+          "staleContent": 0,
+          "quiescent": true
+        }
+      ]
+    }
+  }
+}

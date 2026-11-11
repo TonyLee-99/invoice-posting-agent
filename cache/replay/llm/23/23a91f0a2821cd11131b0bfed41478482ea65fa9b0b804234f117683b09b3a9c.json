@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"Invoice F-26-9064 from Kunene Clearing & Forwarding was held because three line items are billed well above the PO unit prices: Documentation fee (478.56 billed vs. 26.02 expected), Customs clearance fee (2508.48 vs. 136.39), and Cargo inspection attendance (594.06 vs. 32.3), each with a quantity of 1 and tolerances of 1, 2.73, and 1 respectively. Check whether these charges were approved as variations to PO-UALUSDNAD4 or whether the vendor applied the wrong rates, and confirm the invoice total of 3581.1 NAD against the PO before deciding next steps.\",\n\"email_subject\": \"Invoice F-26-9064 – Request for Corrected Invoice or Confirmation (PO-UALUSDNAD4)\",\n\"email_body\": \"Dear Kunene Clearing & Forwarding team,\\n\\nThank you for invoice F-26-9064 dated 2026-03-16 for a total of 3581.1 NAD, referencing PO-UALUSDNAD4.\\n\\nDuring our review, three line items did not match the agreed PO unit prices:\\n\\n- Documentation fee: billed 478.56, PO price 26.02 (quantity 1)\\n- Customs clearance fee: billed 2508.48, PO price 136.39 (quantity 1)\\n- Cargo inspection attendance: billed 594.06, PO price 32.3 (quantity 1)\\n\\nCould you please either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for these charges, such as an approved variation or change order? Once we receive your response, we will review it promptly.\\n\\nThank you for your cooperation.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 603,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1462
+ },
+ "costUsd": 0.0005941,
+ "latencyMs": 7893,
+ "cached": false,
+ "cacheKey": "23a91f0a2821cd11131b0bfed41478482ea65fa9b0b804234f117683b09b3a9c",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "4b56191ea78fc6282e5a32aa7eb3790c160c0a0542c4fbfc7641958eb4ef9d70"
+ }
+}

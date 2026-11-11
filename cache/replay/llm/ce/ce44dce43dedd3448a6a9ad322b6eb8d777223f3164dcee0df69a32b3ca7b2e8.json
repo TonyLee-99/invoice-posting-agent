@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Velasquez, Ward and Ballard\", \"confidence\": 0.93}, \"vendor_tax_id\": {\"value\": \"950-74-4484\", \"confidence\": 0.88}, \"invoice_number\": {\"value\": \"71748307\", \"confidence\": 0.96}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2011-12-24\", \"confidence\": 0.93}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.7}, \"subtotal\": {\"value\": 1433.55, \"confidence\": 0.97}, \"tax\": {\"value\": 143.35, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 1576.90, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"2pcs baby boys clothes cotton hoodied top+pants baby boys Outfits gentleman\", \"quantity\": 5, \"unit_price\": 10.99, \"amount\": 54.95}, {\"description\": \"fire los angeles dress Medium\", \"quantity\": 2, \"unit_price\": 6.50, \"amount\": 13.00}, {\"description\": \"PAS DE CALAIS DRESS WOMENS SIZE 36\", \"quantity\": 3, \"unit_price\": 9.95, \"amount\": 29.85}, {\"description\": \"Zara Yellow Shift Dress XS\", \"quantity\": 5, \"unit_price\": 24.75, \"amount\": 123.75}, {\"description\": \"miley cyrus Bubble Dress\", \"quantity\": 2, \"unit_price\": 16.00, \"amount\": 32.00}, {\"description\": \"NWT $1200 J.Crew Silk Chiffon Ivory Wedding Dress with Beading\", \"quantity\": 4, \"unit_price\": 295.00, \"amount\": 1180.00}], \"lines_confidence\": 0.9, \"notes\": \"Date read as US month/day order (24 cannot be a month). Currency inferred from the $ symbol; the IBAN prefix is GB and the seller address is in the US, so the currency is uncertain. Line amounts reconcile to the net subtotal of 1433.55. Vendor tax id may be affected by OCR.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1586,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1400
+ },
+ "costUsd": 0.00108127,
+ "latencyMs": 9540,
+ "cached": false,
+ "cacheKey": "ce44dce43dedd3448a6a9ad322b6eb8d777223f3164dcee0df69a32b3ca7b2e8",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "d0949b1ce9cd69497a830aa81b0613e8c22ef29485f12f972e4c7dcc4f83885f"
+ }
+}

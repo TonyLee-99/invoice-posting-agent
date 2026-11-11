@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Kransberg Clearing & Forwarding was held because three line items (Documentation fee, Delivery order handling, and Cargo inspection attendance) are billed well above the unit prices on PO-UALUSDZAR3, each beyond the allowed tolerance of 1. Please check each billed amount against the PO pricing and confirm whether the vendor used the wrong rates or the PO needs amending before any further action.\",\n\"email_subject\": \"Invoice 098052 – Price Discrepancies on PO-UALUSDZAR3\",\n\"email_body\": \"Dear Kransberg Clearing & Forwarding team,\\n\\nThank you for invoice 098052 dated 2026-02-06 for PO-UALUSDZAR3. During our review, we found the following line items billed above the agreed PO pricing:\\n\\n- Documentation fee: billed 508.52 ZAR; PO unit price 24.80 ZAR (quantity 1)\\n- Delivery order handling: billed 725.32 ZAR; PO unit price 39.31 ZAR (quantity 1)\\n- Cargo inspection attendance: billed 475.86 ZAR; PO unit price 25.79 ZAR (quantity 1)\\n\\nCould you please review these lines and either issue a corrected invoice reflecting the PO prices or confirm the rates that apply? We will continue processing once we have this information.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 488,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1451
+ },
+ "costUsd": 0.0005344,
+ "latencyMs": 6922,
+ "cached": false,
+ "cacheKey": "bd0da264f87f3987efcc4211a022e2dc3f7df480ac20b128ad74f7a8234cf0f5",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "8825271b3964795bcc6dcd0e401c15c83e1f5c138330c6aa2251049685275d83"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\":{\"value\":\"Copperline Workshop Supplies Ltd\",\"confidence\":0.95},\"vendor_tax_id\":{\"value\":\"1079386899\",\"confidence\":0.85},\"invoice_number\":{\"value\":\"F-26-8395\",\"confidence\":0.9},\"po_number\":{\"value\":null,\"confidence\":0.9},\"invoice_date\":{\"value\":\"2025-04-11\",\"confidence\":0.8},\"due_date\":{\"value\":\"2025-05-11\",\"confidence\":0.8},\"currency\":{\"value\":\"ZMW\",\"confidence\":0.97},\"subtotal\":{\"value\":48021.62,\"confidence\":0.9},\"tax\":{\"value\":7683.46,\"confidence\":0.9},\"freight\":{\"value\":null,\"confidence\":0.85},\"total\":{\"value\":55705.08,\"confidence\":0.92},\"document_type\":{\"value\":\"invoice\",\"confidence\":0.95},\"lines\":[],\"lines_confidence\":0.1,\"notes\":\"Item rows are garbled in the OCR text (the lines between the bill-to block and the Subtotal are unreadable), so no line items were extracted. Subtotal, VAT and total are consistent (48,021.62 + 7,683.46 = 55,705.08; 16% of subtotal = 7,683.46). Dates read as DD/MM/YYYY (Zambia, 30-day terms: 11 Apr to 11 May 2025). Vendor TPIN and invoice number were read from the header and may carry OCR errors.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 918,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1135
+ },
+ "costUsd": 0.00069427,
+ "latencyMs": 7917,
+ "cached": false,
+ "cacheKey": "ec1a66e3a80627ef5d711afd9b50266bbb27612f716be30a7f7b45899c47093f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "dd18bf581977d73cff7e2b95374a060ccaba88114f8cc7b79ca9a31144eccaf4"
+ }
+}

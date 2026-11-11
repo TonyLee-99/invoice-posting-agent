@@ -1,0 +1,20 @@
+{
+ "text": "{\n \"vendor_name\": {\"value\": \"Okavango Hardware (Pty) Ltd\", \"confidence\": 0.97},\n \"vendor_tax_id\": {\"value\": \"4875750551\", \"confidence\": 0.9},\n \"invoice_number\": {\"value\": \"INV-2026-70022\", \"confidence\": 0.97},\n \"po_number\": {\"value\": null, \"confidence\": 0.85},\n \"invoice_date\": {\"value\": \"2025-09-23\", \"confidence\": 0.95},\n \"due_date\": {\"value\": \"2025-11-22\", \"confidence\": 0.95},\n \"currency\": {\"value\": \"NAD\", \"confidence\": 0.95},\n \"subtotal\": {\"value\": 38696.11, \"confidence\": 0.95},\n \"tax\": {\"value\": 5804.42, \"confidence\": 0.95},\n \"freight\": {\"value\": null, \"confidence\": 0.9},\n \"total\": {\"value\": 44500.53, \"confidence\": 0.95},\n \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97},\n \"lines\": [\n  {\"description\": \"Toner cartridge, black, high yield\", \"quantity\": 6, \"unit_price\": 1267.49, \"amount\": 7604.94},\n  {\"description\": \"Safety boots, steel toe, size 9\", \"quantity\": null, \"unit_price\": 635.92, \"amount\": 4451.44},\n  {\"description\": \"LED work lamp 24V\", \"quantity\": null, \"unit_price\": 273.79, \"amount\": 547.58},\n  {\"description\": \"Truck tyre 315/80R22.5 drive\", \"quantity\": null, \"unit_price\": 5218.43, \"amount\": 26092.15}\n ],\n \"lines_confidence\": 0.75,\n \"notes\": \"Quantities for the boots, lamp and tyre are not legible in the OCR text; they are implied by amount / unit price (7, 2 and 5) but left null. Line amounts sum to the subtotal and subtotal plus tax equals the total. Tax equals 15% of subtotal. Stray OCR fragments ('MAR 202', 'A5', '\\\\ 6', '=') were ignored. Dates read as DD/MM/YYYY per Namibian format and the 60-day terms (23/09/2025 + 60 days = 22/11/2025).\"\n}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1517,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1318
+ },
+ "costUsd": 0.00103037,
+ "latencyMs": 9508,
+ "cached": false,
+ "cacheKey": "2ba74f075d616651f2b8ee5a17c3074b2ccf41d592b705f86b2a2ecdf7a0ca6f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "17d75e94d934a07abc5a9aada82a5860f224d3ec6f6c08d0aad173dad51b19ac"
+ }
+}

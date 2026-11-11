@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Greenleaf Office Supply\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"58-5678901\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"GLO-9015\", \"confidence\": 0.98}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2024-03-14\", \"confidence\": 0.95}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.95}, \"subtotal\": {\"value\": 747.00, \"confidence\": 0.98}, \"tax\": {\"value\": 59.76, \"confidence\": 0.97}, \"freight\": {\"value\": 35.00, \"confidence\": 0.97}, \"total\": {\"value\": 841.76, \"confidence\": 0.98}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Whiteboard, 6ft x 4ft magnetic\", \"quantity\": 3, \"unit_price\": 189.00, \"amount\": 567.00}, {\"description\": \"Dry-erase marker set (12 colors)\", \"quantity\": 8, \"unit_price\": 22.50, \"amount\": 180.00}], \"lines_confidence\": 0.97, \"notes\": \"Totals reconcile: line amounts sum to 747.00 subtotal; 8% of 747.00 = 59.76 tax; 747.00 + 35.00 freight + 59.76 tax = 841.76. Date read as US format (MM/DD/YYYY) given the US address and $ amounts.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 777,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1922
+ },
+ "costUsd": 0.0007731000000000001,
+ "latencyMs": 6346,
+ "cached": false,
+ "cacheKey": "030a044a8900b1b9d1c20a7477ee1d007e7123b9da0cacb3eb50ed060cbbd9a6",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "35168840580c9f333146307265355390fd9211008468851f9875626e58aa5229"
+ }
+}

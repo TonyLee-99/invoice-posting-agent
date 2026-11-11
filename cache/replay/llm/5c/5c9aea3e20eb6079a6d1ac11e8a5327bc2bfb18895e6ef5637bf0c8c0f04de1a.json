@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Conley Ltd\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"919-79-8417\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"58478169\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2016-07-04\", \"confidence\": 0.6}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.7}, \"subtotal\": {\"value\": 11147.25, \"confidence\": 0.95}, \"tax\": {\"value\": 1114.73, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 12261.98, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"30 Inches Marble Patio Table Top Malachite Stone Inlaid Coffee Table Home Decor\", \"quantity\": 3, \"unit_price\": 1023.75, \"amount\": 3071.25}, {\"description\": \"48 Inch Marble Restaurant Table Inlay with Lapis Lazuli Stone Dinning Table Top\", \"quantity\": 3, \"unit_price\": 2692.00, \"amount\": 8076.00}], \"lines_confidence\": 0.92, \"notes\": \"Invoice date 07/04/2016 is ambiguous: read as July 4 2016 because of the US addresses and $ symbol, but it could be 7 April 2016. Currency is USD from the $ symbol and US addresses, though the IBAN is GB and the number format is European (comma decimals).\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1227,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1257
+ },
+ "costUsd": 0.00087317,
+ "latencyMs": 8822,
+ "cached": false,
+ "cacheKey": "5c9aea3e20eb6079a6d1ac11e8a5327bc2bfb18895e6ef5637bf0c8c0f04de1a",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "381e92e232d29b96dc6d5686a6a9b799192d6cae99ade27a1e1cabb0a7173dcc"
+ }
+}

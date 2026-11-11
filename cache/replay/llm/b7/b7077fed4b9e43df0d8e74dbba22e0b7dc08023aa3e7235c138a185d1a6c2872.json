@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Erongo Workshop Supplies is held because it has no invoice number, and its stated total of 2227.2 does not match the computed total of 7147.21. The hex bolts line is billed at 6204.61 against a PO-based expected price of 3243.04, and the tax of 942.6 differs from the 930.69 expected at the PO's 15.00% rate. Check the invoice header, the total, the line price against PO-EBOOKPOOR6, and the tax calculation before deciding anything.\", \"email_subject\": \"Invoice from Erongo Workshop Supplies: corrections needed for PO-EBOOKPOOR6\", \"email_body\": \"Dear Erongo Workshop Supplies team,\\n\\nThank you for your invoice dated 2025-10-27 for PO-EBOOKPOOR6. Before we can process it, we need the following clarified or corrected:\\n\\n1. Invoice number: the invoice does not show an invoice number. Please provide one.\\n2. Total: the stated total is 2227.2 NAD, but the subtotal, tax, and freight add up to 7147.21 NAD. Please confirm the correct total.\\n3. Line price: the line \\\"Hex bolts M12 X50 galvanised (box 50)\\\" is billed at 6204.61, while the purchase order price gives 3243.04 for this quantity. Please confirm the price or issue a corrected invoice.\\n4. Tax: the tax shown is 942.6 NAD, while a 15.00% rate on the PO basis gives 930.69 NAD. Please confirm the tax amount.\\n\\nOnce we receive a corrected invoice or your confirmation, we will review it again. Thank you for your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 792,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1476
+ },
+ "costUsd": 0.0006914,
+ "latencyMs": 7091,
+ "cached": false,
+ "cacheKey": "b7077fed4b9e43df0d8e74dbba22e0b7dc08023aa3e7235c138a185d1a6c2872",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "dd21ea460e65eadf763e2d20d5561f9902825a1da0f6dda465694a6f88d8a9fd"
+ }
+}

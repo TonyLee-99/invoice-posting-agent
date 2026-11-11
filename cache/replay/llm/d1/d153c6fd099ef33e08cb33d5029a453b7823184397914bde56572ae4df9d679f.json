@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Etosha Gate Shipping Agencies CC\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"4682115008\", \"confidence\": 0.97}, \"invoice_number\": {\"value\": \"IN0001653\", \"confidence\": 0.98}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2026-05-20\", \"confidence\": 0.97}, \"due_date\": {\"value\": null, \"confidence\": 0.85}, \"currency\": {\"value\": \"NAD\", \"confidence\": 0.95}, \"subtotal\": {\"value\": 4353.39, \"confidence\": 0.98}, \"tax\": {\"value\": 653.01, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 5006.40, \"confidence\": 0.98}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Customs clearance fee\", \"quantity\": 1, \"unit_price\": 1725.96, \"amount\": 1725.96}, {\"description\": \"Agency fee on customs value\", \"quantity\": null, \"unit_price\": null, \"amount\": 2000.04}, {\"description\": \"Documentation fee\", \"quantity\": 1, \"unit_price\": 627.39, \"amount\": 627.39}], \"lines_confidence\": 0.9, \"notes\": \"Agency fee line shows 160,003.53 (customs value) at 1.25%, not a quantity, so quantity and unit_price are null. Due on receipt, so no due date is printed. Currency NAD inferred from the N$ symbol and a Namibian supplier. Line amounts sum to the subtotal and 15% VAT matches the tax.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1187,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1212
+ },
+ "costUsd": 0.00084417,
+ "latencyMs": 8618,
+ "cached": false,
+ "cacheKey": "d153c6fd099ef33e08cb33d5029a453b7823184397914bde56572ae4df9d679f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "9cd8c6ddf05c4ba90f3825b349aa60552e8034d9c4fb602f0f11ef72884baf70"
+ }
+}

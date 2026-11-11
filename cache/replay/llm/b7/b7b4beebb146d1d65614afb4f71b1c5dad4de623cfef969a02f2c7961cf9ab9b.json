@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held because the document type is \\\"other\\\" rather than a standard invoice, so it cannot be posted as a Bill; vendor credits and statements are handled manually. Required fields are also missing (vendor name, invoice number, invoice date, and total), the vendor is not in the vendor master, and no open purchase order matches. Check the source document to confirm what it is, then identify the vendor and obtain the missing details or a corrected invoice.\", \"email_subject\": \"Request for Corrected Invoice Details\", \"email_body\": \"Dear Vendor,\\n\\nThank you for your recent submission. We were unable to process the document as received because some required information is missing or unclear, including the vendor name, invoice number, invoice date, and total amount. We also could not match it to an open purchase order.\\n\\nCould you please send a corrected invoice that includes these details, along with the applicable purchase order number? If the document is a credit note or statement rather than an invoice, please let us know so we can route it correctly.\\n\\nThank you for your assistance. We look forward to your reply.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 366,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1406
+ },
+ "costUsd": 0.0004644,
+ "latencyMs": 6840,
+ "cached": false,
+ "cacheKey": "b7b4beebb146d1d65614afb4f71b1c5dad4de623cfef969a02f2c7961cf9ab9b",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "91ac660271bd6ead44eaba6f4db7076e4c29be25d179203358e8fdce11198a39"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice from Northwind Logistics LLC (NWL-20240318-002, total 1599.43 USD) was held because the freight charge of 85 exceeds the 50 freight allowance on PO-THSHIPPING. Please confirm the freight amount against the PO and shipping documentation, and check whether the extra 35 was approved or needs a corrected invoice.\", \"email_subject\": \"Invoice NWL-20240318-002 – Freight Charge Clarification Needed\", \"email_body\": \"Hello,\\n\\nThank you for invoice NWL-20240318-002 dated 2024-03-18 for 1599.43 USD, referencing PO-THSHIPPING.\\n\\nThe freight charge on this invoice is 85, which is above the 50 freight allowance on the purchase order. Could you please confirm whether the freight amount is correct and, if needed, send a corrected invoice or written confirmation of the approved freight charge?\\n\\nOnce we receive this, we will review it further. Thank you for your help.\\n\\nBest regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 361,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1173
+ },
+ "costUsd": 0.0004153,
+ "latencyMs": 5754,
+ "cached": false,
+ "cacheKey": "f07610b79a27f1fcad44d80bc468600043a7093eeb685e465235be54d098d242",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "068c3ec7dcce31789a89a55feb45f9f37e57ef0b7812e64952d44a4e2b7734c6"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This invoice was held for two reasons. The document is a credit note, which is not posted as a Bill and must be handled manually. Separately, the \\\"Pallet strapping kit\\\" line is billed at 3397.84, which is 339.78 over the PO unit price of 3058.06 and outside the 61.16 tolerance. Please confirm the document type with the vendor and check the billed price against PO-ITNDCZAREF before any further action.\",\n\"email_subject\": \"Invoice NdC90426 – Request for Clarification on Document Type and Pallet Strapping Kit Price\",\n\"email_body\": \"Dear Kransberg Tyre & Parts team,\\n\\nThank we for your document NdC90426 dated 2026-03-17, referencing PO-ITNDCZAREF, with a total of 3907.52 ZAR.\\n\\nWe have two items to confirm:\\n\\n1. Document type: This document is identified as a credit note. Could you please confirm whether it is a credit note or whether a corrected invoice was intended?\\n\\n2. Pallet strapping kit pricing: The line \\\"Pallet strapping kit\\\" (quantity 1) is billed at 3397.84, while the PO unit price is 3058.06, a difference of 339.78. Could you please confirm the correct price, or send a corrected invoice reflecting the PO price?\\n\\nPlease reply with a corrected invoice or written confirmation at your earliest convenience so we can process your document.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 516,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1324
+ },
+ "costUsd": 0.000523,
+ "latencyMs": 3989,
+ "cached": false,
+ "cacheKey": "b0376c0056c8ac4932f4822acf942925747c5ff4fcdc3d4b3dc4649e3c2352a3",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "75606f363b8e3733325d9b8bd025271431c4a72ee9e684ab2935c1b2984a6aef"
+ }
+}

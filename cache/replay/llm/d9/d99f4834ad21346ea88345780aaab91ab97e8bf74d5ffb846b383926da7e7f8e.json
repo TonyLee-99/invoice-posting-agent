@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Northwind Logistics LLC\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"91-2345678\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"NWL-20240318-002\", \"confidence\": 0.97}, \"po_number\": {\"value\": \"PO-RB-00441\", \"confidence\": 0.97}, \"invoice_date\": {\"value\": \"2024-03-18\", \"confidence\": 0.97}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 1422.00, \"confidence\": 0.98}, \"tax\": {\"value\": 92.43, \"confidence\": 0.97}, \"freight\": {\"value\": 85.00, \"confidence\": 0.97}, \"total\": {\"value\": 1599.43, \"confidence\": 0.98}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Pallet jack, 5500 lb capacity\", \"quantity\": 2, \"unit_price\": 489.00, \"amount\": 978.00}, {\"description\": \"Stretch wrap rolls, 18-inch x 1500 ft\", \"quantity\": 12, \"unit_price\": 24.50, \"amount\": 294.00}, {\"description\": \"Warehouse floor tape, yellow, 100 ft\", \"quantity\": 8, \"unit_price\": 18.75, \"amount\": 150.00}], \"lines_confidence\": 0.96, \"notes\": \"Date read as MM/DD/YYYY (US supplier, USD). Totals reconcile: 1422.00 + 85.00 + 92.43 = 1599.43. Sales tax 92.43 equals 6.5% of 1422.00.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 895,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1167
+ },
+ "costUsd": 0.00068917,
+ "latencyMs": 6449,
+ "cached": false,
+ "cacheKey": "d99f4834ad21346ea88345780aaab91ab97e8bf74d5ffb846b383926da7e7f8e",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "11e71424cffdc546b2a6c4375f3ae63093827781f2aade7de20421ef76fda261"
+ }
+}

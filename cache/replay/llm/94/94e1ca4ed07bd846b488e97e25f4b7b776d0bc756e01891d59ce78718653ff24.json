@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Blouberg Industrial Supply CC\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"4178287411\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"RA-81392\", \"confidence\": 0.98}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2025-01-16\", \"confidence\": 0.97}, \"due_date\": {\"value\": \"2025-01-30\", \"confidence\": 0.97}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 15659.82, \"confidence\": 0.95}, \"tax\": {\"value\": 2348.97, \"confidence\": 0.9}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 21430.46, \"confidence\": 0.5}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"LED work lamp 24V\", \"quantity\": 9, \"unit_price\": 243.05, \"amount\": 2187.45}, {\"description\": \"Ratchet straps 50mm x 9m (4)\", \"quantity\": 7, \"unit_price\": 348.37, \"amount\": 2438.59}, {\"description\": \"Air filter element, heavy duty\", \"quantity\": 5, \"unit_price\": 773.42, \"amount\": 3867.1}, {\"description\": \"Engine oil 15W-40, 20 L drum\", \"quantity\": 4, \"unit_price\": 1791.67, \"amount\": 7166.68}], \"lines_confidence\": 0.95, \"notes\": \"Total does not reconcile: line amounts sum to 15659.82 (matches subtotal), VAT at 15% is 2348.97 (matches tax), so subtotal plus tax is 18008.79, but the printed TOTAL is 21430.46 (difference 3421.67). The total is recorded as printed; verify against the source before payment. Line quantities and unit prices were checked and each multiplies to its line amount.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1205,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1195
+ },
+ "costUsd": 0.00084977,
+ "latencyMs": 8692,
+ "cached": false,
+ "cacheKey": "94e1ca4ed07bd846b488e97e25f4b7b776d0bc756e01891d59ce78718653ff24",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "775aed14e1f98ef0757edc9da8a85cf974be9ad085600e5092a2ffead0d47502"
+ }
+}

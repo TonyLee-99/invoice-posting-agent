@@ -1,0 +1,191 @@
+{
+ "n": 10,
+ "grounded": 10,
+ "groundedRate": 1,
+ "drafts": [
+  {
+   "docId": "ipp/credit-cr-suffix-za",
+   "scenario": "price_within_tolerance",
+   "codes": [
+    "unsupported_document"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This document is a credit note (CN-2026-0974) for ZAR 5,843.5 from Highveld Office Supplies, not a standard invoice, so it cannot be posted as a Bill and was held. Vendor credits are handled manually, so please process it through the manual credit-note workflow and confirm it against PO-CRSUFFIXZA before any offset is applied.",
+    "email_subject": "Request for confirmation: Credit note CN-2026-0974",
+    "email_body": "Dear Highveld Office Supplies team,\n\nThank you for your correspondence. We received credit note CN-2026-0974, dated 24 April 2025, for a total of ZAR 5,843.50 referencing PO-CRSUFFIXZA.\n\nTo help us process this correctly, could you please confirm the following:\n1. That this document is intended as a credit note against PO-CRSUFFIXZA, and the amount of ZAR 5,843.50 is correct.\n2. The original invoice number(s) this credit note applies to.\n\nIf a corrected document or a statement of account would be more appropriate, please send it and we will review it.\n\nThank you for your assistance.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0004456,
+   "latencyMs": 6253
+  },
+  {
+   "docId": "ipp/credit-ndc-za-ref",
+   "scenario": "price_over_tolerance",
+   "codes": [
+    "unsupported_document",
+    "price_over_tolerance"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice was held for two reasons. The document is a credit note, which is not posted as a Bill and must be handled manually. Separately, the \"Pallet strapping kit\" line is billed at 3397.84, which is 339.78 over the PO unit price of 3058.06 and outside the 61.16 tolerance. Please confirm the document type with the vendor and check the billed price against PO-ITNDCZAREF before any further action.",
+    "email_subject": "Invoice NdC90426 – Request for Clarification on Document Type and Pallet Strapping Kit Price",
+    "email_body": "Dear Kransberg Tyre & Parts team,\n\nThank we for your document NdC90426 dated 2026-03-17, referencing PO-ITNDCZAREF, with a total of 3907.52 ZAR.\n\nWe have two items to confirm:\n\n1. Document type: This document is identified as a credit note. Could you please confirm whether it is a credit note or whether a corrected invoice was intended?\n\n2. Pallet strapping kit pricing: The line \"Pallet strapping kit\" (quantity 1) is billed at 3397.84, while the PO unit price is 3058.06, a difference of 339.78. Could you please confirm the correct price, or send a corrected invoice reflecting the PO price?\n\nPlease reply with a corrected invoice or written confirmation at your earliest convenience so we can process your document.\n\nThank you for your assistance.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.000523,
+   "latencyMs": 3989
+  },
+  {
+   "docId": "ipp/credit-note-minus-za",
+   "scenario": "clean",
+   "codes": [
+    "unsupported_document"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This document is a credit note (CN-2026-0933) from Suidkus Packaging for ZAR 8061.82, dated 2026-02-28, referencing PO-OTEMINUSZA. It was held because credit notes are not posted as Bills and are handled manually, so please route it to the manual vendor-credit process rather than expecting it to post automatically.",
+    "email_subject": "Credit Note CN-2026-0933 - Request for Confirmation (PO-OTEMINUSZA)",
+    "email_body": "Dear Suidkus Packaging (Pty) Ltd team,\n\nThank you for your credit note CN-2026-0933 dated 28 February 2026, for a total of ZAR 8,061.82, referencing PO-OTEMINUSZA.\n\nOur accounts payable system is unable to process this document type automatically, so it is being handled manually. To help us complete our review, could you please confirm the following:\n\n1. That CN-2026-0933 is a credit note issued in relation to PO-OTEMINUSZA.\n2. The total amount of ZAR 8,061.82 is correct.\n\nIf any details differ, please send a corrected document. Please note that receiving this request does not confirm any payment or credit application.\n\nThank you for your assistance.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.00046430000000000006,
+   "latencyMs": 6584
+  },
+  {
+   "docId": "ipp/currency-dual-usd-nad-4",
+   "scenario": "clean",
+   "codes": [
+    "price_over_tolerance",
+    "price_over_tolerance",
+    "price_over_tolerance"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice was held because three lines are billed well above their PO unit prices, beyond the allowed tolerance: Documentation fee at 478.56 against a PO price of 26.02 (tolerance 1), Customs clearance fee at 2508.48 against 136.39 (tolerance 2.73), and Cargo inspection attendance at 594.06 against 32.3 (tolerance 1). Check the PO pricing for PO-UALUSDNAD4 and confirm whether these charges are correct, were approved as extra charges, or were billed in error.",
+    "email_subject": "Invoice F-26-9064 - Line Price Discrepancies (PO-UALUSDNAD4)",
+    "email_body": "Dear Kunene Clearing & Forwarding team,\n\nThank you for invoice F-26-9064 dated 2026-03-16 for a total of 3581.1 NAD, referencing PO-UALUSDNAD4.\n\nWhen matching the invoice to our purchase order, we found the following line items billed above the agreed PO unit prices:\n\n- Documentation fee: billed 478.56; PO unit price 26.02 (quantity 1)\n- Customs clearance fee: billed 2508.48; PO unit price 136.39 (quantity 1)\n- Cargo inspection attendance: billed 594.06; PO unit price 32.3 (quantity 1)\n\nCould you please review these lines and either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for the amounts billed, such as an approved change order or additional authorization? \n\nOnce we receive your response, we will review the invoice again. Thank you for your help.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0007957000000000001,
+   "latencyMs": 8214
+  },
+  {
+   "docId": "ipp/currency-dual-usd-zar-3",
+   "scenario": "price_over_tolerance",
+   "codes": [
+    "price_over_tolerance",
+    "price_over_tolerance",
+    "price_over_tolerance"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "Invoice 098052 from Kransberg Clearing & Forwarding is held because three lines are billed well above their PO unit prices, beyond the tolerance of 1: Documentation fee (billed 508.52 vs. PO 24.8), Delivery order handling (billed 725.32 vs. PO 39.31), and Cargo inspection attendance (billed 475.86 vs. PO 25.79). Check whether the PO pricing is correct or needs amendment, and confirm the billed amounts against the vendor's documentation before deciding how to proceed.",
+    "email_subject": "Invoice 098052 (PO-UALUSDZAR3): Pricing Discrepancy – Corrected Invoice or Confirmation Requested",
+    "email_body": "Dear Kransberg Clearing & Forwarding team,\n\nThank you for invoice 098052 dated 2026-02-06, for a total of ZAR 1,966.16, referencing PO-UALUSDZAR3.\n\nDuring our review, three line items did not match the unit prices on the purchase order:\n\n- Documentation fee: invoiced ZAR 508.52; PO unit price ZAR 24.80\n- Delivery order handling: invoiced ZAR 725.32; PO unit price ZAR 39.31\n- Cargo inspection attendance: invoiced ZAR 475.86; PO unit price ZAR 25.79\n\nPlease either send a corrected invoice reflecting the PO pricing, or confirm in writing the basis for the amounts billed so we can review them against the purchase order.\n\nWe will process the invoice once the pricing has been resolved. Thank you for your prompt attention.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0007466,
+   "latencyMs": 8130
+  },
+  {
+   "docId": "ipp/freight-trip-reference-3",
+   "scenario": "currency_mismatch",
+   "codes": [
+    "currency_mismatch"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice was held because its currency is ZMW (Zambian kwacha), but the linked PO PO-REFERENCE3 is in USD. Before proceeding, confirm with the vendor or the PO owner which currency the invoice should be billed in and whether the 18292.27 total matches the agreed PO amount and currency.",
+    "email_subject": "Currency mismatch on invoice INV-2026-94104 (PO-REFERENCE3)",
+    "email_body": "Dear Zambezi Reach Transport Limited team,\n\nThank you for submitting invoice INV-2026-94104 dated 2025-07-03 for a total of 18292.27 ZMW.\n\nOur review found that the invoice is in ZMW, while the referenced purchase order PO-REFERENCE3 is in USD. To continue processing, could you please either:\n\n1. Issue a corrected invoice in USD matching the purchase order currency, or\n2. Confirm in writing the currency and amount agreed under PO-REFERENCE3.\n\nPlease note this message does not confirm approval or a payment date. We will review your response once received.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0004351,
+   "latencyMs": 6582
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-average-3",
+   "scenario": "price_over_tolerance",
+   "codes": [
+    "price_over_tolerance"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice was held because line \"Streten weap film 500mm x 300m\" is billed at 2875.11, which is 287.51 above the PO-based expected amount of 2587.6 and beyond the tolerance of 51.75 for quantity 1. Please check the PO unit price against the vendor's invoiced unit price, and confirm whether the vendor's pricing or the PO needs correction before any further action.",
+    "email_subject": "Invoice 2729 - Price Discrepancy on PO-OKAVERAGE3",
+    "email_body": "Dear Kafue Office Supplies Limited,\n\nThank you for invoice 2729 dated 2025-10-24 (total 4244.01 ZMW), referencing PO-OKAVERAGE3.\n\nDuring our review, we noticed that the line \"Streten weap film 500mm x 300m\" (quantity 1) is billed at 2875.11, while the purchase order price is 2587.6. This is a difference of 287.51.\n\nCould you please review this line and either send a corrected invoice or confirm the billed price in writing? We will continue processing once we have received your response.\n\nThank you for your assistance.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0004569,
+   "latencyMs": 7271
+  },
+  {
+   "docId": "ipp/handwritten-invoice-book-poor-6",
+   "scenario": "clean",
+   "codes": [
+    "missing_field",
+    "arithmetic_mismatch",
+    "price_over_tolerance",
+    "tax_mismatch"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice from Erongo Workshop Supplies is held because it has no invoice number, and its stated total of 2227.2 does not match the computed total of 7147.21. The hex bolts line is billed at 6204.61 against a PO-based expected price of 3243.04, and the tax of 942.6 differs from the 930.69 expected at the PO's 15.00% rate. Check the invoice header, the total, the line price against PO-EBOOKPOOR6, and the tax calculation before deciding anything.",
+    "email_subject": "Invoice from Erongo Workshop Supplies: corrections needed for PO-EBOOKPOOR6",
+    "email_body": "Dear Erongo Workshop Supplies team,\n\nThank you for your invoice dated 2025-10-27 for PO-EBOOKPOOR6. Before we can process it, we need the following clarified or corrected:\n\n1. Invoice number: the invoice does not show an invoice number. Please provide one.\n2. Total: the stated total is 2227.2 NAD, but the subtotal, tax, and freight add up to 7147.21 NAD. Please confirm the correct total.\n3. Line price: the line \"Hex bolts M12 X50 galvanised (box 50)\" is billed at 6204.61, while the purchase order price gives 3243.04 for this quantity. Please confirm the price or issue a corrected invoice.\n4. Tax: the tax shown is 942.6 NAD, while a 15.00% rate on the PO basis gives 930.69 NAD. Please confirm the tax amount.\n\nOnce we receive a corrected invoice or your confirmation, we will review it again. Thank you for your help.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0006914,
+   "latencyMs": 7091
+  },
+  {
+   "docId": "ipp/hard-multiple-invoices-3",
+   "scenario": "tax_rate_mismatch",
+   "codes": [
+    "unsupported_document",
+    "missing_field",
+    "missing_field",
+    "missing_field",
+    "missing_field",
+    "vendor_unknown",
+    "po_not_found"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "This invoice was held because the document type is \"other\" rather than a standard invoice, so it cannot be posted as a Bill; vendor credits and statements are handled manually. Required fields are also missing (vendor name, invoice number, invoice date, and total), the vendor is not in the vendor master, and no open purchase order matches. Check the source document to confirm what it is, then identify the vendor and obtain the missing details or a corrected invoice.",
+    "email_subject": "Request for Corrected Invoice Details",
+    "email_body": "Dear Vendor,\n\nThank you for your recent submission. We were unable to process the document as received because some required information is missing or unclear, including the vendor name, invoice number, invoice date, and total amount. We also could not match it to an open purchase order.\n\nCould you please send a corrected invoice that includes these details, along with the applicable purchase order number? If the document is a credit note or statement rather than an invoice, please let us know so we can route it correctly.\n\nThank you for your assistance. We look forward to your reply.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0004644,
+   "latencyMs": 6840
+  },
+  {
+   "docId": "ipp/hard-total-inflated",
+   "scenario": "clean",
+   "codes": [
+    "arithmetic_mismatch"
+   ],
+   "ok": true,
+   "ungroundedNumbers": [],
+   "grounded": true,
+   "draft": {
+    "explanation": "The invoice was held because its line items do not add up to the stated total: subtotal, tax, and freight come to 18008.79, but the invoice total shows 21430.46, a difference of 3421.67. Please check the invoice's line amounts, tax, and freight against the total, and confirm the PO reference PO-ALINFLATED matches the order you intended.",
+    "email_subject": "Request for corrected invoice RA-81392",
+    "email_body": "Dear Blouberg Industrial Supply CC team,\n\nThank you for invoice RA-81392 dated 2025-01-16. During our review, we found that the subtotal plus tax and freight comes to 18008.79 ZAR, while the invoice total shows 21430.46 ZAR, a difference of 3421.67 ZAR. We also noted that the PO reference on the invoice is PO-ALINFLATED.\n\nCould you please review the invoice and send us either a corrected invoice or written confirmation of the correct total and PO number? We will be able to continue processing once we receive this.\n\nThank you for your help.\n\nKind regards,\nAccounts Payable"
+   },
+   "costUsd": 0.0004285,
+   "latencyMs": 7191
+  }
+ ]
+}

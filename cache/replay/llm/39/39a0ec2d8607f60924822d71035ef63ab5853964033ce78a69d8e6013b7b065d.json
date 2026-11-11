@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Drakensig Freight (Pty) Ltd\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"4999811151\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"2026/2251\", \"confidence\": 0.97}, \"po_number\": {\"value\": \"P445200\", \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2026-01-18\", \"confidence\": 0.97}, \"due_date\": {\"value\": \"2026-02-17\", \"confidence\": 0.97}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 21279.25, \"confidence\": 0.97}, \"tax\": {\"value\": 3191.89, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.85}, \"total\": {\"value\": 24471.14, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Linehaul Durban - Ndola\", \"quantity\": 1, \"unit_price\": 15898.47, \"amount\": 15898.47}, {\"description\": \"Fuel surcharge 22.5%\", \"quantity\": null, \"unit_price\": null, \"amount\": 3577.16}, {\"description\": \"Toll fees recovered\", \"quantity\": 1, \"unit_price\": 593.10, \"amount\": 593.10}, {\"description\": \"Redelivery charge\", \"quantity\": 1, \"unit_price\": 1210.52, \"amount\": 1210.52}], \"lines_confidence\": 0.9, \"notes\": \"Fuel surcharge row shows a base value of 15 898.47 at 22.50%; quantity and unit price left null. Line amounts sum to the subtotal (21,279.25). No separate shipping row, so freight is null; the linehaul line is the item itself.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1231,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1342
+ },
+ "costUsd": 0.0008921700000000001,
+ "latencyMs": 8954,
+ "cached": false,
+ "cacheKey": "39a0ec2d8607f60924822d71035ef63ab5853964033ce78a69d8e6013b7b065d",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "bf461219ccb29d62d07e2dc894814c0798f3392d1a06f3f0c10d1b601421c366"
+ }
+}

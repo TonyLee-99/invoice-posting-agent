@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Etosha Gate Border Services (Pty) Ltd\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"4605244785\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"2026/4896\", \"confidence\": 0.97}, \"po_number\": {\"value\": \"PO-55693\", \"confidence\": 0.97}, \"invoice_date\": {\"value\": \"2026-05-20\", \"confidence\": 0.96}, \"due_date\": {\"value\": \"2026-05-27\", \"confidence\": 0.96}, \"currency\": {\"value\": \"NAD\", \"confidence\": 0.95}, \"subtotal\": {\"value\": 19795.95, \"confidence\": 0.97}, \"tax\": {\"value\": 247.40, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 20043.35, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.98}, \"lines\": [{\"description\": \"Customs duty (disbursement)\", \"quantity\": 1, \"unit_price\": 6205.79, \"amount\": 6205.79}, {\"description\": \"Container storage, 4 days (disbursement)\", \"quantity\": 1, \"unit_price\": 2676.45, \"amount\": 2676.45}, {\"description\": \"Import VAT paid on behalf (disbursement)\", \"quantity\": 1, \"unit_price\": 9264.40, \"amount\": 9264.40}, {\"description\": \"Cargo inspection attendance\", \"quantity\": 1, \"unit_price\": 716.72, \"amount\": 716.72}, {\"description\": \"Delivery order handling\", \"quantity\": 1, \"unit_price\": 449.55, \"amount\": 449.55}, {\"description\": \"Bill of entry preparation\", \"quantity\": 1, \"unit_price\": 483.04, \"amount\": 483.04}], \"lines_confidence\": 0.95, \"notes\": \"Three disbursement lines carry 0% VAT. VAT of 247.40 is 15% of the three fee lines (1,649.31). Line amounts sum to the subtotal of 19,795.95. Supplier Inv No SI895242 and File Ref CF9740/26 are secondary references and were not used as invoice_number.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1132,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1343
+ },
+ "costUsd": 0.00084287,
+ "latencyMs": 7891,
+ "cached": false,
+ "cacheKey": "ec74e45b373b1a98bd2514fe89c078148964c5d8e0f4f61f83e60bd782f8d33c",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "17ce47d77939324580ef731678c4508a5aaa81c6e950abc0e0d983aeaeb699c2"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Benson LLC\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"940-77-9230\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"76671573\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2012-04-08\", \"confidence\": 0.5}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.7}, \"subtotal\": {\"value\": 9.78, \"confidence\": 0.95}, \"tax\": {\"value\": 0.98, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.9}, \"total\": {\"value\": 10.76, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"A Short Guide to Writing About Art, 9th Edition (T\", \"quantity\": 2, \"unit_price\": 4.89, \"amount\": 9.78}], \"lines_confidence\": 0.7, \"notes\": \"Amounts use decimal commas (e.g. 9,78 = 9.78). Description is truncated in the source text. Date 04/08/2012 read as MM/DD because the $ symbol and US-style address suggest US; DD/MM would give 2012-08-04. The IBAN 'GBO3...' appears to be an OCR misread of 'GB03...' and is not extracted. Currency USD is based on the $ symbols; no ISO code is printed.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1144,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1147
+ },
+ "costUsd": 0.0008096700000000001,
+ "latencyMs": 8524,
+ "cached": false,
+ "cacheKey": "4a363d4a1c4f43f859fff319547fe43690d7aff17ee97f85f27fdef115900355",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "d77b7505534647363ca21fe8a92ab9ea5f74ce12940129bd7404cc65a37e6c51"
+ }
+}

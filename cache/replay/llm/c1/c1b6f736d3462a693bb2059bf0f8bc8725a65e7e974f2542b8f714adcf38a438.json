@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Kransberg Clearing & Forwarding (Pty) Ltd\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"4359779090\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"098052\", \"confidence\": 0.97}, \"po_number\": {\"value\": \"ORD-2698\", \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2026-02-06\", \"confidence\": 0.9}, \"due_date\": {\"value\": \"2026-03-08\", \"confidence\": 0.9}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.9}, \"subtotal\": {\"value\": 1709.70, \"confidence\": 0.9}, \"tax\": {\"value\": 256.46, \"confidence\": 0.93}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 1966.16, \"confidence\": 0.93}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Documentation fee\", \"quantity\": 1, \"unit_price\": 508.52, \"amount\": 508.52}, {\"description\": \"Delivery order handling\", \"quantity\": 1, \"unit_price\": 725.32, \"amount\": 725.32}, {\"description\": \"Cargo inspection attendance\", \"quantity\": 1, \"unit_price\": 475.86, \"amount\": 475.86}], \"lines_confidence\": 0.9, \"notes\": \"Payable amount is in ZAR (R 1 966,16). Line amounts are the ZAR column; the USD column totals US$ 92.66 at 1 USD = 18.4512 ZAR. Dates read as DD/MM/YYYY (South African format); the due date of 8 March is 30 days after 6 February, which supports this reading. Subtotal was derived as the sum of the ZAR line amounts (1709.70), and it reconciles with the printed VAT (256.46) to the total (1966.16).\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1321,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1359
+ },
+ "costUsd": 0.00094057,
+ "latencyMs": 9257,
+ "cached": false,
+ "cacheKey": "c1b6f736d3462a693bb2059bf0f8bc8725a65e7e974f2542b8f714adcf38a438",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "68c308dd911c37800b2752f2ce3a4600d054f3d1c3f673c6bf1104bdd51bfd5d"
+ }
+}

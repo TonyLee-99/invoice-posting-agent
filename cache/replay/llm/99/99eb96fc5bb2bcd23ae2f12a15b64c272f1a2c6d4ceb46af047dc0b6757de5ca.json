@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This document is a credit note (CN-2026-0974) for ZAR 5,843.5 from Highveld Office Supplies, not a standard invoice, so it cannot be posted as a Bill and was held. Vendor credits are handled manually, so please process it through the manual credit-note workflow and confirm it against PO-CRSUFFIXZA before any offset is applied.\",\n\"email_subject\": \"Request for confirmation: Credit note CN-2026-0974\",\n\"email_body\": \"Dear Highveld Office Supplies team,\\n\\nThank you for your correspondence. We received credit note CN-2026-0974, dated 24 April 2025, for a total of ZAR 5,843.50 referencing PO-CRSUFFIXZA.\\n\\nTo help us process this correctly, could you please confirm the following:\\n1. That this document is intended as a credit note against PO-CRSUFFIXZA, and the amount of ZAR 5,843.50 is correct.\\n2. The original invoice number(s) this credit note applies to.\\n\\nIf a corrected document or a statement of account would be more appropriate, please send it and we will review it.\\n\\nThank you for your assistance.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 412,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1197
+ },
+ "costUsd": 0.0004456,
+ "latencyMs": 6253,
+ "cached": false,
+ "cacheKey": "99eb96fc5bb2bcd23ae2f12a15b64c272f1a2c6d4ceb46af047dc0b6757de5ca",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "96f2984e4637d6411ea672a93a4b20a035a5df415eaeeb71206a37ffd78e4a4f"
+ }
+}

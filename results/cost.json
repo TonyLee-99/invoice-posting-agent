@@ -1,0 +1,12 @@
+{
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli (subscription; costs are list-price equivalents reported by the CLI)",
+ "invoices": 40,
+ "llmCalls": 50,
+ "totalUsd": 0.047961,
+ "perInvoiceUsdMean": 0.001199,
+ "llmLatencyMsP50": 9506,
+ "llmLatencyMsP95": 22032,
+ "parseMsP50": 1839,
+ "parseMsP95": 14369
+}

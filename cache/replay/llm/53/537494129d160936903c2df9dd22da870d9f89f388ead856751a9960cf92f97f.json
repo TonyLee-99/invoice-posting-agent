@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Highveld Office Supplies (Pty) Ltd\", \"confidence\": 0.98}, \"vendor_tax_id\": {\"value\": \"4355730504\", \"confidence\": 0.97}, \"invoice_number\": {\"value\": \"CN-2026-0974\", \"confidence\": 0.9}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2025-04-24\", \"confidence\": 0.95}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 5081.30, \"confidence\": 0.97}, \"tax\": {\"value\": 762.20, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 5843.50, \"confidence\": 0.97}, \"document_type\": {\"value\": \"credit_note\", \"confidence\": 0.99}, \"lines\": [{\"description\": \"LED work lamp 24V\", \"quantity\": 5, \"unit_price\": 288.40, \"amount\": 1442.00}, {\"description\": \"Brake pads, trailer axle set\", \"quantity\": 2, \"unit_price\": 1132.45, \"amount\": 2264.90}, {\"description\": \"Nitrile work gloves, size L (pack 12)\", \"quantity\": 20, \"unit_price\": 68.72, \"amount\": 1374.40}], \"lines_confidence\": 0.95, \"notes\": \"Credit note number carries year 2026 while the credit date is 2025; recorded as printed. Line amounts, subtotal, VAT and total reconcile arithmetically. Amounts are shown with CR markers and recorded here as positive magnitudes.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1089,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1238
+ },
+ "costUsd": 0.0008003699999999999,
+ "latencyMs": 7809,
+ "cached": false,
+ "cacheKey": "537494129d160936903c2df9dd22da870d9f89f388ead856751a9960cf92f97f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "6024608e82a59da337d47ffb27ec1f99b502e56666530378a741cd4f07fbe727"
+ }
+}

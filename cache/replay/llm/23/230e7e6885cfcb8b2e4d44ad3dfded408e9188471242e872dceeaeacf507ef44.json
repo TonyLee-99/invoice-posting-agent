@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Kafue Office Supplies Limited\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"1071880273\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"2729\", \"confidence\": 0.6}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2025-10-24\", \"confidence\": 0.93}, \"due_date\": {\"value\": \"2025-01-29\", \"confidence\": 0.3}, \"currency\": {\"value\": \"ZMW\", \"confidence\": 0.95}, \"subtotal\": {\"value\": 3658.63, \"confidence\": 0.8}, \"tax\": {\"value\": 585.38, \"confidence\": 0.8}, \"freight\": {\"value\": null, \"confidence\": 0.85}, \"total\": {\"value\": 4244.01, \"confidence\": 0.9}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"Streten weap film 500mm x 300m\", \"quantity\": 21, \"unit_price\": 136.91, \"amount\": 2875.11}, {\"description\": \"Ratchet straps 50mm x dm (4)\", \"quantity\": null, \"unit_price\": null, \"amount\": 783.52}], \"lines_confidence\": 0.4, \"notes\": \"OCR-degraded document. Invoice number read from 'No.: 27 29'. Due date is printed as 29/1/2025, which is before the invoice date; it may be a misread (possibly 29/11/2025), so it is low confidence. Subtotal, VAT and total were reconciled: 3658.63 x 1.16 = 4244.01 and VAT = 585.38. The ratchet straps amount is printed as 193.52, but that does not reconcile with the subtotal (2875.11 + 193.52 = 3068.63, not 3658.63), so 783.52 was inferred to balance the invoice; verify against the original. Film quantity 21 was inferred from 2875.11 / 136.91. Garbled text 'dm' is probably '6m' or '8m'. Currency ZMW is inferred from the 'K' symbol, Zambian TPIN and Zambian address.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 2128,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1140
+ },
+ "costUsd": 0.00130027,
+ "latencyMs": 13844,
+ "cached": false,
+ "cacheKey": "230e7e6885cfcb8b2e4d44ad3dfded408e9188471242e872dceeaeacf507ef44",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "bf0436aeae32d2499c1c46f72c8eea7d2b416284c92baffeb6973f034cb88aeb"
+ }
+}

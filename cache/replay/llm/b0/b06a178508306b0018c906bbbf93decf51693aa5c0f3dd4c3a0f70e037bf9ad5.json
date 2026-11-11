@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Decker PLC\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"957-87-4031\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"97511742\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2016-04-07\", \"confidence\": 0.55}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.55}, \"subtotal\": {\"value\": 4314.93, \"confidence\": 0.95}, \"tax\": {\"value\": 431.49, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 4746.42, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"Nintendo Wii New Super Mario Bros Console System Bundle Gamecube Compatible\", \"quantity\": 1, \"unit_price\": 89.99, \"amount\": 89.99}, {\"description\": \"Sony PlayStation 5 Console - White - Disc Version - CONFIRMED PRE ORDER PS5\", \"quantity\": 1, \"unit_price\": 499.99, \"amount\": 499.99}, {\"description\": \"Microsoft Xbox One S 1TB Console - White\", \"quantity\": 5, \"unit_price\": 189.00, \"amount\": 945.00}, {\"description\": \"Nintendo Wii Teal Blue Limited Edition Console with Mario Kart - MINT TESTED\", \"quantity\": 2, \"unit_price\": 114.99, \"amount\": 229.98}, {\"description\": \"Sony PlayStation 5 Console - PS5- PRESALE- Disc Version Pre Order Confirmed\", \"quantity\": 3, \"unit_price\": 849.99, \"amount\": 2549.97}], \"lines_confidence\": 0.9, \"notes\": \"Date is ambiguous (04/07/2016): read as MM/DD because the seller and client addresses are US and the amounts use $; a DD/MM reading would give 2016-07-04. Currency is USD from the $ symbols, but the seller name 'PLC' and GB IBAN suggest GBP, so please verify. Quantity and amount formats use comma decimals, which were read as decimal points. Line amounts sum to the subtotal.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1700,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1413
+ },
+ "costUsd": 0.00114087,
+ "latencyMs": 10955,
+ "cached": false,
+ "cacheKey": "b06a178508306b0018c906bbbf93decf51693aa5c0f3dd4c3a0f70e037bf9ad5",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "844ea24ab313ca7e7bb7baf4bc611bed3eebc962d4fd5af71341f3e71862fc27"
+ }
+}

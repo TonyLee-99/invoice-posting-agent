@@ -9,6 +9,7 @@
   "dependencies": {
     "@ipa/domain": "*",
     "pdfjs-dist": "^6.5.438",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "^7.0.0",
+    "@ipa/llm": "*"
   }
 }

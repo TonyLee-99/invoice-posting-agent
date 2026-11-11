@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Kunene Clearing & Forwarding (Pty) Ltd\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"4139321248\", \"confidence\": 0.95}, \"invoice_number\": {\"value\": \"F-26-9064\", \"confidence\": 0.98}, \"po_number\": {\"value\": \"4500421384\", \"confidence\": 0.97}, \"invoice_date\": {\"value\": \"2026-03-16\", \"confidence\": 0.95}, \"due_date\": {\"value\": \"2026-04-15\", \"confidence\": 0.95}, \"currency\": {\"value\": \"NAD\", \"confidence\": 0.85}, \"subtotal\": {\"value\": 3581.10, \"confidence\": 0.85}, \"tax\": {\"value\": null, \"confidence\": 0.6}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 3581.10, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Documentation fee\", \"quantity\": 1, \"unit_price\": 478.56, \"amount\": 478.56}, {\"description\": \"Customs clearance fee\", \"quantity\": 1, \"unit_price\": 2508.48, \"amount\": 2508.48}, {\"description\": \"Cargo inspection attendance\", \"quantity\": 1, \"unit_price\": 594.06, \"amount\": 594.06}], \"lines_confidence\": 0.9, \"notes\": \"Lines and totals are in NAD, the payable currency. The USD source amounts were 26.02, 136.39 and 32.30 (USD subtotal 194.71) at 1 USD = 18.3920 NAD. The invoice header says Currency USD but the payable total is NAD 3,581.10. No VAT or tax line is printed, so tax is null.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1288,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1297
+ },
+ "costUsd": 0.0009116700000000001,
+ "latencyMs": 8603,
+ "cached": false,
+ "cacheKey": "c963c5ea2fd3fec63dbe67a33be6d64858b23016ea67d085987ddcdb0ab8f393",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "860b4b48b6ca2d6d273637e3f2d30c9fbdbcf269ca35460feaeedc73aec185e7"
+ }
+}

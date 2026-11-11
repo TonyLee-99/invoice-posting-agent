@@ -8,3 +8,6 @@ export * from "./recovery.ts";
 export * from "./tokens.ts";
 export * from "./harness.ts";
 export * from "./chaos.ts";
+export * from "./pipeline.ts";
+export * from "./api.ts";
+export * from "./config.ts";

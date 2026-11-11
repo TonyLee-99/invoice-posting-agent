@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Payne-Davis\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"963-77-0670\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"65095335\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2017-02-15\", \"confidence\": 0.9}, \"due_date\": {\"value\": null, \"confidence\": 0.9}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.8}, \"subtotal\": {\"value\": 42645.83, \"confidence\": 0.97}, \"tax\": {\"value\": 4264.58, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.9}, \"total\": {\"value\": 46910.41, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"15\\\"x15\\\" White Marble Chess Top Table Carnelian Inlay Art Black Friday Gift Deco\", \"quantity\": 1, \"unit_price\": 600.00, \"amount\": 600.00}, {\"description\": \"Antique Vintage style hand carved table *Unique*\", \"quantity\": 2, \"unit_price\": 13000.00, \"amount\": 26000.00}, {\"description\": \"15\\\"x15\\\" White Decorative Coffee Table Top Lapis Lazuli Marquetery Patio Décor\", \"quantity\": 5, \"unit_price\": 645.77, \"amount\": 3228.85}, {\"description\": \"6'x3' White Marble Dining Table Top Multi Inlay Floral Elephant Art Decor H4952\", \"quantity\": 2, \"unit_price\": 6408.49, \"amount\": 12816.98}], \"lines_confidence\": 0.92, \"notes\": \"Date read as US month/day (02/15/2017) because the day value 15 cannot be a month and the parties have US addresses. Amounts use space as thousands separator and comma as decimal separator. Currency is USD from the $ symbol in the summary, but the IBAN is GB-prefixed; confirm the payment currency if it matters.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1387,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1365
+ },
+ "costUsd": 0.00097477,
+ "latencyMs": 9312,
+ "cached": false,
+ "cacheKey": "75f763f2448d91c98b4fe756cde533083a96d37a25d129e55885c32d6cd46efb",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "a094733b5b3e786309d69897a12b996c6ed4241ada6b053416d535ca4f2c361d"
+ }
+}

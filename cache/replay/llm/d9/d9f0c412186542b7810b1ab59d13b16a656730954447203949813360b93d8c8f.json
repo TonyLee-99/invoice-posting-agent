@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Kransberg Tyre & Parts (Pty) Ltd\", \"confidence\": 0.97}, \"vendor_tax_id\": {\"value\": \"4975331448\", \"confidence\": 0.92}, \"invoice_number\": {\"value\": \"NdC90426\", \"confidence\": 0.85}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2026-03-17\", \"confidence\": 0.9}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"ZAR\", \"confidence\": 0.97}, \"subtotal\": {\"value\": 3397.84, \"confidence\": 0.95}, \"tax\": {\"value\": 509.68, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 3907.52, \"confidence\": 0.95}, \"document_type\": {\"value\": \"credit_note\", \"confidence\": 0.97}, \"lines\": [{\"description\": \"Pallet strapping kit\", \"quantity\": 8, \"unit_price\": 424.73, \"amount\": 3397.84}], \"lines_confidence\": 0.93, \"notes\": \"Credit note referencing invoice F-26-6057. Customer shown as Karoo Freight (Pty) Ltd. Amounts printed as negatives and returned as positive magnitudes. Document uses South African comma-decimal formatting (e.g. 424,73 = 424.73). Line amount 8 x 424.73 = 3397.84 reconciles to subtotal; 15% VAT on 3397.84 = 509.68; total 3907.52.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1077,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1172
+ },
+ "costUsd": 0.0007811700000000001,
+ "latencyMs": 8224,
+ "cached": false,
+ "cacheKey": "d9f0c412186542b7810b1ab59d13b16a656730954447203949813360b93d8c8f",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "a8fbb54040e092b8b700a1301f07ac6e0981ba229d8f128750109a327937ba5e"
+ }
+}

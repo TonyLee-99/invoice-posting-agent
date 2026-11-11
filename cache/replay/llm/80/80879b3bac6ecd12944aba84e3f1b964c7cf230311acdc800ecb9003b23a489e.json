@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Baker, Michael and Martin\", \"confidence\": 0.9}, \"vendor_tax_id\": {\"value\": \"986-85-0797\", \"confidence\": 0.88}, \"invoice_number\": {\"value\": \"36279024\", \"confidence\": 0.95}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2014-08-18\", \"confidence\": 0.95}, \"due_date\": {\"value\": null, \"confidence\": 0.9}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.9}, \"subtotal\": {\"value\": 1141.06, \"confidence\": 0.95}, \"tax\": {\"value\": 114.11, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.9}, \"total\": {\"value\": 1255.17, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"Oomphies Boys Ankle Boots Shoes Gray Green Kids Size 2 EUC\", \"quantity\": 3.0, \"unit_price\": 11.99, \"amount\": 35.97}, {\"description\": \"Adult Girl Version Hermione Granger Cosplay Costume Gryffindor Kid size In Stock\", \"quantity\": 5.0, \"unit_price\": 64.16, \"amount\": 320.8}, {\"description\": \"Boys water/beach/pool black orange and blue hook and loop size 13-1 shoes\", \"quantity\": 5.0, \"unit_price\": 1.18, \"amount\": 5.9}, {\"description\": \"INC International Concepts Children Shoes nvyzc7, Black, Size Little Kid 2.5\", \"quantity\": 3.0, \"unit_price\": 73.48, \"amount\": 220.44}, {\"description\": \"Nautica Kids Boys Navy & Red with White Rubber Sole Running Sneakers Shoes US 10\", \"quantity\": 1.0, \"unit_price\": 500.0, \"amount\": 500.0}, {\"description\": \"Beyblade Burst B-163 Superking Brave Valkyrie.Ev' 2A Top /Launcher /Grip Kid Toy\", \"quantity\": 5.0, \"unit_price\": 11.59, \"amount\": 57.95}], \"lines_confidence\": 0.9, \"notes\": null}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1322,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1502
+ },
+ "costUsd": 0.0009696700000000001,
+ "latencyMs": 7654,
+ "cached": false,
+ "cacheKey": "80879b3bac6ecd12944aba84e3f1b964c7cf230311acdc800ecb9003b23a489e",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "19c36a2995d7f4614a582ff24ca769a17df9db70f7acfb50c282228beb2850ac"
+ }
+}

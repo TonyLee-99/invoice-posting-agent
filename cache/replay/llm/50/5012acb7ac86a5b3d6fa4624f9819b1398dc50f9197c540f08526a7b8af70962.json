@@ -1,0 +1,20 @@
+{
+ "text": "```json\n{\n \"vendor_name\": {\"value\": \"Erongo Workshop Supplies (Pty) Ltd\", \"confidence\": 0.9},\n \"vendor_tax_id\": {\"value\": \"4999912828\", \"confidence\": 0.6},\n \"invoice_number\": {\"value\": null, \"confidence\": 0.2},\n \"po_number\": {\"value\": null, \"confidence\": 0.8},\n \"invoice_date\": {\"value\": \"2025-10-27\", \"confidence\": 0.4},\n \"due_date\": {\"value\": null, \"confidence\": 0.9},\n \"currency\": {\"value\": \"NAD\", \"confidence\": 0.7},\n \"subtotal\": {\"value\": 6204.61, \"confidence\": 0.5},\n \"tax\": {\"value\": 942.6, \"confidence\": 0.3},\n \"freight\": {\"value\": null, \"confidence\": 0.8},\n \"total\": {\"value\": 2227.2, \"confidence\": 0.2},\n \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.8},\n \"lines\": [\n  {\"description\": \"Hex bolts M12 X50 galvanised (box 50)\", \"quantity\": null, \"unit_price\": null, \"amount\": 6204.61}\n ],\n \"lines_confidence\": 0.3,\n \"notes\": \"Low-quality OCR. The invoice number, date, line amount and totals are partly illegible. The totals do not reconcile: 15% VAT on 6204.61 would be 930.69 and a total of 7135.30, which matches neither the printed VAT nor the printed total. Verify all amounts against the original document. Date read as 27/10/2025 (day-first, Namibia) but the month digit is uncertain. Currency inferred as NAD from the 'N' prefix, the 15% VAT rate and the Namibian address.\"\n}\n```",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1787,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1200
+ },
+ "costUsd": 0.0011417699999999999,
+ "latencyMs": 11535,
+ "cached": false,
+ "cacheKey": "5012acb7ac86a5b3d6fa4624f9819b1398dc50f9197c540f08526a7b8af70962",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "d75b1d47b924d2e06e14d7546f5d896167423542d35970fcf68ea6b412f69b14"
+ }
+}

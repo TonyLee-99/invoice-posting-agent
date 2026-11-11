@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Pierce PLC\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"959-99-4796\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"67856369\", \"confidence\": 0.95}, \"po_number\": {\"value\": null, \"confidence\": 0.95}, \"invoice_date\": {\"value\": \"2020-05-27\", \"confidence\": 0.9}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.75}, \"subtotal\": {\"value\": 4502.56, \"confidence\": 0.95}, \"tax\": {\"value\": 450.26, \"confidence\": 0.95}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 4952.82, \"confidence\": 0.95}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"24 Inches Round Marble Coffee Table Top Inlay Sofa Table with Geometrical Design\", \"quantity\": 4, \"unit_price\": 446.25, \"amount\": 1785.00}, {\"description\": \"30\\\"x30\\\" Marble Black Top Table Semi Precious Bird Art Black Friday Gift Décor\", \"quantity\": 1, \"unit_price\": 2399.00, \"amount\": 2399.00}, {\"description\": \"2 Industrial Live edge Legs 16\\\" Tall Cast Aluminum Cast Iron Coffee Table Bench\", \"quantity\": 2, \"unit_price\": 159.28, \"amount\": 318.56}], \"lines_confidence\": 0.92, \"notes\": \"Amounts use comma as decimal separator and space as thousands separator; read as 1785.00 etc. Date read as MM/DD/YYYY because the seller is in the US (WI). The IBAN starts with GB, but the summary is shown in $, so currency is USD; confirm if the payment is actually in GBP. Line amounts sum to the subtotal (4502.56).\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1390,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1327
+ },
+ "costUsd": 0.00096867,
+ "latencyMs": 9665,
+ "cached": false,
+ "cacheKey": "7c4bad7f738aebb0d1975752ee09cf3a9a7367564d8b53f111b83f01a98386bc",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "a88b49705ecd0492fcaf531729f62779f720b34d039fe25023069083a7318fa3"
+ }
+}

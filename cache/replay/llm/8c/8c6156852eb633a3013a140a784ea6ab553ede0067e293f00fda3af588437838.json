@@ -1,0 +1,20 @@
+{
+ "text": "{\"explanation\": \"This document was held because it is a credit note, which AP handles manually rather than posting as a Bill, and because the line \\\"Pallet strapping kit\\\" is billed at 3397.84 ZAR against a PO unit price of 3058.06 ZAR, which is outside the 61.16 ZAR tolerance. Check whether the document is correctly typed as a credit note, confirm the agreed price on PO-ITNDCZAREF, and ask the vendor to correct the line or confirm the price before any posting decision.\",\"email_subject\": \"Query on Invoice NdC90426 and PO-ITNDCZAREF\",\"email_body\": \"Dear Kransberg Tyre & Parts team,\\n\\nThank you for your document NdC90426 dated 2026-03-17, totalling 3907.52 ZAR, referencing PO-ITNDCZAREF.\\n\\nWe have two points to clarify before we can process it:\\n\\n1. Document type: our system shows this document as a credit note. Could you confirm whether it is a credit note or an invoice?\\n2. Pallet strapping kit: this line is billed at 3397.84 ZAR, while the purchase order unit price is 3058.06 ZAR for a quantity of 1. Could you confirm the agreed price or send a corrected invoice?\\n\\nPlease reply with a corrected document or written confirmation so we can review it. We appreciate your help.\\n\\nKind regards,\\nAccounts Payable\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 771,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 1320
+ },
+ "costUsd": 0.0006497,
+ "latencyMs": 8547,
+ "cached": false,
+ "cacheKey": "8c6156852eb633a3013a140a784ea6ab553ede0067e293f00fda3af588437838",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "draft",
+  "promptSha256": "68676c02d47cd8fc83e568494d80ba4fec0be9cc3e671c63dad763b572f4e160"
+ }
+}

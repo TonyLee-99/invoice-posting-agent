@@ -1,0 +1,20 @@
+{
+ "text": "{\"vendor_name\": {\"value\": \"Freeman and Sons\", \"confidence\": 0.95}, \"vendor_tax_id\": {\"value\": \"973-76-8676\", \"confidence\": 0.9}, \"invoice_number\": {\"value\": \"77833987\", \"confidence\": 0.97}, \"po_number\": {\"value\": null, \"confidence\": 0.9}, \"invoice_date\": {\"value\": \"2013-05-20\", \"confidence\": 0.97}, \"due_date\": {\"value\": null, \"confidence\": 0.95}, \"currency\": {\"value\": \"USD\", \"confidence\": 0.85}, \"subtotal\": {\"value\": 117.75, \"confidence\": 0.97}, \"tax\": {\"value\": 11.78, \"confidence\": 0.97}, \"freight\": {\"value\": null, \"confidence\": 0.95}, \"total\": {\"value\": 129.53, \"confidence\": 0.97}, \"document_type\": {\"value\": \"invoice\", \"confidence\": 0.95}, \"lines\": [{\"description\": \"Introduction to Thematic Cartography\", \"quantity\": 1, \"unit_price\": 8.99, \"amount\": 8.99}, {\"description\": \"Sonic Wind The Story of John Paul Stapp and How a Renegade Doctor Be\", \"quantity\": 1, \"unit_price\": 4.49, \"amount\": 4.49}, {\"description\": \"Entertaining\", \"quantity\": 1, \"unit_price\": 4.49, \"amount\": 4.49}, {\"description\": \"Rebecca to the Rescue (American Girl (Quality))\", \"quantity\": 2, \"unit_price\": 4.89, \"amount\": 9.78}, {\"description\": \"Gulag archipelago / Gulag Archipelago Volume 2 / 1st edition paperbacks\", \"quantity\": 3, \"unit_price\": 30.00, \"amount\": 90.00}], \"lines_confidence\": 0.85, \"notes\": \"Line 5 item number was OCR-read as '51' and treated as item 5. Line 2 description may be truncated at 'Be'. Currency is USD from the $ symbols and US addresses, but the seller IBAN is GB-prefixed; confirm the payable currency. Line amounts sum to the stated subtotal of 117.75.\"}",
+ "model": "claude-haiku-5-5",
+ "backend": "claude-cli",
+ "usage": {
+  "inputTokens": 2,
+  "outputTokens": 1452,
+  "cacheReadTokens": 807,
+  "cacheWriteTokens": 1339
+ },
+ "costUsd": 0.0010020699999999999,
+ "latencyMs": 9185,
+ "cached": false,
+ "cacheKey": "24fea4a4a486670997c3ab407f4bcd801272747ca9c6b5fb8ff878615ed30db1",
+ "request": {
+  "model": "claude-haiku-5-5",
+  "purpose": "extract",
+  "promptSha256": "16f06d6fe5768b8c25643ac45e1f053d233c58d055de0e30d1bcdb745d8d169b"
+ }
+}
