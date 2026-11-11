@@ -24,7 +24,7 @@ export interface SeedConfig {
   stallProb: number;
   queryLagMs: number;
   restart: boolean;
-  concurrentSameRequestId: "serialize" | "race";
+  concurrentSameRequestId: "reject_in_flight" | "race";
   rules: FaultRule[];
   edits: number;
   /** Frozen before the run: seeds where a duplicate is possible even with every defense (DESIGN §5 residual). */
@@ -73,7 +73,8 @@ export function configFor(seed: number): SeedConfig {
   const queryLagMs = r() < 0.3 ? Math.round(50 + 400 * r()) : 0;
   const restart = r() < 0.3;
   const stallProb = r() < 0.4 ? 0.05 : 0;
-  const concurrentSameRequestId = r() < 0.2 ? "race" : "serialize";
+  // Default is the behavior observed on the live sandbox (425 while in flight); "race" stays as the pessimistic case.
+  const concurrentSameRequestId = r() < 0.2 ? "race" : "reject_in_flight";
   return {
     seed,
     workers: 2 + Math.floor(r() * 7),
