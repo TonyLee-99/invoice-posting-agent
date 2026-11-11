@@ -148,6 +148,9 @@ export class QboClient {
       return { kind: "throttled", retryAfterMs: (Number.isFinite(ra) ? ra : 1) * 1000, httpStatus: 429 };
     }
     if (res.status >= 500) return { kind: "unknown", reason: `http ${res.status}`, httpStatus: res.status };
+    // Live sandbox: a second request with a requestid that is still being processed gets 425 Too Early (no body).
+    // The first may still commit, so this is an uncertain outcome, never a permanent rejection (INC-15).
+    if (res.status === 425) return { kind: "unknown", reason: "requestid in flight (425)", httpStatus: 425 };
     return { kind: "rejected", httpStatus: res.status, fault: parseFault(text) };
   }
 

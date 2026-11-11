@@ -50,8 +50,13 @@ export interface EmulatorOptions {
   requestIdTtlMs?: number;
   /** Bills become visible to queries only this long after creation (read-after-write lag). */
   queryLagMs?: number;
-  /** Concurrent requests with the same requestid: "serialize" waits for the first; "race" executes both. */
-  concurrentSameRequestId?: "serialize" | "race";
+  /**
+   * Concurrent requests with the same requestid: "reject_in_flight" (default; observed on the live sandbox, 2026-11-11)
+   * answers 425 with no body while the first is processing; "serialize" waits for the first; "race" executes both.
+   */
+  concurrentSameRequestId?: "reject_in_flight" | "serialize" | "race";
+  /** Fill fields the server defaults, as the live sandbox does (TxnDate, DueDate, CurrencyRef, ref names). Default on. */
+  serverDefaults?: boolean;
   accessTokenTtlMs?: number;
   seed?: number;
   vendors?: { id: string; name: string; currency: string }[];
@@ -243,7 +248,13 @@ export class QboEmulator {
       return this.send(res, 400, fault("ValidationFault", "requestid exceeds 50 characters", "2050"));
     }
     const key = requestId ? `${this.realmId}:${requestId}` : null;
-    if (key && this.opts.concurrentSameRequestId !== "race") {
+    const mode = this.opts.concurrentSameRequestId ?? "reject_in_flight";
+    if (key && mode === "reject_in_flight" && this.inflight.has(key)) {
+      res.writeHead(425);
+      res.end();
+      return;
+    }
+    if (key && mode === "serialize") {
       // Serialize same-requestid requests so the second sees the first's stored response.
       while (this.inflight.has(key)) await this.inflight.get(key);
     }
@@ -277,7 +288,7 @@ export class QboEmulator {
       }
       // In "race" mode yield once between the requestid check and the commit, so two concurrent requests with the
       // same requestid can both pass the check (a pessimistic model of what Intuit does not document).
-      if (this.opts.concurrentSameRequestId === "race") await sleep(15); // processing time during which a twin can arrive
+      if (mode !== "serialize") await sleep(15); // processing time during which a twin can arrive
       const bill = this.commitBill(parsed, requestId);
       const responseBody = JSON.stringify({ Bill: strip(bill), time: new Date().toISOString() });
       // Bill and requestid record are committed together (one synchronous step, one snapshot write).
@@ -321,8 +332,19 @@ export class QboEmulator {
     const id = String(this.state.nextId++);
     const now = new Date().toISOString();
     const total = round2(b.Line.reduce((s, l) => s + l.Amount, 0));
+    const today = new Date().toISOString().slice(0, 10);
+    const vendor = this.vendors.get(b.VendorRef.value);
+    // Server-side defaults seen on the live sandbox: TxnDate today, DueDate from terms (= TxnDate here), home/vendor
+    // currency, and display names added to refs. Payload comparisons must ignore fields the client did not send.
+    const defaults = this.opts.serverDefaults === false ? {} : {
+      TxnDate: b.TxnDate ?? today,
+      DueDate: b.DueDate ?? b.TxnDate ?? today,
+      CurrencyRef: { value: b.CurrencyRef?.value ?? vendor?.currency ?? "USD", name: "Currency" },
+      VendorRef: { ...b.VendorRef, name: vendor?.name ?? "Vendor" },
+    };
     const bill = {
       ...structuredClone(b),
+      ...defaults,
       Line: b.Line.map((l, i) => ({ ...structuredClone(l), Id: String(i + 1), LineNum: i + 1 })),
       Id: id,
       SyncToken: "0",

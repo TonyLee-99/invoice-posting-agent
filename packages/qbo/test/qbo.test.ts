@@ -72,6 +72,21 @@ describe("Bill create + requestid", () => {
     expect(emu.creations()).toHaveLength(1);
   });
 
+  it("concurrent same-requestid: default answers 425 for the in-flight twin (as the live sandbox does), classified as uncertain", async () => {
+    const { emu, client } = await setup();
+    const rs = await Promise.all([client.createBill(bill("C0"), "same-0"), client.createBill(bill("C0"), "same-0")]);
+    expect(rs.map((r) => r.kind).sort()).toEqual(["created", "unknown"]);
+    expect(rs.find((r) => r.kind === "unknown")).toMatchObject({ httpStatus: 425 });
+    expect((await client.createBill(bill("C0"), "same-0")).kind).toBe("created"); // afterwards: the original response
+    expect(emu.creations()).toHaveLength(1);
+  });
+
+  it("server-defaulted fields are filled like the live sandbox (DueDate, TxnDate, CurrencyRef, vendor name)", async () => {
+    const { client } = await setup();
+    const r = await client.createBill({ VendorRef: { value: "56" }, DocNumber: "SD1", Line: bill("x").Line }, "sd-1");
+    expect(r.kind === "created" && r.bill.DueDate && r.bill.TxnDate && r.bill.CurrencyRef?.value === "USD" && r.bill.VendorRef.name).toBeTruthy();
+  });
+
   it("concurrent same-requestid creates: serialize mode dedups, race mode (pessimistic) can create two", async () => {
     const one = await setup({ concurrentSameRequestId: "serialize" });
     await Promise.all([one.client.createBill(bill("C1"), "same-c"), one.client.createBill(bill("C1"), "same-c")]);
