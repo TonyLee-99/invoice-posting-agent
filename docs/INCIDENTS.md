@@ -12,6 +12,7 @@ Real problems hit while building and testing (2026-11-11). Nothing here is inven
 | INC-6 | draft grounding check | a vendor email stated "the extra 35" — a number not in the findings (85 − 50, computed by the model) | the model does arithmetic when the facts do not give the difference | matcher now emits `overBy` / `difference` facts; drafts re-run: 10/10 grounded (was 4/10 under the same check before list-marker handling and the facts fix) | grounding check runs on every draft in the eval (`results/drafts.json`) |
 | INC-7 | Playwright e2e | after approving, the reload showed a different invoice, so "wait until POSTED" timed out | selection lived only in React state; reload picked the default row | selection persisted in `?id=` | e2e reloads the page by design |
 | INC-8 | PDF previews in headless Chromium | the document pane was blank in screenshots | headless Chromium has no PDF viewer | page-1 PNG previews rendered with `pdftoppm` at seed time | UI always shows an image; parsed text toggle for the rest |
+| INC-9 | new unit test for the baseline | baseline read invoice number "rdhafen" from "TAX INVOICE … Nordhafen" | the label regex `no\.?` had no word boundary and `\s*` crossed into the next token | word boundary + same-line match | baseline F1 0.761 → 0.765 on the same 40 docs (reported numbers updated); unit tests for the baseline now exist |
 
 ## Postmortem: INC-3 — the chaos harness leaked ledger state between runs
 

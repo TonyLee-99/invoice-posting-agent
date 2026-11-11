@@ -40,12 +40,12 @@ Model `claude-haiku-5-5` via `claude -p` (subscription; cost reported as list-pr
 | | micro P | micro R | **micro F1 (95% bootstrap CI)** | field accuracy | line-item F1 (mean per doc) |
 |---|---|---|---|---|---|
 | LLM | 0.964 | 0.919 | **0.941 (0.889–0.981)** | 0.919 | 0.900 |
-| regex baseline | 0.838 | 0.697 | **0.761 (0.710–0.805)** | 0.697 | 0.704 |
+| regex baseline | 0.842 | 0.700 | **0.765 (0.712–0.809)** | 0.700 | 0.704 |
 
-By source: IPP 0.913 vs 0.736; Katana 0.991 vs 0.813. Target was baseline + 0.15 F1: met (+0.180), but the CIs come
+By source: IPP 0.913 vs 0.741; Katana 0.991 vs 0.813. Target was baseline + 0.15 F1: met (+0.176), but the CIs come
 from 40 documents.
 
-Per-field accuracy (LLM / baseline): vendor 0.975 / 0.575 · invoice no. 0.900 / 0.850 · invoice date 0.875 / 0.825 ·
+Per-field accuracy (LLM / baseline): vendor 0.975 / 0.575 · invoice no. 0.900 / 0.875 · invoice date 0.875 / 0.825 ·
 due date 0.750 / 0.813 · currency 1.000 / 0.500 · subtotal 0.925 / 0.400 · tax 0.900 / 0.450 · total 0.925 / 0.900 ·
 document type 0.958 / 0.958 · vendor tax id 0.938 / 0.938. The baseline is better on due date (LLM misses printed
 due dates on photos).

@@ -244,10 +244,10 @@
  },
  "baseline": {
   "docs": 40,
-  "microP": 0.8383,
-  "microR": 0.6969,
-  "microF1": 0.7611,
-  "accuracy": 0.6969,
+  "microP": 0.8421,
+  "microR": 0.7,
+  "microF1": 0.7645,
+  "accuracy": 0.7,
   "lineF1Mean": 0.7035,
   "perField": {
    "vendor_name": {
@@ -266,10 +266,10 @@
    },
    "invoice_number": {
     "n": 40,
-    "accuracy": 0.85,
-    "p": 0.9444,
-    "r": 0.85,
-    "f1": 0.8947
+    "accuracy": 0.875,
+    "p": 0.9722,
+    "r": 0.875,
+    "f1": 0.9211
    },
    "invoice_date": {
     "n": 40,
@@ -322,15 +322,15 @@
    }
   },
   "microF1CI95": [
-   0.7096,
-   0.8052
+   0.7117,
+   0.809
   ],
   "ipp": {
    "docs": 24,
-   "microP": 0.7796,
-   "microR": 0.6971,
-   "microF1": 0.736,
-   "accuracy": 0.6971,
+   "microP": 0.7849,
+   "microR": 0.7019,
+   "microF1": 0.7411,
+   "accuracy": 0.7019,
    "lineF1Mean": 0.6951,
    "perField": {
     "vendor_name": {
@@ -342,10 +342,10 @@
     },
     "invoice_number": {
      "n": 24,
-     "accuracy": 0.75,
-     "p": 0.9,
-     "r": 0.75,
-     "f1": 0.8182
+     "accuracy": 0.7917,
+     "p": 0.95,
+     "r": 0.7917,
+     "f1": 0.8636
     },
     "invoice_date": {
      "n": 24,

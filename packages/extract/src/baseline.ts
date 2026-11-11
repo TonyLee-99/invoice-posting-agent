@@ -28,8 +28,9 @@ export function baselineExtract(text: string): LlmExtraction {
   const lines = text.split(/\n/).map((l) => l.replace(/\s+$/, "")).filter((l) => l.trim());
   const joined = lines.join("\n");
 
-  const num = joined.match(/(?:invoice|inv|tax invoice|credit note|bill)\s*(?:no\.?|number|num|nr|#)\s*[:.#]?\s*([A-Z0-9][A-Z0-9\-/]{2,})/i)
-    ?? joined.match(/\b(?:invoice|inv)\s*[:#]\s*([A-Z0-9][A-Z0-9\-/]{2,})/i);
+  // Label and value on the same line; the label must end at a word boundary ("No" must not match "Nordhafen").
+  const num = joined.match(/\b(?:invoice|inv|tax invoice|credit note|bill)[ \t]*(?:no\b\.?|number\b|num\b|nr\b|#)[ \t]*[:.#]?[ \t]*([A-Z0-9][A-Z0-9\-/]{2,})/i)
+    ?? joined.match(/\b(?:invoice|inv)[ \t]*[:#][ \t]*([A-Z0-9][A-Z0-9\-/]{2,})/i);
   const po = joined.match(/\b(?:p\.?o\.?|purchase order|order)\s*(?:no\.?|number|#)?\s*[:.#]?\s*([A-Z0-9][A-Z0-9\-/]{2,})/i);
 
   const monthFirst = /\$|USD|\bUS\b/.test(joined) && !/€|£|\bEUR\b|\bGBP\b|\bZAR\b/.test(joined);

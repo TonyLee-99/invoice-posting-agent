@@ -1,6 +1,6 @@
 # invoice-posting-agent
 
-**Posts vendor invoices to QuickBooks Online without duplicate Bills: 0 duplicates and 0 lost invoices across 300 randomized fault-injection seeds (4,180 invoices, 2,306 injected remote faults, 942 worker crashes), with LLM field extraction at 0.941 F1 vs 0.761 for a regex baseline.**
+**Posts vendor invoices to QuickBooks Online without duplicate Bills: 0 duplicates and 0 lost invoices across 300 randomized fault-injection seeds (4,180 invoices, 2,306 injected remote faults, 942 worker crashes), with LLM field extraction at 0.941 F1 vs 0.765 for a regex baseline.**
 
 [![ci](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TonyLee-99/invoice-posting-agent/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-blue)
@@ -10,7 +10,7 @@
 
 | business problem | what I built | measured results |
 |---|---|---|
-| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | A TypeScript service: upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts to QBO with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | **0** duplicate Bills / **0** lost invoices over **300** chaos seeds; with all defenses off **84 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.761** baseline on 40 public labelled invoices. Auto-approval precision **8/8** at a 20% auto-approve rate. **$0.0012** LLM cost per invoice. |
+| AP teams key invoices into QuickBooks by hand; the costly failures are on the **write**: a Bill entered twice is paid twice, a lost one becomes a late fee. | A TypeScript service: upload → parse/OCR → LLM extraction (zod-validated, per-field confidence) → **deterministic** 3-way match → routing → review UI with approvals bound to a content hash → transactional outbox → worker posts to QBO with a stable `requestid` after querying first → nightly reconciliation → recovery queue. | **0** duplicate Bills / **0** lost invoices over **300** chaos seeds; with all defenses off **84 of 100** seeds produce duplicates. Extraction F1 **0.941** (95% CI 0.889–0.981) vs **0.765** baseline on 40 public labelled invoices. Auto-approval precision **8/8** at a 20% auto-approve rate. **$0.0012** LLM cost per invoice. |
 
 Live demo (static, recorded from a real run): `docs/demo/` → GitHub Pages `/invoice-posting-agent/demo/`.
 
@@ -59,7 +59,7 @@ re-records `results/`. `make chaos-full` re-runs the 300-seed chaos + ablations.
 | Duplicate Bills, 300 chaos seeds (crashes, stalls, 5xx before/after commit, resets, hangs, 429, token expiry, emulator restarts, edits) | **0** | all defenses off: 353 duplicates, 84/100 seeds | `results/chaos.json` |
 | Lost invoices / ledger≠local after reconciliation | **0 / 0** | — | same |
 | Deterministic fault scenarios A1–A18 incl. real SIGKILL of a worker process | all pass | each defense ablated alone fails its schedule | `services/posting/test/*.test.ts` |
-| Field extraction micro F1 (40 docs, test split) | **0.941** (0.889–0.981) | regex baseline **0.761** (0.710–0.805) | `results/extraction.json` |
+| Field extraction micro F1 (40 docs, test split) | **0.941** (0.889–0.981) | regex baseline **0.765** (0.712–0.809) | `results/extraction.json` |
 | IPP official scorer, key fields | **184 / 208** (88.5%) | — | `results/ipp_official_scores.json` |
 | Matcher vs labelled expected outcome (label fields) | **0.975** (39/40) | — | `results/routing.json` |
 | Auto-approval at threshold 0.9 | **20%** auto, precision **8/8** (Wilson 0.68–1.00) | — | same |
