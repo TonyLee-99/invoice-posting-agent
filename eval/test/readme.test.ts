@@ -25,7 +25,7 @@ describe("README matches results/", () => {
     has(`${chaos.all_off.summary.duplicateBills} duplicates, ${chaos.all_off.summary.seedsWithViolation}/100 seeds`);
   });
   it("extraction", () => {
-    const f3 = (x: number) => x.toFixed(3);
+    const f3 = (x: number) => (Math.round(x * 1000) / 1000).toFixed(3);
     has(`${f3(ex.llm.microF1)} F1 vs ${f3(ex.baseline.microF1)}`);
     has(`(95% CI ${f3(ex.llm.microF1CI95[0])}–${f3(ex.llm.microF1CI95[1])})`);
     has(`baseline **${f3(ex.baseline.microF1)}** (${f3(ex.baseline.microF1CI95[0])}–${f3(ex.baseline.microF1CI95[1])})`);
