@@ -76,6 +76,14 @@ export const InvoiceFields = z.object({
   freightMinor: z.number().int().nullable(),
   totalMinor: z.number().int().nullable(),
   lines: z.array(InvoiceLine),
+  /**
+   * Dual-currency documents. `fxBase` + `exchangeRate`: the rate printed on the document (1 fxBase = exchangeRate x
+   * currency, where `currency` is the payable currency). `lineCurrency`: the currency the line amounts are in (fxBase
+   * or currency). Absent on ordinary invoices, so existing content hashes are unchanged.
+   */
+  lineCurrency: z.string().regex(/^[A-Z]{3}$/).nullable().optional(),
+  fxBase: z.string().regex(/^[A-Z]{3}$/).nullable().optional(),
+  exchangeRate: z.number().positive().nullable().optional(),
 });
 export type InvoiceFields = z.infer<typeof InvoiceFields>;
 

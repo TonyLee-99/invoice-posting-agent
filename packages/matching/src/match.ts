@@ -21,7 +21,10 @@ export type DiscrepancyCode =
   | "unsupported_document"
   | "missing_field"
   | "low_confidence"
-  | "amount_over_cap";
+  | "amount_over_cap"
+  | "fx_rate_missing"
+  | "fx_rate_unverified"
+  | "fx_rate_mismatch";
 
 export interface Discrepancy {
   code: DiscrepancyCode;
@@ -51,6 +54,10 @@ export interface MatchPolicy {
   arithmeticToleranceMinor: number;
   freightToleranceMinor: number;
   minLineSimilarity: number;
+  /** Stated document FX rate must be within this of the reference (treasury) rate. */
+  fxTolerancePct: number;
+  /** Converted line sum vs subtotal on dual-currency documents (per-line rounding on the document). */
+  fxArithmeticTolerancePct: number;
 }
 
 export const DEFAULT_MATCH_POLICY: MatchPolicy = {
@@ -62,6 +69,8 @@ export const DEFAULT_MATCH_POLICY: MatchPolicy = {
   arithmeticToleranceMinor: 2,
   freightToleranceMinor: 100,
   minLineSimilarity: 0.25,
+  fxTolerancePct: 0.01,
+  fxArithmeticTolerancePct: 0.005,
 };
 
 export interface MatchInput {
@@ -73,6 +82,8 @@ export interface MatchInput {
   reservedByOthers?: Record<string, number>;
   /** True when another live invoice from the same vendor has the same normalized number. */
   isDuplicate?: boolean;
+  /** Reference FX rates, key "USD/NAD" = NAD per 1 USD. Without one, a dual-currency invoice goes to a person. */
+  fxRates?: Record<string, number>;
 }
 
 export interface MatchResult {
@@ -146,9 +157,44 @@ function selectPo(fields: InvoiceFields, vendor: Vendor | null, pos: PurchaseOrd
   return best && best.score > 0 ? best.po : null;
 }
 
+/**
+ * Express the line amounts in `target` currency using only the rate printed on the document (either direction
+ * between fxBase and the payable currency), or null if that is not possible.
+ */
+function linesIn(fields: InvoiceFields, target: string): InvoiceFields | null {
+  const lineCcy = fields.lineCurrency ?? fields.currency ?? target;
+  if (lineCcy === target) return fields;
+  const rate = fields.exchangeRate;
+  if (!rate || !fields.fxBase || !fields.currency) return null;
+  let factor: number | null = null;
+  if (lineCcy === fields.fxBase && target === fields.currency) factor = rate;
+  else if (lineCcy === fields.currency && target === fields.fxBase) factor = 1 / rate;
+  if (factor === null) return null;
+  const f = factor;
+  return { ...fields, lineCurrency: target, lines: fields.lines.map((l) => ({ ...l, unitPrice: l.unitPrice === null ? null : l.unitPrice * f, amountMinor: Math.round(l.amountMinor * f) })) };
+}
+
 export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_MATCH_POLICY): MatchResult {
-  const { fields } = input;
   const d: Discrepancy[] = [];
+  const original = input.fields;
+  const lineCcy = original.lineCurrency ?? original.currency;
+  const otherCcy = original.fxBase ?? (lineCcy !== original.currency ? lineCcy : null);
+  const dualCurrency = Boolean(original.currency && otherCcy && otherCcy !== original.currency);
+  if (dualCurrency) {
+    // General rule for dual-currency documents: normalise with the rate printed on the document, and only trust
+    // that rate if it agrees with a reference rate; otherwise a person checks it. Never guess a rate.
+    const pair = `${otherCcy}/${original.currency}`;
+    const ref = input.fxRates?.[pair];
+    if (!original.exchangeRate) {
+      d.push({ code: "fx_rate_missing", severity: "review", message: `Lines are in ${otherCcy} but the amount payable is in ${original.currency}, and no exchange rate is printed.`, facts: { lineCurrency: otherCcy, currency: original.currency } });
+    } else if (ref === undefined) {
+      d.push({ code: "fx_rate_unverified", severity: "review", message: `The document's rate 1 ${otherCcy} = ${original.exchangeRate} ${original.currency} cannot be checked: no reference rate for ${pair}.`, facts: { pair, statedRate: original.exchangeRate } });
+    } else if (Math.abs(original.exchangeRate / ref - 1) > policy.fxTolerancePct) {
+      d.push({ code: "fx_rate_mismatch", severity: "review", message: `The document's rate 1 ${otherCcy} = ${original.exchangeRate} ${original.currency} differs from the reference rate ${ref} by more than ${policy.fxTolerancePct * 100}%.`, facts: { pair, statedRate: original.exchangeRate, referenceRate: ref, tolerancePct: policy.fxTolerancePct * 100 } });
+    }
+  }
+  // From here on, arithmetic is checked in the payable currency.
+  const fields = (original.currency ? linesIn(original, original.currency) : original) ?? { ...original, lines: [] };
 
   if (fields.documentType !== "invoice") {
     d.push({ code: "unsupported_document", severity: "block", message: `Document type "${fields.documentType}" is not posted as a Bill (vendor credits and statements are handled manually).`, facts: { documentType: fields.documentType } });
@@ -163,7 +209,10 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
   // Arithmetic consistency of the document itself.
   if (fields.lines.length && fields.subtotalMinor !== null) {
     const lineSum = sum(fields.lines.map((l) => l.amountMinor));
-    if (Math.abs(lineSum - fields.subtotalMinor) > policy.arithmeticToleranceMinor) {
+    const tolerance = dualCurrency ? Math.max(policy.arithmeticToleranceMinor, Math.round(Math.abs(fields.subtotalMinor) * policy.fxArithmeticTolerancePct)) : policy.arithmeticToleranceMinor;
+    // Lines may be printed tax-inclusive (common with VAT in ZA/NA): then they add up to subtotal + tax.
+    const taxInclusive = fields.taxMinor !== null && fields.taxMinor !== 0 && Math.abs(lineSum - (fields.subtotalMinor + fields.taxMinor)) <= tolerance;
+    if (Math.abs(lineSum - fields.subtotalMinor) > tolerance && !taxInclusive) {
       d.push({ code: "arithmetic_mismatch", severity: "review", message: `Line amounts add up to ${lineSum / 100} but the subtotal says ${fields.subtotalMinor / 100}.`, facts: { lineSum: lineSum / 100, subtotal: fields.subtotalMinor / 100, difference: (fields.subtotalMinor - lineSum) / 100 } });
     }
   }
@@ -174,10 +223,10 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
     }
   }
 
-  const vendor = resolveVendor(fields, input.vendors);
+  const vendor = resolveVendor(original, input.vendors);
   if (!vendor) d.push({ code: "vendor_unknown", severity: "review", message: `Vendor "${fields.vendorName ?? ""}" is not in the vendor master.`, facts: { vendorName: fields.vendorName } });
 
-  const po = selectPo(fields, vendor, input.purchaseOrders, policy);
+  const po = selectPo(original, vendor, input.purchaseOrders, policy);
   if (!po) {
     d.push({ code: "po_not_found", severity: "review", message: fields.poNumber ? `PO ${fields.poNumber} was not found.` : "No open purchase order matches this invoice.", facts: { poNumber: fields.poNumber } });
     return { vendorId: vendor?.vendorId ?? null, poNumber: null, matchType: "none", discrepancies: d, lineMatches: [], policyVersion: policy.version };
@@ -186,18 +235,21 @@ export function threeWayMatch(input: MatchInput, policy: MatchPolicy = DEFAULT_M
   if (vendor && po.vendorId !== vendor.vendorId) {
     d.push({ code: "po_vendor_mismatch", severity: "review", message: `PO ${po.poNumber} belongs to a different vendor.`, facts: { poNumber: po.poNumber, poVendor: po.vendorId, invoiceVendor: vendor.vendorId } });
   }
-  if (fields.currency && fields.currency !== po.currency) {
-    d.push({ code: "currency_mismatch", severity: "review", message: `Invoice currency ${fields.currency} differs from PO currency ${po.currency}.`, facts: { invoiceCurrency: fields.currency, poCurrency: po.currency } });
+  // Compare lines with the PO in the PO's currency: either the document's line currency or (with a printed rate)
+  // the payable currency. Anything else is a currency mismatch for a person.
+  const inPo = original.currency || original.lineCurrency ? linesIn(original, po.currency) : original;
+  if (!inPo) {
+    d.push({ code: "currency_mismatch", severity: "review", message: `Invoice currency ${original.currency} differs from PO currency ${po.currency}.`, facts: { invoiceCurrency: original.currency, lineCurrency: original.lineCurrency ?? null, poCurrency: po.currency } });
   }
-
-  const lines = pairLines(fields, po, policy);
+  const poFields = inPo ?? fields;
+  const lines = pairLines(poFields, po, policy);
   const received = new Map<number, number>();
   for (const gr of input.receipts.filter((r) => r.poNumber === po.poNumber)) {
     for (const l of gr.lines) received.set(l.poLineNo, (received.get(l.poLineNo) ?? 0) + l.quantityReceived);
   }
   const reserved = input.reservedByOthers ?? {};
   for (const lm of lines) {
-    const line = fields.lines[lm.invoiceLine]!;
+    const line = poFields.lines[lm.invoiceLine]!;
     if (lm.poLineNo === null) {
       d.push({ code: "line_unmatched", severity: "review", message: `Invoice line "${line.description}" has no matching PO line.`, facts: { description: line.description, amount: line.amountMinor / 100 }, lineIndex: lm.invoiceLine });
       continue;

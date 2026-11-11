@@ -91,3 +91,44 @@ describe("route", () => {
     expect(route({ match: m(), totalMinor: 357000, confidence: null, humanVerified: true }).decision).toBe("AUTO_APPROVE");
   });
 });
+
+describe("dual-currency documents (lines in one currency, amount payable in another)", () => {
+  // Lines and PO in USD; the vendor prints 1 USD = 18.392 NAD and asks for payment in NAD.
+  const usdPo = po({ currency: "USD", taxRate: null, kind: "services", lines: [{ lineNo: 1, description: "Customs clearance fee", quantity: 1, unitPrice: 136.39 }, { lineNo: 2, description: "Documentation fee", quantity: 1, unitPrice: 26.02 }] });
+  const dual = (over: Partial<InvoiceFields> = {}): InvoiceFields => fields({
+    currency: "NAD", lineCurrency: "USD", fxBase: "USD", exchangeRate: 18.392, subtotalMinor: 298_700, taxMinor: 0, totalMinor: 298_700,
+    lines: [{ description: "Customs clearance fee", quantity: 1, unitPrice: 136.39, amountMinor: 13_639 }, { description: "Documentation fee", quantity: 1, unitPrice: 26.02, amountMinor: 2_602 }],
+    ...over,
+  });
+  const nadVendor = { ...vendor, currency: "NAD" };
+  const run = (f: InvoiceFields, fxRates?: Record<string, number>) => threeWayMatch({ fields: f, vendors: [nadVendor], purchaseOrders: [usdPo], receipts: [], fxRates }).discrepancies.map((x) => x.code);
+
+  it("converts with the printed rate and passes when a reference rate agrees", () => {
+    expect(run(dual(), { "USD/NAD": 18.4 })).toEqual([]);
+  });
+  it("routes to a person when no reference rate exists or the printed rate is off by more than 1%", () => {
+    expect(run(dual())).toEqual(["fx_rate_unverified"]);
+    expect(run(dual(), { "USD/NAD": 17.5 })).toEqual(["fx_rate_mismatch"]);
+  });
+  it("routes to a person when the rate is not printed (never guesses)", () => {
+    const codes = run(dual({ exchangeRate: null }), { "USD/NAD": 18.4 });
+    expect(codes[0]).toBe("fx_rate_missing");
+  });
+  it("still catches a real price problem after conversion", () => {
+    const cheaper = { ...usdPo, lines: [{ ...usdPo.lines[0]!, unitPrice: 120 }, usdPo.lines[1]!] };
+    const m = threeWayMatch({ fields: dual(), vendors: [nadVendor], purchaseOrders: [cheaper], receipts: [], fxRates: { "USD/NAD": 18.4 } });
+    expect(m.discrepancies.map((x) => x.code)).toEqual(["price_over_tolerance"]);
+  });
+  it("a PO raised in the payable currency is compared after converting the lines", () => {
+    const nadPo = { ...usdPo, currency: "NAD", lines: usdPo.lines.map((l) => ({ ...l, unitPrice: Math.round(l.unitPrice * 18.392 * 100) / 100 })) };
+    const m = threeWayMatch({ fields: dual(), vendors: [nadVendor], purchaseOrders: [nadPo], receipts: [], fxRates: { "USD/NAD": 18.392 } });
+    expect(m.discrepancies).toEqual([]);
+  });
+  it("lines read from the payable-currency column are converted back to the PO currency", () => {
+    const nadLines = dual({ lineCurrency: "NAD", lines: [{ description: "Customs clearance fee", quantity: 1, unitPrice: null, amountMinor: 250_848 }, { description: "Documentation fee", quantity: 1, unitPrice: null, amountMinor: 47_856 }] });
+    expect(run(nadLines, { "USD/NAD": 18.4 })).toEqual([]);
+  });
+  it("an ordinary invoice in a third currency is still a currency mismatch", () => {
+    expect(threeWayMatch({ fields: fields({ currency: "GBP" }), vendors: [vendor], purchaseOrders: [po()], receipts: [gr(10, 40)] }).discrepancies.map((x) => x.code)).toEqual(["currency_mismatch"]);
+  });
+});
