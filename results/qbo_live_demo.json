@@ -1,0 +1,75 @@
+{
+ "generatedAt": "2026-11-11T18:50:36.502Z",
+ "environment": "sandbox",
+ "realm": "…5614",
+ "invoices": 10,
+ "fault": "worker process SIGKILLed after its first remote write, before the local commit",
+ "postedLocally": 10,
+ "adoptedAfterUncertainty": 1,
+ "duplicateDocNumbers": 0,
+ "missingInSandbox": 0,
+ "ledgerTotalsMatch": true,
+ "reconciliation": {
+  "runId": 1,
+  "status": "complete",
+  "checked": 10,
+  "reconciled": 10,
+  "missing": 0,
+  "changed": 0,
+  "orphans": 0,
+  "scannedBills": 25
+ },
+ "openRecovery": [],
+ "perDoc": [
+  {
+   "doc": "IPA-LD-CH4N2F-1",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-2",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-3",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-4",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-5",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-6",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-7",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-8",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-9",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  },
+  {
+   "doc": "IPA-LD-CH4N2F-10",
+   "billsInSandbox": 1,
+   "totalMatches": true
+  }
+ ]
+}

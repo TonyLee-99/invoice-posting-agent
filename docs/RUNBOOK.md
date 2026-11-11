@@ -22,6 +22,9 @@
 - **ambiguous_remote** (a same-DocNumber Bill exists without our marker, or several): open QBO. If a clerk keyed it
   by hand and it is the same invoice → `adopt` with `override.reason`. If it is a different invoice reusing the
   number → fix the invoice number (vendor query) and `close_not_posted`, then re-submit.
+- **requestid_collision** (QBO answered "created" with a Bill that is not ours: a requestid reused across databases,
+  e.g. after a restore): nothing was created for this invoice. `close_not_posted`, then edit and re-approve — the new
+  approval gets a fresh requestid. Check that the installation row was not copied between environments.
 - **remote_rejected** (QBO validation fault): fix master data (vendor, account, currency) → `close_not_posted` → edit
   and re-approve. Never retry the same payload.
 - Every resolution re-queries the ledger and stores the evidence on the item.
@@ -40,7 +43,8 @@
 - Do not "fix" a stuck POSTING invoice by editing status in SQL; the transition trigger rejects it on purpose.
 
 ## Run against the QuickBooks sandbox (live)
-Nothing here has been run live yet; the same scripts are rehearsed against the emulator in CI
+Run live against a sandbox company on 2026-11-11 (see INCIDENTS INC-14..16); the same scripts are rehearsed against
+the emulator in CI
 (`services/posting/test/live_rehearsal.test.ts`).
 
 One-time setup (owner):
@@ -64,6 +68,8 @@ Runs:
   SIGKILLed after its first remote write and a second worker recovers after the lease expires; then reconciliation
   and an independent per-DocNumber check in the sandbox (expect 10 Bills, 0 duplicates, ledger totals equal). Add
   `--cleanup` (`npx tsx scripts/qbo/live_demo.ts --n 10 --cleanup`) to delete the demo Bills afterwards.
+- Run `make qbo-cleanup` before a fresh live demo: it deletes this project's earlier Bills (marker `ipa-ref:` /
+  `ipa-contract`) so reconciliation does not report them as orphans of the new database.
 - All three print `SKIP: …` and exit 0 when keychain items or tokens are missing.
 - Tokens: access token ~1 h, refreshed automatically under a file lock (refresh tokens rotate; the newest is kept).
   To disconnect, revoke the app in the sandbox company and delete `private/qbo_tokens.json`.

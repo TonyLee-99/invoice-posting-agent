@@ -1,0 +1,52 @@
+{
+ "generatedAt": "2026-11-11T18:47:34.593Z",
+ "environment": "sandbox",
+ "realm": "…5614",
+ "minorVersion": 75,
+ "checks": {
+  "repeat_requestid": {
+   "first": "created",
+   "second": "created",
+   "sameId": true,
+   "billsWithDocNumber": 1,
+   "pass": true
+  },
+  "requestid_different_body": {
+   "first": "created",
+   "second": "created",
+   "secondReturnedOriginal": true,
+   "observedOnly": true
+  },
+  "concurrent_same_requestid": {
+   "results": [
+    "created",
+    "unknown"
+   ],
+   "httpStatuses": [
+    200,
+    425
+   ],
+   "billsWithDocNumber": 1,
+   "dedupedWhileInFlight": true,
+   "observedOnly": true
+  },
+  "docnumber_query_freshness": {
+   "created": "created",
+   "visibleAfterMs": 350,
+   "pass": true
+  },
+  "duplicate_docnumber_new_requestid": {
+   "result": "created",
+   "acceptedDuplicate": true,
+   "observedOnly": true
+  },
+  "token_refresh_rotation": {
+   "refreshed": true,
+   "refreshTokenChanged": false,
+   "newAccessTokenWorks": true,
+   "pass": true
+  }
+ },
+ "billsCreated": 5,
+ "billsDeleted": 5
+}

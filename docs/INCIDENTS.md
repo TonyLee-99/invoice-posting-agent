@@ -17,6 +17,9 @@ Real problems hit while building and testing (2026-11-11). Nothing here is inven
 | INC-11 | independent code review | an expired/revoked token during query-first would burn the invoice's retry budget and park it in recovery | the client wrapped auth failure on reads as generic "unavailable"; only the create path opened the auth circuit | typed `QboAuthError` on reads; worker pauses and keeps the job pending | auth-outage test (`faults.test.ts`) |
 | INC-12 | independent code review | the emulator's "race" mode never actually raced | no await between the requestid check and the commit, so JavaScript ran them atomically | a processing delay in race mode; a concurrency test asserts two creations in race mode and one in serialize mode | chaos re-run with the real race window (`results/chaos.json`); that re-run also produced the first real residual duplicate (seed 233), caught by reconciliation |
 | INC-13 | acceptance B4 (round 2) | the one matcher miss on the eval set: a dual-currency invoice (USD lines, NAD payable) held for `arithmetic_mismatch` | the data model had one currency per invoice, so USD lines were summed against a NAD subtotal | general FX rule: printed rate parsed deterministically, lines compared in the PO's currency, rate trusted only against a reference rate, else routed to a person; 6 matcher tests + 16 FX eval variants | full-set label check (297 docs) also exposed tax-inclusive line layouts and a label generator that ignored incomplete/inconsistent labels; both fixed and reported with before/after |
+| INC-14 | first live sandbox run | 9 of 9 posted Bills flagged `ledger_differs` by reconciliation; the killed worker's Bill went to `ambiguous_remote` + `orphan_remote_bill` instead of being adopted | QBO fills `DueDate` (vendor terms) when the client sends none; `sameContent` compared DueDate strictly, so every Bill "differed" from its payload | compare optional fields only when we sent them; emulator fills server defaults like the sandbox | offline regression test (fails on the old code); see postmortem |
+| INC-15 | live contract check | the in-flight twin of a concurrent same-requestid request got HTTP 425; our client would have called it a permanent rejection and parked the job | the emulator modelled "serialize" or "race", never what the sandbox does | 425 classified as uncertain (query first next time); emulator default `reject_in_flight` | qbo test + chaos default mode changed |
+| INC-16 | second live run (after cleaning the sandbox) | 10 of 10 invoices "created" but none existed in the sandbox; reconciliation: 10 missing | requestids were UUIDv5 of the local approval id; the fresh database restarted ids at 1, so every requestid equalled one from the previous run, and QBO replayed the cached responses for Bills that had been deleted | requestids namespaced by a random per-installation id; a "created" answer whose marker/DocNumber is not ours goes to recovery as `requestid_collision` | two offline tests (fresh database; restore from backup) |
 
 ## Postmortem: INC-3 — the chaos harness leaked ledger state between runs
 
@@ -51,3 +54,35 @@ explain this many duplicates?") caught it.
    duplicate with the defense off and zero with it on, so ablation evidence no longer depends on random chaos alone.
 3. Fencing and the lease guard showed 0/100 in random chaos; the deterministic test shows why: they are redundant
    layers — a paused stale worker duplicates only when *both* are off.
+
+## Postmortem: INC-14 / INC-16 — the first live QuickBooks runs
+
+**Impact.** Sandbox only, no real money. Run 1 (coordinator, 18:44 UTC): 9 of 10 invoices posted, 0 duplicates in the
+ledger, but every posting flagged by reconciliation and the killed worker's Bill parked as ambiguous + orphan instead of
+being adopted — the 300-seed emulator results had said this path was safe. Run 2 (18:48 UTC, after INC-14's fix and a
+sandbox clean-up): 10 of 10 "posted" locally and **none in the ledger** — the worst failure class this project exists
+to prevent (lost invoices), caught by reconciliation (10 `missing_in_ledger`).
+
+**Timeline (UTC, 2026-11-11; run times from the results files, the rest approximate).**
+- 18:44 live demo run 1: `postedLocally 9, adopted 0, reconcile changed 9`, recovery: ambiguous 1, orphan 1, mismatch 9.
+- 18:46 diff of payload vs the sandbox's Bill 150: identical except QBO added `DueDate` (= TxnDate) and ref names.
+- 18:47 contract re-run with HTTP statuses: concurrent same-requestid twin → **425**, no body (INC-15).
+- 18:47 fix (compare only sent fields), offline test reproduced the failure on the old code; sandbox cleaned.
+- 18:48 live demo run 2: all 10 "created" with Bill ids 150–159 — the ids of the Bills just deleted. Each requestid
+  equalled one from run 1 (approval ids 1–10 again in the new database), and QBO replayed the cached responses.
+- 18:49 fix: per-installation requestid namespace + "the created Bill must carry our marker and DocNumber" check.
+- 18:49 and 18:50 live demo runs 3 and 4: 10 posted, 1 adopted after the SIGKILL, 0 duplicates, 0 missing,
+  reconciliation 10/10, recovery queue empty.
+
+**Root causes.** (1) The emulator encoded my assumptions about QBO (no server defaults; requestid memory tied to an
+emulator instance that every test recreated), so 300 seeds could not exercise either failure. (2) Identity of a remote
+write depended on a local sequence that is not unique across databases sharing one realm (reset, restore, a second
+environment).
+
+**What went well.** Independent checks caught both: reconciliation against the ledger (`changed 9`, then `missing 10`)
+and the per-DocNumber check in the sandbox. No duplicate Bill was created in any live run.
+
+**What changed.** Emulator now fills server defaults and answers 425 for in-flight twins; adoption/reconciliation
+compare only fields we sent; requestids are namespaced per installation and a replayed foreign response is never
+recorded as a posting; `make qbo-cleanup`; three offline tests that fail on the old code. Lesson recorded in
+FEEDBACK_TO_PRODUCT: the requestid cache outliving the entity it created is undocumented and worth an Intuit note.

@@ -2,7 +2,9 @@
 
 1. **Intuit: publish requestid retention and concurrency semantics.** The docs say a repeated requestid returns the
    original response but not for how long, nor what happens to two concurrent requests. Integrators must add
-   query-before-write because of this gap. (`docs/QBO_SEMANTICS.md` rows 5–6.)
+   query-before-write because of this gap. (`docs/QBO_SEMANTICS.md` rows 5–6.) Live, 2026-11-11: an in-flight twin
+   gets 425 with no body, and a requestid's cached response outlives deletion of the Bill it created — so a reused
+   requestid silently "succeeds" without creating anything (INC-16). Both deserve a sentence in the docs.
 2. **Intuit: a queryable idempotency/correlation field on Bills.** We put a marker in `PrivateNote`, which is not
    filterable, so reconciliation has to page through all Bills to find orphans. A filterable external-reference field
    would make orphan detection O(changes).
