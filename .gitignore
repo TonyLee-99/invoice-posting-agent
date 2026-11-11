@@ -1,0 +1,30 @@
+# harness (local only)
+AGENTS.md
+CLAUDE.md
+.claude/
+PROGRESS.md
+feature_list.json
+reviews/
+
+# deps / build
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+
+# data (downloaded, licensed separately)
+data/
+!data/README.md
+
+# live LLM cache is large; the CI replay subset lives in cache/replay/
+cache/*
+!cache/replay/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
