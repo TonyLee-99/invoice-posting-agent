@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { Bill, CreateResult, QboClient } from "@ipa/qbo";
-import { QboUnavailableError } from "@ipa/qbo";
+import { QboAuthError, QboUnavailableError } from "@ipa/qbo";
+import { toMinor } from "@ipa/domain";
 import type { Db, Tx } from "./db.ts";
 import { withTx } from "./db.ts";
 import { markerFor } from "./payload.ts";
@@ -170,6 +171,11 @@ export class OutboxWorker {
       try {
         bills = (await this.qbo.queryBillsByDocNumber(job.doc_number)).filter((b) => b.VendorRef.value === job.vendor_ref);
       } catch (e) {
+        if (e instanceof QboAuthError) {
+          // Systemic auth failure: pause, keep the job pending, do not spend its uncertainty budget.
+          this.authCircuitOpenUntil = Date.now() + this.o.backoffMaxMs;
+          return this.retryLater(job, attemptId, "auth_failed", 401, e.message, this.o.backoffMaxMs);
+        }
         if (!(e instanceof QboUnavailableError)) throw e;
         return this.uncertain(job, attemptId, "query_failed", null, e.message);
       }
@@ -222,7 +228,7 @@ export class OutboxWorker {
       const ins = await tx.query(
         `insert into postings (invoice_id, outbox_id, realm_id, bill_id, doc_number, vendor_ref, total_minor, currency, payload_hash, adopted)
          values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) on conflict do nothing`,
-        [job.invoice_id, job.id, job.realm_id, bill.Id, job.doc_number, job.vendor_ref, Math.round(bill.TotalAmt * 100), payload.CurrencyRef?.value ?? "USD", job.payload_hash, adopted],
+        [job.invoice_id, job.id, job.realm_id, bill.Id, job.doc_number, job.vendor_ref, toMinor(bill.TotalAmt, payload.CurrencyRef?.value ?? "USD"), payload.CurrencyRef?.value ?? "USD", job.payload_hash, adopted],
       );
       if ((ins.rowCount ?? 0) === 0) {
         // Another path already recorded a posting for this invoice (or this Bill for another invoice).
@@ -292,16 +298,23 @@ export class OutboxWorker {
   }
 }
 
-/** Remote Bill matches the payload we would have sent: vendor, DocNumber, date, currency, line amounts. */
+/**
+ * Remote Bill matches the payload we would have sent: vendor, DocNumber, dates, currency, total, and each line's
+ * amount and expense account (currency-aware minor units, so zero-decimal currencies compare correctly).
+ */
 export function sameContent(bill: Bill, payload: string): boolean {
   const p = JSON.parse(payload) as Bill;
-  const amounts = (b: { Line: { Amount: number }[] }) => b.Line.map((l) => Math.round(l.Amount * 100)).join(",");
+  const cur = p.CurrencyRef?.value ?? "USD";
+  const lines = (b: Pick<Bill, "Line">) => b.Line.map((l) => `${toMinor(l.Amount, cur)}@${l.AccountBasedExpenseLineDetail?.AccountRef?.value ?? ""}`).join(",");
+  const total = (b: Pick<Bill, "Line">) => b.Line.reduce((s, l) => s + toMinor(l.Amount, cur), 0);
   return (
     bill.VendorRef.value === p.VendorRef.value &&
     bill.DocNumber === p.DocNumber &&
     (bill.TxnDate ?? null) === (p.TxnDate ?? null) &&
+    (bill.DueDate ?? null) === (p.DueDate ?? null) &&
     (bill.CurrencyRef?.value ?? null) === (p.CurrencyRef?.value ?? null) &&
-    amounts(bill) === amounts(p)
+    toMinor(bill.TotalAmt, cur) === total(p) &&
+    lines(bill) === lines(p)
   );
 }
 

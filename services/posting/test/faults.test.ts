@@ -76,11 +76,13 @@ describe("worker crashes", () => {
 
   it("crash right after the intent commit and after the local commit are both harmless", async () => {
     h = await createHarness();
-    const { obligations } = await seedApproved(h, 2);
-    await drain(h, [h.worker({ hooks: crashOnce("after_intent") })]);
-    await drain(h, [h.worker({ hooks: crashOnce("after_local_commit") })]);
+    const a = await seedApproved(h, 1, 1);
+    const d1 = await drain(h, [h.worker({ hooks: crashOnce("after_intent") })]);
+    const b = await seedApproved(h, 1, 2, a.obligations);
+    const d2 = await drain(h, [h.worker({ hooks: crashOnce("after_local_commit") })]);
+    expect([d1.crashes, d2.crashes]).toEqual([1, 1]); // both hooks actually fired
     expect(creations()).toBe(2);
-    await expectClean(obligations);
+    await expectClean(b.obligations);
   });
 });
 
@@ -129,6 +131,8 @@ describe("delivery and remote faults", () => {
       { op: "create", effect: "error503_before", prob: 1, times: 8 },
     ]);
     await drain(h, [h.worker(), h.worker()], { maxMs: 30_000 });
+    const fired5xx = h.emu.faultLog.filter((f) => f.effect.startsWith("error5")).length;
+    expect(fired5xx).toBeGreaterThanOrEqual(10);
     const inv = await expectClean(obligations, true);
     const posted = (await h.db.query("select count(*)::int as n from postings")).rows[0].n;
     expect(posted + inv.inRecovery.length).toBe(5);
@@ -177,6 +181,23 @@ describe("delivery and remote faults", () => {
     const rec = (await h.db.query("select kind from recovery_queue where invoice_id = $1", [ids[0]])).rows;
     expect(rec.map((r) => r.kind)).toEqual(["unknown_outcome"]);
     expect((await h.svc.get(ids[0]!)).status).toBe("RECOVERY");
+  });
+});
+
+describe("auth outage", () => {
+  it("a revoked/expired token pauses the worker; the invoice is not parked in recovery and nothing is written", async () => {
+    h = await createHarness();
+    const { ids } = await seedApproved(h, 1);
+    h.emu.setFaults([{ op: "query", effect: "expire_token" }, { op: "token", effect: "error500_before" }]);
+    const w = h.worker({ maxUncertainAttempts: 2 });
+    const r = await w.tick();
+    expect(r[0]!.result).toBe("retry");
+    expect(w.authCircuitOpenUntil).toBeGreaterThan(Date.now());
+    expect(await w.tick()).toEqual([]); // circuit open: no claims
+    expect((await h.db.query("select count(*)::int as n from recovery_queue")).rows[0].n).toBe(0);
+    expect((await h.db.query("select outcome from post_attempts")).rows.map((x) => x.outcome)).toEqual(["auth_failed"]);
+    expect(creations()).toBe(0);
+    expect((await h.svc.get(ids[0]!)).status).toBe("POSTING");
   });
 });
 
@@ -235,11 +256,15 @@ describe("fencing and adoption safety", () => {
     await stall.arrived; // W1's Bill is committed remotely, W1 is paused before recording it
     await sleep(h.requestTimeoutMs * 4 + 50);
     await drain(h, [h.worker({ workerId: "fresh" })]);
-    const before = (await h.db.query("select (select count(*) from audit_log)::int as a, (select count(*) from post_attempts where outcome is not null)::int as p, (select max(updated_at) from outbox) as u")).rows[0];
+    const snapshot = async () => {
+      const out: Record<string, unknown[]> = {};
+      for (const t of ["invoices", "approvals", "outbox", "post_attempts", "postings", "recovery_queue", "audit_log"]) out[t] = (await h.db.query(`select * from ${t} order by 1`)).rows;
+      return JSON.stringify(out);
+    };
+    const before = await snapshot();
     stall.release();
     expect((await t1)[0]!.result).toBe("fenced");
-    const after = (await h.db.query("select (select count(*) from audit_log)::int as a, (select count(*) from post_attempts where outcome is not null)::int as p, (select max(updated_at) from outbox) as u")).rows[0];
-    expect(after).toEqual(before);
+    expect(await snapshot()).toBe(before); // full table contents, not just counts
     expect(creations()).toBe(1);
     await expectClean(obligations);
   });

@@ -35,5 +35,6 @@
 
 ## On-call notes
 - A duplicate is still possible in one documented case: requestid memory lost **and** the first write invisible to
-  the query (DESIGN §5). Reconciliation detects it; in 43 such chaos seeds none occurred, but it is not ruled out.
+  the query (DESIGN §5). Reconciliation detects it: it happened once in 43 such chaos seeds (seed 233) and was caught
+  as an `orphan_remote_bill`. Void the extra Bill in QBO (§4).
 - Do not "fix" a stuck POSTING invoice by editing status in SQL; the transition trigger rejects it on purpose.

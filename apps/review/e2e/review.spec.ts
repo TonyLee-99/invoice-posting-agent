@@ -3,7 +3,7 @@ import path from "node:path";
 
 const IMG = path.resolve(import.meta.dirname, "../../../docs/img");
 
-test("review queue: edit voids approval, re-approve, worker posts; audit log records it", async ({ page }) => {
+test("review queue: an edit changes the content hash, approval binds the new hash, worker posts, posted invoice is read-only", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("queue")).toBeVisible();
   await page.getByRole("button", { name: /needs review/i }).click();
@@ -30,6 +30,7 @@ test("review queue: edit voids approval, re-approve, worker posts; audit log rec
   }
   await expect(page.getByTestId("status")).toHaveText(/POSTED/);
   await expect(page.getByTestId("posting")).toContainText("QBO Bill");
+  await expect(page.getByTestId("field-dueDate")).toBeDisabled(); // corrections after posting happen in the ledger
   await page.screenshot({ path: `${IMG}/posted-detail.png` });
 
   await page.getByRole("link", { name: "Audit log" }).first().click();
@@ -41,7 +42,7 @@ test("recovery queue shows the manually keyed duplicate with its evidence", asyn
   await page.goto("/");
   await page.getByRole("button", { name: /^recovery/i }).click();
   const rows = page.locator("[data-testid^=row-]");
-  if ((await rows.count()) === 0) test.skip(true, "no recovery item in this seed");
+  await expect(rows.first()).toBeVisible(); // the demo always seeds one manually keyed duplicate
   await rows.first().click();
   await expect(page.getByTestId("posting")).toContainText("recovery");
   await page.screenshot({ path: `${IMG}/recovery.png` });

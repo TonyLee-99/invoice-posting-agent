@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Harness } from "../src/index.ts";
-import { checkInvariants, createHarness, drain, seedApproved } from "../src/index.ts";
+import { checkInvariants, createHarness, seedApproved } from "../src/index.ts";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const workerBin = path.resolve(here, "../src/bin/worker.ts");
@@ -39,12 +39,20 @@ describe("A14 real process killed mid-post", () => {
       child.kill("SIGKILL");
       await new Promise((r) => child.on("exit", r));
       expect(h.emu.creations()).toHaveLength(point === "after_remote_write" ? 1 : 0);
-      const d = await drain(h, [h.worker()], { maxMs: 10_000 });
-      expect(d.quiescent).toBe(true);
+      // Recovery by a second, independent OS process (no pause point), stopped with SIGTERM once posted.
+      const rescuer = spawn(tsx, [workerBin], { env: { ...process.env, DATABASE_URL: url, QBO_API_BASE: h.emu.url, QBO_TOKEN_URL: `${h.emu.url}/oauth2/v1/tokens/bearer`, QBO_CLIENT_ID: h.emu.clientId, QBO_CLIENT_SECRET: h.emu.clientSecret, QBO_REALM_ID: h.emu.realmId, QBO_TIMEOUT_MS: "300", WORKER_LEASE_MS: "1200", WORKER_ID: "rescuer", WORKER_IDLE_MS: "100" }, stdio: "ignore" });
+      const t0 = Date.now();
+      while (Date.now() - t0 < 20_000) {
+        if ((await h.db.query("select 1 from postings")).rows.length) break;
+        await new Promise((r) => setTimeout(r, 200));
+      }
+      rescuer.kill("SIGTERM");
+      await new Promise((r) => rescuer.on("exit", r));
       expect(h.emu.creations()).toHaveLength(1);
       expect((await checkInvariants(h, obligations)).ok).toBe(true);
       const workers = (await h.db.query("select worker from post_attempts order by id")).rows.map((r) => r.worker);
       expect(workers[0]).toBe("child");
+      expect(workers.at(-1)).toBe("rescuer");
     }, 40_000);
   }
 });

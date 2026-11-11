@@ -4,6 +4,7 @@ import { withTx } from "./db.ts";
 import { markerFor } from "./payload.ts";
 import { ConflictError, NotFoundError, audit, setStatus } from "./transitions.ts";
 import { sameContent } from "./worker.ts";
+import { toMinor } from "@ipa/domain";
 
 export type Resolution =
   | { action: "adopt"; billId: string; override?: { reason: string } }
@@ -54,7 +55,7 @@ export class RecoveryDesk {
         await tx.query(
           `insert into postings (invoice_id, outbox_id, realm_id, bill_id, doc_number, vendor_ref, total_minor, currency, payload_hash, adopted)
            values ($1,$2,$3,$4,$5,$6,$7,$8,$9,true)`,
-          [item.invoice_id, job.id, job.realm_id, bill.Id, job.doc_number, job.vendor_ref, Math.round(bill.TotalAmt * 100), bill.CurrencyRef?.value ?? "USD", job.payload_hash],
+          [item.invoice_id, job.id, job.realm_id, bill.Id, job.doc_number, job.vendor_ref, toMinor(bill.TotalAmt, bill.CurrencyRef?.value ?? "USD"), bill.CurrencyRef?.value ?? "USD", job.payload_hash],
         );
         await tx.query("update outbox set status = 'done', updated_at = now() where id = $1", [job.id]);
         await this.toStatus(tx, item.invoice_id!, "POSTED", actor, "recovery_adopt", evidence);
@@ -93,7 +94,7 @@ export class RecoveryDesk {
       evidence = { bill: summarize(bill) };
       await withTx(this.db, async (tx) => {
         // System of record wins: local posting takes the ledger's values.
-        await tx.query("update postings set total_minor = $2, doc_number = $3, vendor_ref = $4 where bill_id = $1 and voided_at is null", [bill.Id, Math.round(bill.TotalAmt * 100), bill.DocNumber ?? "", bill.VendorRef.value]);
+        await tx.query("update postings set total_minor = $2, doc_number = $3, vendor_ref = $4 where bill_id = $1 and voided_at is null", [bill.Id, toMinor(bill.TotalAmt, bill.CurrencyRef?.value ?? "USD"), bill.DocNumber ?? "", bill.VendorRef.value]);
         await this.toStatus(tx, item.invoice_id!, "RECONCILED", actor, "recovery_accept_ledger", evidence);
         await this.close(tx, item.id, r.action, actor, evidence);
       });

@@ -174,7 +174,7 @@ export async function runSeed(h: Harness, seed: number, opts: { defenses?: Defen
   const count = (k: string) => (faultsFired[k] = (faultsFired[k] ?? 0) + 1);
   // Faults stop: liveness phase.
   chaosOn = false;
-  for (const f of h.emu.faultLog) count(`${f.op}:${f.effect}`);
+  for (const f of [...h.priorFaultLog, ...h.emu.faultLog]) count(`${f.op}:${f.effect}`);
   if (restarted) count("emulator_restart");
   if (crashes) faultsFired["worker_crash"] = crashes;
   h.emu.clearFaults();
@@ -187,6 +187,7 @@ export async function runSeed(h: Harness, seed: number, opts: { defenses?: Defen
   // Runbook bot, then reconcile, then the runbook again for anything reconciliation found.
   await runbookBot(h, defenses);
   await drain(h, [h.worker({ defenses })], { maxMs: 10_000 });
+  // After the runbook every obligation must end posted: parked items count as a failure of liveness.
   const rep = await reconcile(h.db, h.qbo);
   const orphansFound = rep.orphans;
   await runbookBot(h, defenses);
@@ -195,7 +196,7 @@ export async function runSeed(h: Harness, seed: number, opts: { defenses?: Defen
   return {
     config: cfg,
     defenses,
-    ok: inv.ok && d.quiescent,
+    ok: inv.ok && d.quiescent && inv.inRecovery.length === 0,
     duplicates: inv.duplicateCreations.reduce((s, x) => s + x.count - 1, 0),
     lost: inv.lost.length,
     inRecoveryAfterRunbook: inv.inRecovery.length,
@@ -232,7 +233,7 @@ async function approveEdited(h: Harness): Promise<void> {
  * matches, retry after the quiet period if none. orphan_remote_bill (a duplicate): void it in QBO (the
  * emulator stands in for the person), then confirm.
  */
-async function runbookBot(h: Harness, _defenses: Defenses): Promise<void> {
+async function runbookBot(h: Harness, defenses: Defenses): Promise<void> {
   const desk = new RecoveryDesk(h.db, h.qbo, { quietPeriodMs: h.requestTimeoutMs * 4 });
   for (let round = 0; round < 3; round++) {
     const items = await desk.open();
@@ -265,6 +266,6 @@ async function runbookBot(h: Harness, _defenses: Defenses): Promise<void> {
         if (!(e instanceof ConflictError)) throw e;
       }
     }
-    await drain(h, [h.worker()], { maxMs: 5_000 });
+    await drain(h, [h.worker({ defenses })], { maxMs: 5_000 });
   }
 }

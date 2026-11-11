@@ -10,8 +10,8 @@
   "openRecovery": 1,
   "lastReconciliation": {
    "id": 1,
-   "started_at": "2026-11-11T13:53:48.339Z",
-   "finished_at": "2026-11-11T13:53:48.350Z",
+   "started_at": "2026-11-11T14:14:32.431Z",
+   "finished_at": "2026-11-11T14:14:32.447Z",
    "status": "complete",
    "checkpoint": 10,
    "counts": {
@@ -36,6 +36,6 @@
   "orphans": 0,
   "scannedBills": 9
  },
- "backend": "claude-cli",
+ "backend": "replay",
  "model": "claude-haiku-5-5"
 }

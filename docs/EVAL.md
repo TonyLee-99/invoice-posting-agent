@@ -10,8 +10,8 @@ rescope: numbers must be real, not large); every size is a knob.
 | chaos (300 seeds + 4 ablations × 100) | `make chaos-full` | `chaos.json` |
 | ROI assumption model | `npx tsx scripts/roi.ts` | `roi.json` |
 
-**Scale up:** `make data && npx tsx eval/run.ts --n 297 --backend claude-cli` (the manifest has 297 labelled
-documents; ~300 Haiku calls, about $0.36 list-price equivalent at the measured $0.0012/invoice).
+**Scale up:** `make data && npx tsx eval/run.ts --n 232 --backend claude-cli` (the test split has 232 of the 297
+labelled documents; ~300 Haiku calls, about $0.36 list-price equivalent at the measured $0.0012/invoice).
 
 ## 1. Data and provenance
 
@@ -22,7 +22,8 @@ documents; ~300 Haiku calls, about $0.36 list-price equivalent at the measured $
 
 Both sets are **generated documents, not real company invoices**. Neither label set was written or edited by me.
 Splits are fixed by a hash of the group id (IPP variants of one base document share a group): 65 dev / 232 test.
-Nothing was tuned on test; the prompt was written once (`extract-v1`) before the first run, and the routing threshold
+The LLM extractor was frozen before the first run (prompt `extract-v1`, never changed). The regex baseline was
+changed once after the run, for a bug found by a unit test (INC-9, baseline 0.761 → 0.765), not by inspecting test errors; and the routing threshold
 0.9 was fixed in the policy before the run (the sweep is reported, not used to choose it).
 
 **This run:** 40 test-split documents — 24 IPP (round-robin over its 10 categories) + 16 Katana; 18 parsed from the
@@ -88,12 +89,13 @@ fitted calibrator; with 40 docs a fitted model would overfit. ECE/Brier were not
   clean → auto 8, clean → review 16; reject → reject 4; review → review 11, review → reject 1. The errors are in the
   safe direction except one review case rejected (an invoice the LLM typed as `other`).
 - **Auto-approval** at 0.9: 8 of 40 auto-approved (20%), precision 8/8 = 1.00 (Wilson 95% CI 0.68–1.00). Zero false
-  approvals at every threshold from 0.5 (18 auto-approved) to 0.95; target ≥ 0.98 precision is met on the point
+  approvals at every threshold from 0.5 (19 auto-approved) to 0.95; target ≥ 0.98 precision is met on the point
   estimate, but 8 approvals cannot establish it — the CI lower bound is 0.68.
 
 ## 4. Explanations and vendor email drafts
-10 drafts on held invoices; a draft is grounded when every number in it appears in the deterministic findings or the
-invoice header (numbered-list markers excluded). Final run: **10 / 10 grounded**. First run under the same check:
+10 drafts on held invoices; a draft is grounded when every number in it appears in the model's input — the
+deterministic findings plus the invoice header (numbered-list markers excluded). It is a numeric-presence check, not a
+semantic one: a number copied into the wrong sentence would still pass. Final run: **10 / 10 grounded**. First run under the same check:
 4 / 10 — the model computed differences ("the extra 35") that were not in the facts; the matcher now supplies
 `overBy`/`difference` (INC-6).
 
@@ -102,13 +104,15 @@ $0.0012 per invoice (list-price equivalent, Haiku 5.5), $0.048 total. LLM latenc
 parse p50 1.8 s, p95 14.4 s (OCR). Owner policy: Haiku for all runs; a Sonnet 5.5 comparison was not run.
 
 ## 6. Reliability (fault injection)
-`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,306 injected remote faults, 942 worker crashes, 75 emulator restarts, plus
-stalls and edits: **0 duplicate Bills, 0 lost invoices, 0 ledger/local mismatches, every seed
-quiescent after faults stopped**. 43 seeds were pre-classified as residual-risk eligible (requestid memory lost while
-a write could be invisible or a stale request could land); none produced a duplicate. Ablations (100 seeds each):
-no stable requestid 14/100 seeds violate (29 duplicates); no query-first 12/100 (22); no fencing + no lease guard 0/100
-(random stalls are rare — the deterministic test shows the duplicate when both are off); all defenses off 84/100
-(353 duplicates). Claims are scoped to these injected scenarios.
+`results/chaos.json`, 300 seeds with all defenses: 4,180 invoices, 2,803 injected remote faults, 925 worker crashes, 75 emulator restarts, plus
+stalls and edits: **0 lost invoices, 0 ledger/local mismatches after reconciliation, every seed quiescent after
+faults stopped, 0 duplicate Bills in the 257 non-residual seeds**. 43 seeds were pre-classified as residual-risk eligible (requestid memory lost while
+a write could be invisible or a stale request could land); **one** of them (seed 233: emulator restart + 284 ms
+query lag + after-commit faults) produced 1 duplicate Bill, which nightly reconciliation reported as an orphan and the
+runbook voided. That is the designed residual, not a surprise — but it is real. Ablations (100 seeds each):
+no stable requestid 13/100 seeds violate (28 duplicates); no query-first 13/100 (22); no fencing + no lease guard
+0/100 (random stalls are rare — the deterministic test shows the duplicate when both are off); all defenses off
+86/100 (360 duplicates). Claims are scoped to these injected scenarios.
 
 ## 7. ROI (Simulated assumption model)
 `results/roi.json`: with the measured 20% auto-approval rate and assumed inputs (600 invoices/month, 6 min manual vs

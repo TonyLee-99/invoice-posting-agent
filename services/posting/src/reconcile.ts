@@ -4,6 +4,8 @@ import type { Db } from "./db.ts";
 import { withTx } from "./db.ts";
 import { MARKER_PREFIX } from "./payload.ts";
 import { openRecovery, setStatus } from "./transitions.ts";
+import { sameContent } from "./worker.ts";
+import { toMinor } from "@ipa/domain";
 
 export interface ReconcileReport {
   runId: number;
@@ -26,7 +28,9 @@ export async function reconcile(db: Db, qbo: QboClient, opts: { pageSize?: numbe
   const actor = opts.actor ?? "reconciler";
   const run = (await db.query<{ id: number }>("insert into reconciliation_runs default values returning id")).rows[0]!.id;
   const rep: ReconcileReport = { runId: run, status: "complete", checked: 0, reconciled: 0, missing: 0, changed: 0, orphans: 0, scannedBills: 0 };
-  const postings = (await db.query("select * from postings where voided_at is null order by invoice_id")).rows;
+  // Live postings with the payload that was approved; a posting whose ledger values were accepted by a person
+  // (accept_ledger) is compared on the accepted total only.
+  const postings = (await db.query("select p.*, o.payload, exists (select 1 from recovery_queue q where q.bill_id = p.bill_id and q.resolution = 'accept_ledger') as ledger_accepted from postings p join outbox o on o.id = p.outbox_id where p.voided_at is null order by p.invoice_id")).rows;
   try {
     for (const p of postings) {
       const bill = await qbo.getBill(p.bill_id);
@@ -40,8 +44,9 @@ export async function reconcile(db: Db, qbo: QboClient, opts: { pageSize?: numbe
           if (live) await setStatus(tx, p.invoice_id, "RECOVERY", actor, "reconcile_missing", { billId: p.bill_id });
           return;
         }
-        const ledgerMinor = Math.round(bill.TotalAmt * 100);
-        if (ledgerMinor !== p.total_minor || bill.VendorRef.value !== p.vendor_ref || bill.DocNumber !== p.doc_number) {
+        const ledgerMinor = toMinor(bill.TotalAmt, p.currency);
+        const contentOk = p.ledger_accepted || sameContent(bill, p.payload);
+        if (ledgerMinor !== p.total_minor || bill.VendorRef.value !== p.vendor_ref || bill.DocNumber !== p.doc_number || (bill.CurrencyRef?.value ?? p.currency) !== p.currency || !contentOk) {
           rep.changed++;
           await openRecovery(tx, {
             invoiceId: p.invoice_id, billId: p.bill_id, kind: "reconcile_mismatch",

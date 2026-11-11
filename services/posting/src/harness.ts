@@ -11,6 +11,8 @@ import { PgTokenStore } from "./tokens.ts";
 import type { WorkerOptions } from "./worker.ts";
 import { OutboxWorker } from "./worker.ts";
 import { MARKER_PREFIX } from "./payload.ts";
+import { sameContent } from "./worker.ts";
+import { toMinor } from "@ipa/domain";
 
 export interface Harness {
   db: Db;
@@ -19,6 +21,8 @@ export interface Harness {
   svc: PostingService;
   requestTimeoutMs: number;
   newClient(): QboClient;
+  /** Fault log of emulator instances replaced by restartEmulator() in this run. */
+  priorFaultLog: QboEmulator["faultLog"];
   worker(opts?: WorkerOptions): OutboxWorker;
   restartEmulator(opts?: Partial<EmulatorOptions>): Promise<void>;
   /** Fresh emulator + empty service tables, same database (chaos runs many seeds per database). */
@@ -51,10 +55,12 @@ export async function createHarness(opts: { emulator?: EmulatorOptions; requestT
     svc,
     requestTimeoutMs,
     newClient: mkClient,
+    priorFaultLog: [],
     worker: (o: WorkerOptions = {}) => new OutboxWorker(db, mkClient(), { requestTimeoutMs, leaseMs: requestTimeoutMs * 4, backoffBaseMs: 20, backoffMaxMs: 200, ...o }),
     restartEmulator: async (more: Partial<EmulatorOptions> = {}) => {
       // Same port so existing clients keep working; state comes back from the snapshot file.
       const port = Number(new URL(url).port);
+      h.priorFaultLog.push(...emu.faultLog);
       await emu.stop();
       emu = new QboEmulator({ ...emuOpts2, ...more, port });
       url = await emu.start();
@@ -64,6 +70,7 @@ export async function createHarness(opts: { emulator?: EmulatorOptions; requestT
       await emu.stop();
       await db.query(`truncate invoices, approvals, po_line_reservations, outbox, post_attempts, postings, recovery_queue, audit_log, reconciliation_runs, qbo_tokens restart identity cascade`);
       emuOpts2 = { vendors: [{ id: "56", name: SIM_VENDOR.name, currency: "USD" }], ...o };
+      h.priorFaultLog = [];
       emu = new QboEmulator(emuOpts2);
       url = await emu.start();
       h.emu = emu;
@@ -156,7 +163,7 @@ export async function checkInvariants(h: Harness, obligations: Map<number, { tot
   const duplicateCreations = [...byDoc.entries()].filter(([, n]) => n > 1).map(([k, count]) => ({ docNumber: k.split("|")[1]!, count }));
 
   const ledger = h.emu.liveBills();
-  const postings = (await h.db.query("select * from postings where voided_at is null")).rows;
+  const postings = (await h.db.query("select p.*, o.payload from postings p join outbox o on o.id = p.outbox_id where p.voided_at is null")).rows;
   const openRec = new Set((await h.db.query("select invoice_id from recovery_queue where resolved_at is null and invoice_id is not null")).rows.map((r) => Number(r.invoice_id)));
   const postedIds = new Set(postings.map((p) => Number(p.invoice_id)));
   const lost: number[] = [];
@@ -166,11 +173,12 @@ export async function checkInvariants(h: Harness, obligations: Map<number, { tot
     if (postedIds.has(id)) {
       const p = postings.find((x) => Number(x.invoice_id) === id)!;
       const bill = ledger.find((b) => b.Id === p.bill_id);
-      if (bill && (Math.round(bill.TotalAmt * 100) !== ob.totalMinor || bill.DocNumber !== ob.invoiceNumber)) staleContent.push(id);
+      // I4 from independent evidence: the ledger's own fields vs what the harness approved, and vs the stored payload.
+      if (bill && (toMinor(bill.TotalAmt, p.currency) !== ob.totalMinor || bill.DocNumber !== ob.invoiceNumber || !sameContent(bill, p.payload))) staleContent.push(id);
     } else if (openRec.has(id)) inRecovery.push(id);
     else lost.push(id);
   }
-  const localWithoutLedger = postings.filter((p) => !ledger.some((b) => b.Id === p.bill_id && Math.round(b.TotalAmt * 100) === Number(p.total_minor))).map((p) => Number(p.invoice_id));
+  const localWithoutLedger = postings.filter((p) => !ledger.some((b) => b.Id === p.bill_id && toMinor(b.TotalAmt, p.currency) === Number(p.total_minor))).map((p) => Number(p.invoice_id));
   const ourLedger = ledger.filter((b) => (b.PrivateNote ?? "").startsWith(MARKER_PREFIX));
   const ledgerWithoutLocal = ourLedger.filter((b) => !postings.some((p) => p.bill_id === b.Id)).map((b) => b.Id);
   const ok = duplicateCreations.length === 0 && lost.length === 0 && localWithoutLedger.length === 0 && ledgerWithoutLocal.length === 0 && staleContent.length === 0;

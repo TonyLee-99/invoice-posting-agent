@@ -72,6 +72,15 @@ describe("Bill create + requestid", () => {
     expect(emu.creations()).toHaveLength(1);
   });
 
+  it("concurrent same-requestid creates: serialize mode dedups, race mode (pessimistic) can create two", async () => {
+    const one = await setup({ concurrentSameRequestId: "serialize" });
+    await Promise.all([one.client.createBill(bill("C1"), "same-c"), one.client.createBill(bill("C1"), "same-c")]);
+    expect(one.emu.creations()).toHaveLength(1);
+    const two = await setup({ concurrentSameRequestId: "race" });
+    await Promise.all([two.client.createBill(bill("C2"), "same-r"), two.client.createBill(bill("C2"), "same-r")]);
+    expect(two.emu.creations()).toHaveLength(2);
+  });
+
   it("without requestid dedup (different id) a retry duplicates — DocNumber is not an idempotency key", async () => {
     const { emu, client } = await setup();
     await client.createBill(bill("D2"), "x1");

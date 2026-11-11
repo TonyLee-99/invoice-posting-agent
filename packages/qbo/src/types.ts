@@ -72,3 +72,10 @@ export class QboUnavailableError extends Error {
     super(message);
   }
 }
+
+/** Authentication could not be recovered by one refresh. Systemic: callers pause instead of failing invoices. */
+export class QboAuthError extends QboUnavailableError {
+  constructor(message: string) {
+    super(message, 401);
+  }
+}

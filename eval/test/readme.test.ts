@@ -16,13 +16,16 @@ const has = (s: string) => expect(readme, `README should contain "${s}"`).toCont
 describe("README matches results/", () => {
   it("chaos headline", () => {
     const s = chaos.all_defenses.summary;
-    expect(s.duplicateBills).toBe(0);
+    expect(s.nonResidualSeedsWithViolation).toBe(0);
     expect(s.lostInvoices).toBe(0);
+    expect(s.residualDuplicatesDetectedByReconcile).toBe(s.residualSeedsWithDuplicate);
+    has(`**${s.nonResidualSeedsWithViolation}** duplicates in the ${s.nonResidualSeeds} non-residual seeds, **${s.duplicateBills}** in the ${s.residualEligibleSeeds} residual-risk seeds`);
     // Remote faults injected by the emulator; worker crashes and restarts are counted separately.
     const remote = Object.entries(s.faultsFired as Record<string, number>).filter(([k]) => k !== "worker_crash" && k !== "emulator_restart").reduce((a, [, v]) => a + v, 0);
     has(`${s.seeds} randomized fault-injection seeds (${s.invoices.toLocaleString("en-US")} invoices, ${remote.toLocaleString("en-US")} injected remote faults, ${s.faultsFired.worker_crash} worker crashes)`);
     has(`${s.faultsFired.worker_crash} worker crashes`);
     has(`${chaos.all_off.summary.duplicateBills} duplicates, ${chaos.all_off.summary.seedsWithViolation}/100 seeds`);
+    has(`**${chaos.all_off.summary.seedsWithViolation} of 100** seeds produce duplicates`);
   });
   it("extraction", () => {
     const f3 = (x: number) => (Math.round(x * 1000) / 1000).toFixed(3);

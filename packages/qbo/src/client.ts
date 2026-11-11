@@ -1,5 +1,5 @@
 import type { Bill, BillCreate, CreateResult, QboFault, TokenSet } from "./types.ts";
-import { QboUnavailableError } from "./types.ts";
+import { QboAuthError, QboUnavailableError } from "./types.ts";
 
 /** Endpoints from Intuit's OAuth 2.0 and Accounting API docs (see docs/QBO_SEMANTICS.md for sources). */
 export const INTUIT = {
@@ -167,6 +167,7 @@ export class QboClient {
     try {
       ({ res, text } = await this.authed(`/v3/company/${this.cfg.realmId}/bill/${encodeURIComponent(id)}?minorversion=${this.minor()}`, { method: "GET" }));
     } catch (e) {
+      if (e instanceof AuthFailed) throw new QboAuthError(e.message);
       throw new QboUnavailableError(`read failed: ${(e as Error).message}`, null);
     }
     if (res.status === 200) return (JSON.parse(text) as { Bill: Bill }).Bill;
@@ -179,6 +180,7 @@ export class QboClient {
     try {
       ({ res, text } = await this.authed(`/v3/company/${this.cfg.realmId}/query?query=${encodeURIComponent(q)}&minorversion=${this.minor()}`, { method: "GET" }));
     } catch (e) {
+      if (e instanceof AuthFailed) throw new QboAuthError(e.message);
       throw new QboUnavailableError(`query failed: ${(e as Error).message}`, null);
     }
     if (res.status !== 200) throw new QboUnavailableError(`query http ${res.status}`, res.status);

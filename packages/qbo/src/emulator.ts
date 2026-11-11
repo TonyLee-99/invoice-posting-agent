@@ -274,6 +274,9 @@ export class QboEmulator {
         res.end(payload);
         return;
       }
+      // In "race" mode yield once between the requestid check and the commit, so two concurrent requests with the
+      // same requestid can both pass the check (a pessimistic model of what Intuit does not document).
+      if (this.opts.concurrentSameRequestId === "race") await sleep(15); // processing time during which a twin can arrive
       const bill = this.commitBill(parsed, requestId);
       const responseBody = JSON.stringify({ Bill: strip(bill), time: new Date().toISOString() });
       // Bill and requestid record are committed together (one synchronous step, one snapshot write).
